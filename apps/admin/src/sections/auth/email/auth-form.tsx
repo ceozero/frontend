@@ -106,10 +106,22 @@ export default function EmailAuthForm() {
     <>
       <div className="mb-11 text-center">
         <h1 className="mb-3 font-bold text-2xl">
-          {t(`${type || "check"}.title`)}
+          {type === "login"
+            ? t("login.title", "Login")
+            : type === "register"
+              ? t("register.title", "Register")
+              : type === "reset"
+                ? t("reset.title", "Reset Password")
+                : t("check.title", "Verify")}
         </h1>
         <div className="font-medium text-muted-foreground">
-          {t(`${type || "check"}.description`)}
+          {type === "login"
+            ? t("login.description", "Enter your credentials to continue")
+            : type === "register"
+              ? t("register.description", "Create a new account")
+              : type === "reset"
+                ? t("reset.description", "Reset your password")
+                : t("check.description", "Verify your identity")}
         </div>
       </div>
       {UserForm}

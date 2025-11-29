@@ -40,7 +40,7 @@ export default function SystemVersionCard() {
         const [webResponse, serverResponse, systemResponse] = await Promise.all(
           [
             fetch(
-              "https://data.jsdelivr.com/v1/packages/gh/perfect-panel/ppanel-web/resolved?specifier=latest"
+              "https://data.jsdelivr.com/v1/packages/gh/perfect-panel/frontend/resolved?specifier=latest"
             ),
             fetch(
               "https://data.jsdelivr.com/v1/packages/gh/perfect-panel/server/resolved?specifier=latest"
@@ -88,7 +88,7 @@ export default function SystemVersionCard() {
           web: webData
             ? {
                 version: webData.version,
-                url: `https://github.com/perfect-panel/ppanel-web/releases/tag/v${webData.version}`,
+                url: `https://github.com/perfect-panel/frontend/releases/tag/v${webData.version}`,
               }
             : null,
           server: serverData
@@ -206,7 +206,7 @@ export default function SystemVersionCard() {
                 target="_blank"
                 to={
                   latestReleases?.web?.url ||
-                  "https://github.com/perfect-panel/ppanel-web/releases"
+                  "https://github.com/perfect-panel/frontend/releases"
                 }
               >
                 <Badge

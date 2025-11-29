@@ -144,11 +144,11 @@
         "assets": [
           {
             "path": "admin.tar.gz",
-            "name": "ppanel-admin-${nextRelease.version}.tar.gz"
+            "name": "ppanel-admin-web.tar.gz"
           },
           {
             "path": "user.tar.gz",
-            "name": "ppanel-user-${nextRelease.version}.tar.gz"
+            "name": "ppanel-user-web.tar.gz"
           }
         ]
       }
