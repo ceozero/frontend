@@ -19,6 +19,12 @@ This document records all notable changes to ShadCN Admin.
 ---
 
 
+## [1.1.2](https://github.com/perfect-panel/frontend/compare/v1.1.1...v1.1.2) (2025-11-30)
+
+### 🐛 Bug Fixes / 问题修复
+
+* Add version.lock plugin to generate version lock file after build ([574c06c](https://github.com/perfect-panel/frontend/commit/574c06c754deb84953d182057ea17bba14a2bcd4))
+
 ## [1.1.1](https://github.com/perfect-panel/frontend/compare/v1.1.0...v1.1.1) (2025-11-30)
 
 ### 🐛 Bug Fixes / 问题修复
