@@ -1,6 +1,0 @@
-# Remove trailing slashes (except for root path)
-# This ensures /dashboard/ redirects to /dashboard
-/*/ /:splat 301!
-
-# SPA routing - serve index.html for all non-asset requests
-/*    /index.html   200
