@@ -15,10 +15,10 @@ import {
   DropdownMenuTrigger,
 } from "@workspace/ui/components/dropdown-menu";
 import { Icon } from "@workspace/ui/composed/icon";
-import { removeCookie } from "@workspace/ui/lib/cookies";
 import { useTranslation } from "react-i18next";
 import { useNavs } from "@/layout/navs";
 import { useGlobalStore } from "@/stores/global";
+import { Logout } from "@/utils/common";
 
 export function UserNav() {
   const { t } = useTranslation("components");
@@ -27,9 +27,8 @@ export function UserNav() {
   const navs = useNavs();
 
   const handleLogout = () => {
-    removeCookie("Authorization");
     setUser(undefined);
-    navigate({ to: "/" });
+    Logout();
   };
 
   if (user) {
@@ -43,13 +42,13 @@ export function UserNav() {
                 className="object-cover"
                 src={user?.auth_methods?.[0]?.auth_identifier ?? ""}
               />
-              <AvatarFallback className="bg-gradient-to-br from-primary/90 to-primary font-medium text-background">
+              <AvatarFallback className="bg-linear-to-br from-primary/90 to-primary font-medium text-background">
                 {user?.auth_methods?.[0]?.auth_identifier
                   .toUpperCase()
                   .charAt(0)}
               </AvatarFallback>
             </Avatar>
-            <span className="max-w-[40px] truncate text-sm sm:max-w-[100px]">
+            <span className="max-w-10 truncate text-sm sm:max-w-[100px]">
               {user?.auth_methods?.[0]?.auth_identifier.split("@")[0]}
             </span>
             <Icon
@@ -66,7 +65,7 @@ export function UserNav() {
                 className="object-cover"
                 src={user?.avatar ?? ""}
               />
-              <AvatarFallback className="bg-gradient-to-br from-primary/90 to-primary text-background">
+              <AvatarFallback className="bg-linear-to-br from-primary/90 to-primary text-background">
                 {user?.auth_methods?.[0]?.auth_identifier
                   .toUpperCase()
                   .charAt(0)}
@@ -96,7 +95,7 @@ export function UserNav() {
                     className="size-4 flex-none text-muted-foreground"
                     icon={item.icon as string}
                   />
-                  <span className="flex-grow truncate">{item.title}</span>
+                  <span className="grow truncate">{item.title}</span>
                   <Icon
                     className="size-4 text-muted-foreground opacity-50"
                     icon="lucide:chevron-right"
@@ -111,7 +110,7 @@ export function UserNav() {
             onClick={handleLogout}
           >
             <Icon className="size-4 flex-none" icon="uil:exit" />
-            <span className="flex-grow">{t("menu.logout", "Logout")}</span>
+            <span className="grow">{t("menu.logout", "Logout")}</span>
           </DropdownMenuItem>
         </DropdownMenuContent>
       </DropdownMenu>

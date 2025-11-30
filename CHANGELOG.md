@@ -19,6 +19,12 @@ This document records all notable changes to ShadCN Admin.
 ---
 
 
+## [1.1.1](https://github.com/perfect-panel/frontend/compare/v1.1.0...v1.1.1) (2025-11-30)
+
+### 🐛 Bug Fixes / 问题修复
+
+* add hash history support for routing in admin and user applications ([bfc1773](https://github.com/perfect-panel/frontend/commit/bfc1773226ea7dd77e2dabd181493108eacca5ba))
+
 ## [1.1.0](https://github.com/perfect-panel/frontend/compare/v1.0.3...v1.1.0) (2025-11-30)
 
 ### ✨ Features / 新功能
