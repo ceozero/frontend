@@ -85,6 +85,16 @@ jobs:
       - name: Build Admin App
         run: bun run build --filter=ppanel-admin-web
 
+      - name: Verify _routes.json exists
+        run: |
+          if [ ! -f apps/admin/dist/_routes.json ]; then
+            echo "Warning: _routes.json not found in dist directory"
+            ls -la apps/admin/dist/
+          else
+            echo "_routes.json found:"
+            cat apps/admin/dist/_routes.json
+          fi
+
       - name: Deploy Admin App to Cloudflare Pages
         uses: cloudflare/wrangler-action@v3
         with:
