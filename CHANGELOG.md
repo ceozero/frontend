@@ -19,6 +19,12 @@ This document records all notable changes to ShadCN Admin.
 ---
 
 
+## [1.1.0](https://github.com/perfect-panel/frontend/compare/v1.0.3...v1.1.0) (2025-11-30)
+
+### ✨ Features / 新功能
+
+* add new payment icons for Alipay and WeChat Pay, update asset paths ([2ce0572](https://github.com/perfect-panel/frontend/commit/2ce0572283fe677e2e862aa2a8af1d44b7e7cfed))
+
 ## [1.0.3](https://github.com/perfect-panel/frontend/compare/v1.0.2...v1.0.3) (2025-11-29)
 
 ### 🐛 Bug Fixes / 问题修复
