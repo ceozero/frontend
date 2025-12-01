@@ -135,7 +135,7 @@
     [
       "@semantic-release/exec",
       {
-        "prepareCmd": "tar -czf admin.tar.gz -C apps/admin dist/ && tar -czf user.tar.gz -C apps/user dist/"
+        "prepareCmd": "bun run build && tar -czf admin.tar.gz -C apps/admin/dist . && tar -czf user.tar.gz -C apps/user/dist ."
       }
     ],
     [

@@ -19,6 +19,12 @@ This document records all notable changes to ShadCN Admin.
 ---
 
 
+## [1.1.3](https://github.com/perfect-panel/frontend/compare/v1.1.2...v1.1.3) (2025-12-01)
+
+### 🐛 Bug Fixes / 问题修复
+
+* update prepare command to use bun for building before packaging admin and user applications ([0dcd50b](https://github.com/perfect-panel/frontend/commit/0dcd50b6d3bbafccab73fe564325ee527ca14569))
+
 ## [1.1.2](https://github.com/perfect-panel/frontend/compare/v1.1.1...v1.1.2) (2025-11-30)
 
 ### 🐛 Bug Fixes / 问题修复
