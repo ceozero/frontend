@@ -1,3 +1,4 @@
+//
 /* eslint-disable */
 import request from "@workspace/ui/lib/request";
 
@@ -6,7 +7,7 @@ export async function updateUserTicketStatus(
   body: API.UpdateUserTicketStatusRequest,
   options?: { [key: string]: any }
 ) {
-  return request<API.Response & { data?: any }>("/v1/public/ticket/", {
+  return request<API.Response & { data?: any }>("/api/v1/public/ticket/", {
     method: "PUT",
     headers: {
       "Content-Type": "application/json",
@@ -21,7 +22,7 @@ export async function createUserTicket(
   body: API.CreateUserTicketRequest,
   options?: { [key: string]: any }
 ) {
-  return request<API.Response & { data?: any }>("/v1/public/ticket/", {
+  return request<API.Response & { data?: any }>("/api/v1/public/ticket/", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -38,7 +39,7 @@ export async function getUserTicketDetails(
   options?: { [key: string]: any }
 ) {
   return request<API.Response & { data?: API.Ticket }>(
-    "/v1/public/ticket/detail",
+    "/api/v1/public/ticket/detail",
     {
       method: "GET",
       params: {
@@ -54,14 +55,17 @@ export async function createUserTicketFollow(
   body: API.CreateUserTicketFollowRequest,
   options?: { [key: string]: any }
 ) {
-  return request<API.Response & { data?: any }>("/v1/public/ticket/follow", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    data: body,
-    ...(options || {}),
-  });
+  return request<API.Response & { data?: any }>(
+    "/api/v1/public/ticket/follow",
+    {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      data: body,
+      ...(options || {}),
+    }
+  );
 }
 
 /** Get ticket list GET /v1/public/ticket/list */
@@ -71,7 +75,7 @@ export async function getUserTicketList(
   options?: { [key: string]: any }
 ) {
   return request<API.Response & { data?: API.GetUserTicketListResponse }>(
-    "/v1/public/ticket/list",
+    "/api/v1/public/ticket/list",
     {
       method: "GET",
       params: {

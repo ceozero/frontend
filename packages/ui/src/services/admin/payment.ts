@@ -1,3 +1,4 @@
+//
 /* eslint-disable */
 import request from "@workspace/ui/lib/request";
 
@@ -7,7 +8,7 @@ export async function updatePaymentMethod(
   options?: { [key: string]: any }
 ) {
   return request<API.Response & { data?: API.PaymentConfig }>(
-    "/v1/admin/payment/",
+    "/api/v1/admin/payment/",
     {
       method: "PUT",
       headers: {
@@ -25,7 +26,7 @@ export async function createPaymentMethod(
   options?: { [key: string]: any }
 ) {
   return request<API.Response & { data?: API.PaymentConfig }>(
-    "/v1/admin/payment/",
+    "/api/v1/admin/payment/",
     {
       method: "POST",
       headers: {
@@ -42,7 +43,7 @@ export async function deletePaymentMethod(
   body: API.DeletePaymentMethodRequest,
   options?: { [key: string]: any }
 ) {
-  return request<API.Response & { data?: any }>("/v1/admin/payment/", {
+  return request<API.Response & { data?: any }>("/api/v1/admin/payment/", {
     method: "DELETE",
     headers: {
       "Content-Type": "application/json",
@@ -59,7 +60,7 @@ export async function getPaymentMethodList(
   options?: { [key: string]: any }
 ) {
   return request<API.Response & { data?: API.GetPaymentMethodListResponse }>(
-    "/v1/admin/payment/list",
+    "/api/v1/admin/payment/list",
     {
       method: "GET",
       params: {
@@ -73,7 +74,7 @@ export async function getPaymentMethodList(
 /** Get supported payment platform GET /v1/admin/payment/platform */
 export async function getPaymentPlatform(options?: { [key: string]: any }) {
   return request<API.Response & { data?: API.PlatformResponse }>(
-    "/v1/admin/payment/platform",
+    "/api/v1/admin/payment/platform",
     {
       method: "GET",
       ...(options || {}),

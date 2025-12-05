@@ -1,10 +1,11 @@
+//
 /* eslint-disable */
 import request from "@workspace/ui/lib/request";
 
 /** Get Currency Config GET /v1/admin/system/currency_config */
 export async function getCurrencyConfig(options?: { [key: string]: any }) {
   return request<API.Response & { data?: API.CurrencyConfig }>(
-    "/v1/admin/system/currency_config",
+    "/api/v1/admin/system/currency_config",
     {
       method: "GET",
       ...(options || {}),
@@ -18,7 +19,7 @@ export async function updateCurrencyConfig(
   options?: { [key: string]: any }
 ) {
   return request<API.Response & { data?: any }>(
-    "/v1/admin/system/currency_config",
+    "/api/v1/admin/system/currency_config",
     {
       method: "PUT",
       headers: {
@@ -33,7 +34,7 @@ export async function updateCurrencyConfig(
 /** Get Node Multiplier GET /v1/admin/system/get_node_multiplier */
 export async function getNodeMultiplier(options?: { [key: string]: any }) {
   return request<API.Response & { data?: API.GetNodeMultiplierResponse }>(
-    "/v1/admin/system/get_node_multiplier",
+    "/api/v1/admin/system/get_node_multiplier",
     {
       method: "GET",
       ...(options || {}),
@@ -44,7 +45,7 @@ export async function getNodeMultiplier(options?: { [key: string]: any }) {
 /** Get invite config GET /v1/admin/system/invite_config */
 export async function getInviteConfig(options?: { [key: string]: any }) {
   return request<API.Response & { data?: API.InviteConfig }>(
-    "/v1/admin/system/invite_config",
+    "/api/v1/admin/system/invite_config",
     {
       method: "GET",
       ...(options || {}),
@@ -58,7 +59,7 @@ export async function updateInviteConfig(
   options?: { [key: string]: any }
 ) {
   return request<API.Response & { data?: any }>(
-    "/v1/admin/system/invite_config",
+    "/api/v1/admin/system/invite_config",
     {
       method: "PUT",
       headers: {
@@ -73,7 +74,7 @@ export async function updateInviteConfig(
 /** Get Module Config GET /v1/admin/system/module */
 export async function getModuleConfig(options?: { [key: string]: any }) {
   return request<API.Response & { data?: API.ModuleConfig }>(
-    "/v1/admin/system/module",
+    "/api/v1/admin/system/module",
     {
       method: "GET",
       ...(options || {}),
@@ -84,7 +85,7 @@ export async function getModuleConfig(options?: { [key: string]: any }) {
 /** Get node config GET /v1/admin/system/node_config */
 export async function getNodeConfig(options?: { [key: string]: any }) {
   return request<API.Response & { data?: API.NodeConfig }>(
-    "/v1/admin/system/node_config",
+    "/api/v1/admin/system/node_config",
     {
       method: "GET",
       ...(options || {}),
@@ -98,7 +99,7 @@ export async function updateNodeConfig(
   options?: { [key: string]: any }
 ) {
   return request<API.Response & { data?: any }>(
-    "/v1/admin/system/node_config",
+    "/api/v1/admin/system/node_config",
     {
       method: "PUT",
       headers: {
@@ -113,7 +114,7 @@ export async function updateNodeConfig(
 /** PreView Node Multiplier GET /v1/admin/system/node_multiplier/preview */
 export async function preViewNodeMultiplier(options?: { [key: string]: any }) {
   return request<API.Response & { data?: API.PreViewNodeMultiplierResponse }>(
-    "/v1/admin/system/node_multiplier/preview",
+    "/api/v1/admin/system/node_multiplier/preview",
     {
       method: "GET",
       ...(options || {}),
@@ -124,7 +125,7 @@ export async function preViewNodeMultiplier(options?: { [key: string]: any }) {
 /** get Privacy Policy Config GET /v1/admin/system/privacy */
 export async function getPrivacyPolicyConfig(options?: { [key: string]: any }) {
   return request<API.Response & { data?: API.PrivacyPolicyConfig }>(
-    "/v1/admin/system/privacy",
+    "/api/v1/admin/system/privacy",
     {
       method: "GET",
       ...(options || {}),
@@ -137,20 +138,23 @@ export async function updatePrivacyPolicyConfig(
   body: API.PrivacyPolicyConfig,
   options?: { [key: string]: any }
 ) {
-  return request<API.Response & { data?: any }>("/v1/admin/system/privacy", {
-    method: "PUT",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    data: body,
-    ...(options || {}),
-  });
+  return request<API.Response & { data?: any }>(
+    "/api/v1/admin/system/privacy",
+    {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      data: body,
+      ...(options || {}),
+    }
+  );
 }
 
 /** Get register config GET /v1/admin/system/register_config */
 export async function getRegisterConfig(options?: { [key: string]: any }) {
   return request<API.Response & { data?: API.RegisterConfig }>(
-    "/v1/admin/system/register_config",
+    "/api/v1/admin/system/register_config",
     {
       method: "GET",
       ...(options || {}),
@@ -164,7 +168,7 @@ export async function updateRegisterConfig(
   options?: { [key: string]: any }
 ) {
   return request<API.Response & { data?: any }>(
-    "/v1/admin/system/register_config",
+    "/api/v1/admin/system/register_config",
     {
       method: "PUT",
       headers: {
@@ -182,7 +186,7 @@ export async function setNodeMultiplier(
   options?: { [key: string]: any }
 ) {
   return request<API.Response & { data?: any }>(
-    "/v1/admin/system/set_node_multiplier",
+    "/api/v1/admin/system/set_node_multiplier",
     {
       method: "POST",
       headers: {
@@ -197,7 +201,7 @@ export async function setNodeMultiplier(
 /** setting telegram bot POST /v1/admin/system/setting_telegram_bot */
 export async function settingTelegramBot(options?: { [key: string]: any }) {
   return request<API.Response & { data?: any }>(
-    "/v1/admin/system/setting_telegram_bot",
+    "/api/v1/admin/system/setting_telegram_bot",
     {
       method: "POST",
       ...(options || {}),
@@ -208,7 +212,7 @@ export async function settingTelegramBot(options?: { [key: string]: any }) {
 /** Get site config GET /v1/admin/system/site_config */
 export async function getSiteConfig(options?: { [key: string]: any }) {
   return request<API.Response & { data?: API.SiteConfig }>(
-    "/v1/admin/system/site_config",
+    "/api/v1/admin/system/site_config",
     {
       method: "GET",
       ...(options || {}),
@@ -222,7 +226,7 @@ export async function updateSiteConfig(
   options?: { [key: string]: any }
 ) {
   return request<API.Response & { data?: any }>(
-    "/v1/admin/system/site_config",
+    "/api/v1/admin/system/site_config",
     {
       method: "PUT",
       headers: {
@@ -237,7 +241,7 @@ export async function updateSiteConfig(
 /** Get subscribe config GET /v1/admin/system/subscribe_config */
 export async function getSubscribeConfig(options?: { [key: string]: any }) {
   return request<API.Response & { data?: API.SubscribeConfig }>(
-    "/v1/admin/system/subscribe_config",
+    "/api/v1/admin/system/subscribe_config",
     {
       method: "GET",
       ...(options || {}),
@@ -251,7 +255,7 @@ export async function updateSubscribeConfig(
   options?: { [key: string]: any }
 ) {
   return request<API.Response & { data?: any }>(
-    "/v1/admin/system/subscribe_config",
+    "/api/v1/admin/system/subscribe_config",
     {
       method: "PUT",
       headers: {
@@ -266,7 +270,7 @@ export async function updateSubscribeConfig(
 /** Get Team of Service Config GET /v1/admin/system/tos_config */
 export async function getTosConfig(options?: { [key: string]: any }) {
   return request<API.Response & { data?: API.TosConfig }>(
-    "/v1/admin/system/tos_config",
+    "/api/v1/admin/system/tos_config",
     {
       method: "GET",
       ...(options || {}),
@@ -279,20 +283,23 @@ export async function updateTosConfig(
   body: API.TosConfig,
   options?: { [key: string]: any }
 ) {
-  return request<API.Response & { data?: any }>("/v1/admin/system/tos_config", {
-    method: "PUT",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    data: body,
-    ...(options || {}),
-  });
+  return request<API.Response & { data?: any }>(
+    "/api/v1/admin/system/tos_config",
+    {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      data: body,
+      ...(options || {}),
+    }
+  );
 }
 
 /** Get Verify Code Config GET /v1/admin/system/verify_code_config */
 export async function getVerifyCodeConfig(options?: { [key: string]: any }) {
   return request<API.Response & { data?: API.VerifyCodeConfig }>(
-    "/v1/admin/system/verify_code_config",
+    "/api/v1/admin/system/verify_code_config",
     {
       method: "GET",
       ...(options || {}),
@@ -306,7 +313,7 @@ export async function updateVerifyCodeConfig(
   options?: { [key: string]: any }
 ) {
   return request<API.Response & { data?: any }>(
-    "/v1/admin/system/verify_code_config",
+    "/api/v1/admin/system/verify_code_config",
     {
       method: "PUT",
       headers: {
@@ -321,7 +328,7 @@ export async function updateVerifyCodeConfig(
 /** Get verify config GET /v1/admin/system/verify_config */
 export async function getVerifyConfig(options?: { [key: string]: any }) {
   return request<API.Response & { data?: API.VerifyConfig }>(
-    "/v1/admin/system/verify_config",
+    "/api/v1/admin/system/verify_config",
     {
       method: "GET",
       ...(options || {}),
@@ -335,7 +342,7 @@ export async function updateVerifyConfig(
   options?: { [key: string]: any }
 ) {
   return request<API.Response & { data?: any }>(
-    "/v1/admin/system/verify_config",
+    "/api/v1/admin/system/verify_config",
     {
       method: "PUT",
       headers: {

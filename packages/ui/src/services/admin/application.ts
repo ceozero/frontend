@@ -1,3 +1,4 @@
+//
 /* eslint-disable */
 import request from "@workspace/ui/lib/request";
 
@@ -7,7 +8,7 @@ export async function createSubscribeApplication(
   options?: { [key: string]: any }
 ) {
   return request<API.Response & { data?: API.SubscribeApplication }>(
-    "/v1/admin/application/",
+    "/api/v1/admin/application/",
     {
       method: "POST",
       headers: {
@@ -27,7 +28,7 @@ export async function previewSubscribeTemplate(
 ) {
   return request<
     API.Response & { data?: API.PreviewSubscribeTemplateResponse }
-  >("/v1/admin/application/preview", {
+  >("/api/v1/admin/application/preview", {
     method: "GET",
     params: {
       ...params,
@@ -42,7 +43,7 @@ export async function updateSubscribeApplication(
   options?: { [key: string]: any }
 ) {
   return request<API.Response & { data?: API.SubscribeApplication }>(
-    "/v1/admin/application/subscribe_application",
+    "/api/v1/admin/application/subscribe_application",
     {
       method: "PUT",
       headers: {
@@ -60,7 +61,7 @@ export async function deleteSubscribeApplication(
   options?: { [key: string]: any }
 ) {
   return request<API.Response & { data?: any }>(
-    "/v1/admin/application/subscribe_application",
+    "/api/v1/admin/application/subscribe_application",
     {
       method: "DELETE",
       headers: {
@@ -80,7 +81,7 @@ export async function getSubscribeApplicationList(
 ) {
   return request<
     API.Response & { data?: API.GetSubscribeApplicationListResponse }
-  >("/v1/admin/application/subscribe_application_list", {
+  >("/api/v1/admin/application/subscribe_application_list", {
     method: "GET",
     params: {
       ...params,

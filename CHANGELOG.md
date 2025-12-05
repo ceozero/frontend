@@ -19,6 +19,12 @@ This document records all notable changes to ShadCN Admin.
 ---
 
 
+## [1.2.0-dev.1](https://github.com/perfect-panel/frontend/compare/v1.1.3...v1.2.0-dev.1) (2025-12-01)
+
+### ✨ Features / 新功能
+
+* update localization files and improve system version management ([3cf6a5c](https://github.com/perfect-panel/frontend/commit/3cf6a5cfb47ea872d6e07be0d89304dc80ed61bb))
+
 ## [1.1.3](https://github.com/perfect-panel/frontend/compare/v1.1.2...v1.1.3) (2025-12-01)
 
 ### 🐛 Bug Fixes / 问题修复

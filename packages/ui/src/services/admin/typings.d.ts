@@ -1648,6 +1648,20 @@ declare namespace API {
     list: Document[];
   };
 
+  type QueryIPLocationParams = {
+    ip: string;
+  };
+
+  type QueryIPLocationRequest = {
+    ip: string;
+  };
+
+  type QueryIPLocationResponse = {
+    country: string;
+    region?: string;
+    city: string;
+  };
+
   type QueryNodeTagResponse = {
     tags: string[];
   };
@@ -2388,6 +2402,7 @@ declare namespace API {
     enable_trade_notify: boolean;
     auth_methods: UserAuthMethod[];
     user_devices: UserDevice[];
+    rules: string[];
     created_at: number;
     updated_at: number;
     deleted_at?: number;

@@ -1,3 +1,4 @@
+//
 /* eslint-disable */
 import request from "@workspace/ui/lib/request";
 
@@ -6,7 +7,7 @@ export async function createUser(
   body: API.CreateUserRequest,
   options?: { [key: string]: any }
 ) {
-  return request<API.Response & { data?: any }>("/v1/admin/user/", {
+  return request<API.Response & { data?: any }>("/api/v1/admin/user/", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -22,7 +23,7 @@ export async function deleteUser(
   params: API.DeleteUserParams,
   options?: { [key: string]: any }
 ) {
-  return request<API.Response & { data?: any }>("/v1/admin/user/", {
+  return request<API.Response & { data?: any }>("/api/v1/admin/user/", {
     method: "DELETE",
     params: {
       ...params,
@@ -34,7 +35,7 @@ export async function deleteUser(
 /** Get user auth method GET /v1/admin/user/auth_method */
 export async function getUserAuthMethod(options?: { [key: string]: any }) {
   return request<API.Response & { data?: API.GetUserAuthMethodResponse }>(
-    "/v1/admin/user/auth_method",
+    "/api/v1/admin/user/auth_method",
     {
       method: "GET",
       ...(options || {}),
@@ -47,14 +48,17 @@ export async function updateUserAuthMethod(
   body: API.UpdateUserAuthMethodRequest,
   options?: { [key: string]: any }
 ) {
-  return request<API.Response & { data?: any }>("/v1/admin/user/auth_method", {
-    method: "PUT",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    data: body,
-    ...(options || {}),
-  });
+  return request<API.Response & { data?: any }>(
+    "/api/v1/admin/user/auth_method",
+    {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      data: body,
+      ...(options || {}),
+    }
+  );
 }
 
 /** Create user auth method POST /v1/admin/user/auth_method */
@@ -62,14 +66,17 @@ export async function createUserAuthMethod(
   body: API.CreateUserAuthMethodRequest,
   options?: { [key: string]: any }
 ) {
-  return request<API.Response & { data?: any }>("/v1/admin/user/auth_method", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    data: body,
-    ...(options || {}),
-  });
+  return request<API.Response & { data?: any }>(
+    "/api/v1/admin/user/auth_method",
+    {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      data: body,
+      ...(options || {}),
+    }
+  );
 }
 
 /** Delete user auth method DELETE /v1/admin/user/auth_method */
@@ -77,14 +84,17 @@ export async function deleteUserAuthMethod(
   body: API.DeleteUserAuthMethodRequest,
   options?: { [key: string]: any }
 ) {
-  return request<API.Response & { data?: any }>("/v1/admin/user/auth_method", {
-    method: "DELETE",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    data: body,
-    ...(options || {}),
-  });
+  return request<API.Response & { data?: any }>(
+    "/api/v1/admin/user/auth_method",
+    {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      data: body,
+      ...(options || {}),
+    }
+  );
 }
 
 /** Update user basic info PUT /v1/admin/user/basic */
@@ -92,7 +102,7 @@ export async function updateUserBasicInfo(
   body: API.UpdateUserBasiceInfoRequest,
   options?: { [key: string]: any }
 ) {
-  return request<API.Response & { data?: any }>("/v1/admin/user/basic", {
+  return request<API.Response & { data?: any }>("/api/v1/admin/user/basic", {
     method: "PUT",
     headers: {
       "Content-Type": "application/json",
@@ -107,7 +117,7 @@ export async function batchDeleteUser(
   body: API.BatchDeleteUserRequest,
   options?: { [key: string]: any }
 ) {
-  return request<API.Response & { data?: any }>("/v1/admin/user/batch", {
+  return request<API.Response & { data?: any }>("/api/v1/admin/user/batch", {
     method: "DELETE",
     headers: {
       "Content-Type": "application/json",
@@ -119,10 +129,13 @@ export async function batchDeleteUser(
 
 /** Current user GET /v1/admin/user/current */
 export async function currentUser(options?: { [key: string]: any }) {
-  return request<API.Response & { data?: API.User }>("/v1/admin/user/current", {
-    method: "GET",
-    ...(options || {}),
-  });
+  return request<API.Response & { data?: API.User }>(
+    "/api/v1/admin/user/current",
+    {
+      method: "GET",
+      ...(options || {}),
+    }
+  );
 }
 
 /** Get user detail GET /v1/admin/user/detail */
@@ -131,13 +144,16 @@ export async function getUserDetail(
   params: API.GetUserDetailParams,
   options?: { [key: string]: any }
 ) {
-  return request<API.Response & { data?: API.User }>("/v1/admin/user/detail", {
-    method: "GET",
-    params: {
-      ...params,
-    },
-    ...(options || {}),
-  });
+  return request<API.Response & { data?: API.User }>(
+    "/api/v1/admin/user/detail",
+    {
+      method: "GET",
+      params: {
+        ...params,
+      },
+      ...(options || {}),
+    }
+  );
 }
 
 /** User device PUT /v1/admin/user/device */
@@ -145,7 +161,7 @@ export async function updateUserDevice(
   body: API.UserDevice,
   options?: { [key: string]: any }
 ) {
-  return request<API.Response & { data?: any }>("/v1/admin/user/device", {
+  return request<API.Response & { data?: any }>("/api/v1/admin/user/device", {
     method: "PUT",
     headers: {
       "Content-Type": "application/json",
@@ -160,7 +176,7 @@ export async function deleteUserDevice(
   body: API.DeleteUserDeivceRequest,
   options?: { [key: string]: any }
 ) {
-  return request<API.Response & { data?: any }>("/v1/admin/user/device", {
+  return request<API.Response & { data?: any }>("/api/v1/admin/user/device", {
     method: "DELETE",
     headers: {
       "Content-Type": "application/json",
@@ -176,7 +192,7 @@ export async function kickOfflineByUserDevice(
   options?: { [key: string]: any }
 ) {
   return request<API.Response & { data?: any }>(
-    "/v1/admin/user/device/kick_offline",
+    "/api/v1/admin/user/device/kick_offline",
     {
       method: "PUT",
       headers: {
@@ -195,7 +211,7 @@ export async function getUserList(
   options?: { [key: string]: any }
 ) {
   return request<API.Response & { data?: API.GetUserListResponse }>(
-    "/v1/admin/user/list",
+    "/api/v1/admin/user/list",
     {
       method: "GET",
       params: {
@@ -213,7 +229,7 @@ export async function getUserLoginLogs(
   options?: { [key: string]: any }
 ) {
   return request<API.Response & { data?: API.GetUserLoginLogsResponse }>(
-    "/v1/admin/user/login/logs",
+    "/api/v1/admin/user/login/logs",
     {
       method: "GET",
       params: {
@@ -229,7 +245,7 @@ export async function updateUserNotifySetting(
   body: API.UpdateUserNotifySettingRequest,
   options?: { [key: string]: any }
 ) {
-  return request<API.Response & { data?: any }>("/v1/admin/user/notify", {
+  return request<API.Response & { data?: any }>("/api/v1/admin/user/notify", {
     method: "PUT",
     headers: {
       "Content-Type": "application/json",
@@ -246,7 +262,7 @@ export async function getUserSubscribe(
   options?: { [key: string]: any }
 ) {
   return request<API.Response & { data?: API.GetUserSubscribeListResponse }>(
-    "/v1/admin/user/subscribe",
+    "/api/v1/admin/user/subscribe",
     {
       method: "GET",
       params: {
@@ -262,14 +278,17 @@ export async function updateUserSubscribe(
   body: API.UpdateUserSubscribeRequest,
   options?: { [key: string]: any }
 ) {
-  return request<API.Response & { data?: any }>("/v1/admin/user/subscribe", {
-    method: "PUT",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    data: body,
-    ...(options || {}),
-  });
+  return request<API.Response & { data?: any }>(
+    "/api/v1/admin/user/subscribe",
+    {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      data: body,
+      ...(options || {}),
+    }
+  );
 }
 
 /** Create user subcribe POST /v1/admin/user/subscribe */
@@ -277,14 +296,17 @@ export async function createUserSubscribe(
   body: API.CreateUserSubscribeRequest,
   options?: { [key: string]: any }
 ) {
-  return request<API.Response & { data?: any }>("/v1/admin/user/subscribe", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    data: body,
-    ...(options || {}),
-  });
+  return request<API.Response & { data?: any }>(
+    "/api/v1/admin/user/subscribe",
+    {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      data: body,
+      ...(options || {}),
+    }
+  );
 }
 
 /** Delete user subcribe DELETE /v1/admin/user/subscribe */
@@ -292,14 +314,17 @@ export async function deleteUserSubscribe(
   body: API.DeleteUserSubscribeRequest,
   options?: { [key: string]: any }
 ) {
-  return request<API.Response & { data?: any }>("/v1/admin/user/subscribe", {
-    method: "DELETE",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    data: body,
-    ...(options || {}),
-  });
+  return request<API.Response & { data?: any }>(
+    "/api/v1/admin/user/subscribe",
+    {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      data: body,
+      ...(options || {}),
+    }
+  );
 }
 
 /** Get user subcribe by id GET /v1/admin/user/subscribe/detail */
@@ -309,7 +334,7 @@ export async function getUserSubscribeById(
   options?: { [key: string]: any }
 ) {
   return request<API.Response & { data?: API.UserSubscribeDetail }>(
-    "/v1/admin/user/subscribe/detail",
+    "/api/v1/admin/user/subscribe/detail",
     {
       method: "GET",
       params: {
@@ -327,7 +352,7 @@ export async function getUserSubscribeDevices(
   options?: { [key: string]: any }
 ) {
   return request<API.Response & { data?: API.GetUserSubscribeDevicesResponse }>(
-    "/v1/admin/user/subscribe/device",
+    "/api/v1/admin/user/subscribe/device",
     {
       method: "GET",
       params: {
@@ -345,7 +370,7 @@ export async function getUserSubscribeLogs(
   options?: { [key: string]: any }
 ) {
   return request<API.Response & { data?: API.GetUserSubscribeLogsResponse }>(
-    "/v1/admin/user/subscribe/logs",
+    "/api/v1/admin/user/subscribe/logs",
     {
       method: "GET",
       params: {
@@ -364,7 +389,7 @@ export async function getUserSubscribeResetTrafficLogs(
 ) {
   return request<
     API.Response & { data?: API.GetUserSubscribeResetTrafficLogsResponse }
-  >("/v1/admin/user/subscribe/reset/logs", {
+  >("/api/v1/admin/user/subscribe/reset/logs", {
     method: "GET",
     params: {
       ...params,
@@ -381,7 +406,7 @@ export async function getUserSubscribeTrafficLogs(
 ) {
   return request<
     API.Response & { data?: API.GetUserSubscribeTrafficLogsResponse }
-  >("/v1/admin/user/subscribe/traffic_logs", {
+  >("/api/v1/admin/user/subscribe/traffic_logs", {
     method: "GET",
     params: {
       ...params,

@@ -43,11 +43,10 @@ export default defineConfig({
   },
   server: {
     proxy: {
-      "/v1": {
+      "/api": {
         target: "https://api.ppanel.dev",
         changeOrigin: true,
         secure: false,
-        rewrite: (path) => path.replace(/^\/v1/, "/v1"),
       },
     },
   },

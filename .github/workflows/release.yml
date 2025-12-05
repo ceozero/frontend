@@ -2,7 +2,7 @@ name: Build and Release
 
 on:
   push:
-    branches: [main, next, beta]
+    branches: [main, next, beta, develop]
 
 permissions:
   contents: write
@@ -25,7 +25,7 @@ jobs:
           path: |
             ~/.bun
             node_modules
-          key: ${{ runner.os }}-bun-cache-${{ hashFiles('**/bun.lockb') }}
+          key: ${{ runner.os }}-bun-cache-${{ hashFiles('**/bun.lock') }}
           restore-keys: |
             ${{ runner.os }}-bun-cache-
 

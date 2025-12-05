@@ -1,3 +1,4 @@
+//
 /* eslint-disable */
 import request from "@workspace/ui/lib/request";
 
@@ -8,7 +9,7 @@ export async function getAds(
   options?: { [key: string]: any }
 ) {
   return request<API.Response & { data?: API.GetAdsResponse }>(
-    "/v1/common/ads",
+    "/api/v1/common/ads",
     {
       method: "GET",
       params: {
@@ -25,7 +26,7 @@ export async function checkVerificationCode(
   options?: { [key: string]: any }
 ) {
   return request<API.Response & { data?: API.CheckVerificationCodeRespone }>(
-    "/v1/common/check_verification_code",
+    "/api/v1/common/check_verification_code",
     {
       method: "POST",
       headers: {
@@ -40,7 +41,7 @@ export async function checkVerificationCode(
 /** Get Client GET /v1/common/client */
 export async function getClient(options?: { [key: string]: any }) {
   return request<API.Response & { data?: API.GetSubscribeClientResponse }>(
-    "/v1/common/client",
+    "/api/v1/common/client",
     {
       method: "GET",
       ...(options || {}),
@@ -51,7 +52,7 @@ export async function getClient(options?: { [key: string]: any }) {
 /** 此处后端没有提供注释 GET /v1/common/heartbeat */
 export async function heartbeat(options?: { [key: string]: any }) {
   return request<API.Response & { data?: API.HeartbeatResponse }>(
-    "/v1/common/heartbeat",
+    "/api/v1/common/heartbeat",
     {
       method: "GET",
       ...(options || {}),
@@ -65,7 +66,7 @@ export async function sendEmailCode(
   options?: { [key: string]: any }
 ) {
   return request<API.Response & { data?: API.SendCodeResponse }>(
-    "/v1/common/send_code",
+    "/api/v1/common/send_code",
     {
       method: "POST",
       headers: {
@@ -83,7 +84,7 @@ export async function sendSmsCode(
   options?: { [key: string]: any }
 ) {
   return request<API.Response & { data?: API.SendCodeResponse }>(
-    "/v1/common/send_sms_code",
+    "/api/v1/common/send_sms_code",
     {
       method: "POST",
       headers: {
@@ -98,7 +99,7 @@ export async function sendSmsCode(
 /** Get global config GET /v1/common/site/config */
 export async function getGlobalConfig(options?: { [key: string]: any }) {
   return request<API.Response & { data?: API.GetGlobalConfigResponse }>(
-    "/v1/common/site/config",
+    "/api/v1/common/site/config",
     {
       method: "GET",
       ...(options || {}),
@@ -109,7 +110,7 @@ export async function getGlobalConfig(options?: { [key: string]: any }) {
 /** Get Privacy Policy GET /v1/common/site/privacy */
 export async function getPrivacyPolicy(options?: { [key: string]: any }) {
   return request<API.Response & { data?: API.PrivacyPolicyConfig }>(
-    "/v1/common/site/privacy",
+    "/api/v1/common/site/privacy",
     {
       method: "GET",
       ...(options || {}),
@@ -120,7 +121,7 @@ export async function getPrivacyPolicy(options?: { [key: string]: any }) {
 /** Get stat GET /v1/common/site/stat */
 export async function getStat(options?: { [key: string]: any }) {
   return request<API.Response & { data?: API.GetStatResponse }>(
-    "/v1/common/site/stat",
+    "/api/v1/common/site/stat",
     {
       method: "GET",
       ...(options || {}),
@@ -131,7 +132,7 @@ export async function getStat(options?: { [key: string]: any }) {
 /** Get Tos Content GET /v1/common/site/tos */
 export async function getTos(options?: { [key: string]: any }) {
   return request<API.Response & { data?: API.GetTosResponse }>(
-    "/v1/common/site/tos",
+    "/api/v1/common/site/tos",
     {
       method: "GET",
       ...(options || {}),

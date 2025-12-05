@@ -1,3 +1,4 @@
+//
 /* eslint-disable */
 import request from "@workspace/ui/lib/request";
 
@@ -7,7 +8,7 @@ export async function purchaseCheckout(
   options?: { [key: string]: any }
 ) {
   return request<API.Response & { data?: API.CheckoutOrderResponse }>(
-    "/v1/public/portal/order/checkout",
+    "/api/v1/public/portal/order/checkout",
     {
       method: "POST",
       headers: {
@@ -26,7 +27,7 @@ export async function queryPurchaseOrder(
   options?: { [key: string]: any }
 ) {
   return request<API.Response & { data?: API.QueryPurchaseOrderResponse }>(
-    "/v1/public/portal/order/status",
+    "/api/v1/public/portal/order/status",
     {
       method: "GET",
       params: {
@@ -43,7 +44,7 @@ export async function getAvailablePaymentMethods(options?: {
 }) {
   return request<
     API.Response & { data?: API.GetAvailablePaymentMethodsResponse }
-  >("/v1/public/portal/payment-method", {
+  >("/api/v1/public/portal/payment-method", {
     method: "GET",
     ...(options || {}),
   });
@@ -55,7 +56,7 @@ export async function prePurchaseOrder(
   options?: { [key: string]: any }
 ) {
   return request<API.Response & { data?: API.PrePurchaseOrderResponse }>(
-    "/v1/public/portal/pre",
+    "/api/v1/public/portal/pre",
     {
       method: "POST",
       headers: {
@@ -73,7 +74,7 @@ export async function purchase(
   options?: { [key: string]: any }
 ) {
   return request<API.Response & { data?: API.PortalPurchaseResponse }>(
-    "/v1/public/portal/purchase",
+    "/api/v1/public/portal/purchase",
     {
       method: "POST",
       headers: {
@@ -92,7 +93,7 @@ export async function getSubscription(
   options?: { [key: string]: any }
 ) {
   return request<API.Response & { data?: API.GetSubscriptionResponse }>(
-    "/v1/public/portal/subscribe",
+    "/api/v1/public/portal/subscribe",
     {
       method: "GET",
       params: {

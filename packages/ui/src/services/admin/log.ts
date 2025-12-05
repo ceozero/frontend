@@ -1,3 +1,4 @@
+//
 /* eslint-disable */
 import request from "@workspace/ui/lib/request";
 
@@ -8,7 +9,7 @@ export async function filterBalanceLog(
   options?: { [key: string]: any }
 ) {
   return request<API.Response & { data?: API.FilterBalanceLogResponse }>(
-    "/v1/admin/log/balance/list",
+    "/api/v1/admin/log/balance/list",
     {
       method: "GET",
       params: {
@@ -26,7 +27,7 @@ export async function filterCommissionLog(
   options?: { [key: string]: any }
 ) {
   return request<API.Response & { data?: API.FilterCommissionLogResponse }>(
-    "/v1/admin/log/commission/list",
+    "/api/v1/admin/log/commission/list",
     {
       method: "GET",
       params: {
@@ -44,7 +45,7 @@ export async function filterEmailLog(
   options?: { [key: string]: any }
 ) {
   return request<API.Response & { data?: API.FilterEmailLogResponse }>(
-    "/v1/admin/log/email/list",
+    "/api/v1/admin/log/email/list",
     {
       method: "GET",
       params: {
@@ -62,7 +63,7 @@ export async function filterGiftLog(
   options?: { [key: string]: any }
 ) {
   return request<API.Response & { data?: API.FilterGiftLogResponse }>(
-    "/v1/admin/log/gift/list",
+    "/api/v1/admin/log/gift/list",
     {
       method: "GET",
       params: {
@@ -80,7 +81,7 @@ export async function filterLoginLog(
   options?: { [key: string]: any }
 ) {
   return request<API.Response & { data?: API.FilterLoginLogResponse }>(
-    "/v1/admin/log/login/list",
+    "/api/v1/admin/log/login/list",
     {
       method: "GET",
       params: {
@@ -98,7 +99,7 @@ export async function getMessageLogList(
   options?: { [key: string]: any }
 ) {
   return request<API.Response & { data?: API.GetMessageLogListResponse }>(
-    "/v1/admin/log/message/list",
+    "/api/v1/admin/log/message/list",
     {
       method: "GET",
       params: {
@@ -116,7 +117,7 @@ export async function filterMobileLog(
   options?: { [key: string]: any }
 ) {
   return request<API.Response & { data?: API.FilterMobileLogResponse }>(
-    "/v1/admin/log/mobile/list",
+    "/api/v1/admin/log/mobile/list",
     {
       method: "GET",
       params: {
@@ -134,7 +135,7 @@ export async function filterRegisterLog(
   options?: { [key: string]: any }
 ) {
   return request<API.Response & { data?: API.FilterRegisterLogResponse }>(
-    "/v1/admin/log/register/list",
+    "/api/v1/admin/log/register/list",
     {
       method: "GET",
       params: {
@@ -152,7 +153,7 @@ export async function filterServerTrafficLog(
   options?: { [key: string]: any }
 ) {
   return request<API.Response & { data?: API.FilterServerTrafficLogResponse }>(
-    "/v1/admin/log/server/traffic/list",
+    "/api/v1/admin/log/server/traffic/list",
     {
       method: "GET",
       params: {
@@ -166,7 +167,7 @@ export async function filterServerTrafficLog(
 /** Get log setting GET /v1/admin/log/setting */
 export async function getLogSetting(options?: { [key: string]: any }) {
   return request<API.Response & { data?: API.LogSetting }>(
-    "/v1/admin/log/setting",
+    "/api/v1/admin/log/setting",
     {
       method: "GET",
       ...(options || {}),
@@ -179,7 +180,7 @@ export async function updateLogSetting(
   body: API.LogSetting,
   options?: { [key: string]: any }
 ) {
-  return request<API.Response & { data?: any }>("/v1/admin/log/setting", {
+  return request<API.Response & { data?: any }>("/api/v1/admin/log/setting", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -196,7 +197,7 @@ export async function filterSubscribeLog(
   options?: { [key: string]: any }
 ) {
   return request<API.Response & { data?: API.FilterSubscribeLogResponse }>(
-    "/v1/admin/log/subscribe/list",
+    "/api/v1/admin/log/subscribe/list",
     {
       method: "GET",
       params: {
@@ -214,7 +215,7 @@ export async function filterResetSubscribeLog(
   options?: { [key: string]: any }
 ) {
   return request<API.Response & { data?: API.FilterResetSubscribeLogResponse }>(
-    "/v1/admin/log/subscribe/reset/list",
+    "/api/v1/admin/log/subscribe/reset/list",
     {
       method: "GET",
       params: {
@@ -232,7 +233,7 @@ export async function filterUserSubscribeTrafficLog(
   options?: { [key: string]: any }
 ) {
   return request<API.Response & { data?: API.FilterSubscribeTrafficResponse }>(
-    "/v1/admin/log/subscribe/traffic/list",
+    "/api/v1/admin/log/subscribe/traffic/list",
     {
       method: "GET",
       params: {
@@ -250,7 +251,7 @@ export async function filterTrafficLogDetails(
   options?: { [key: string]: any }
 ) {
   return request<API.Response & { data?: API.FilterTrafficLogDetailsResponse }>(
-    "/v1/admin/log/traffic/details",
+    "/api/v1/admin/log/traffic/details",
     {
       method: "GET",
       params: {

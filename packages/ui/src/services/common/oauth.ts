@@ -4,6 +4,7 @@ import request from "@workspace/ui/lib/request";
 /** Apple Login Callback POST /v1/auth/oauth/callback/apple */
 export async function appleLoginCallback(
   body: {
+    code: string;
     id_token: string;
     state: string;
   },
@@ -17,9 +18,9 @@ export async function appleLoginCallback(
     if (item !== undefined && item !== null) {
       if (typeof item === "object" && !(item instanceof File)) {
         if (Array.isArray(item)) {
-          for (const f of item) {
+          item.forEach((f) => {
             formData.append(ele, f || "");
-          }
+          });
         } else {
           formData.append(
             ele,
@@ -33,7 +34,7 @@ export async function appleLoginCallback(
   });
 
   return request<API.Response & { data?: any }>(
-    "/v1/auth/oauth/callback/apple",
+    "/api/v1/auth/oauth/callback/apple",
     {
       method: "POST",
       data: formData,
@@ -48,7 +49,7 @@ export async function oAuthLogin(
   options?: { [key: string]: any }
 ) {
   return request<API.Response & { data?: API.OAuthLoginResponse }>(
-    "/v1/auth/oauth/login",
+    "/api/v1/auth/oauth/login",
     {
       method: "POST",
       headers: {
@@ -66,7 +67,7 @@ export async function oAuthLoginGetToken(
   options?: { [key: string]: any }
 ) {
   return request<API.Response & { data?: API.LoginResponse }>(
-    "/v1/auth/oauth/login/token",
+    "/api/v1/auth/oauth/login/token",
     {
       method: "POST",
       headers: {

@@ -1,3 +1,4 @@
+//
 /* eslint-disable */
 import request from "@workspace/ui/lib/request";
 
@@ -7,7 +8,7 @@ export async function getAvailablePaymentMethods(options?: {
 }) {
   return request<
     API.Response & { data?: API.GetAvailablePaymentMethodsResponse }
-  >("/v1/public/payment/methods", {
+  >("/api/v1/public/payment/methods", {
     method: "GET",
     ...(options || {}),
   });

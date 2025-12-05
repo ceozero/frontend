@@ -1,3 +1,4 @@
+//
 /* eslint-disable */
 import request from "@workspace/ui/lib/request";
 
@@ -6,7 +7,7 @@ export async function updateAds(
   body: API.UpdateAdsRequest,
   options?: { [key: string]: any }
 ) {
-  return request<API.Response & { data?: any }>("/v1/admin/ads/", {
+  return request<API.Response & { data?: any }>("/api/v1/admin/ads/", {
     method: "PUT",
     headers: {
       "Content-Type": "application/json",
@@ -21,7 +22,7 @@ export async function createAds(
   body: API.CreateAdsRequest,
   options?: { [key: string]: any }
 ) {
-  return request<API.Response & { data?: any }>("/v1/admin/ads/", {
+  return request<API.Response & { data?: any }>("/api/v1/admin/ads/", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -36,7 +37,7 @@ export async function deleteAds(
   body: API.DeleteAdsRequest,
   options?: { [key: string]: any }
 ) {
-  return request<API.Response & { data?: any }>("/v1/admin/ads/", {
+  return request<API.Response & { data?: any }>("/api/v1/admin/ads/", {
     method: "DELETE",
     headers: {
       "Content-Type": "application/json",
@@ -52,13 +53,16 @@ export async function getAdsDetail(
   params: API.GetAdsDetailParams,
   options?: { [key: string]: any }
 ) {
-  return request<API.Response & { data?: API.Ads }>("/v1/admin/ads/detail", {
-    method: "GET",
-    params: {
-      ...params,
-    },
-    ...(options || {}),
-  });
+  return request<API.Response & { data?: API.Ads }>(
+    "/api/v1/admin/ads/detail",
+    {
+      method: "GET",
+      params: {
+        ...params,
+      },
+      ...(options || {}),
+    }
+  );
 }
 
 /** Get Ads List GET /v1/admin/ads/list */
@@ -68,7 +72,7 @@ export async function getAdsList(
   options?: { [key: string]: any }
 ) {
   return request<API.Response & { data?: API.GetAdsListResponse }>(
-    "/v1/admin/ads/list",
+    "/api/v1/admin/ads/list",
     {
       method: "GET",
       params: {

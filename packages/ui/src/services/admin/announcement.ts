@@ -1,3 +1,4 @@
+//
 /* eslint-disable */
 import request from "@workspace/ui/lib/request";
 
@@ -6,7 +7,7 @@ export async function updateAnnouncement(
   body: API.UpdateAnnouncementRequest,
   options?: { [key: string]: any }
 ) {
-  return request<API.Response & { data?: any }>("/v1/admin/announcement/", {
+  return request<API.Response & { data?: any }>("/api/v1/admin/announcement/", {
     method: "PUT",
     headers: {
       "Content-Type": "application/json",
@@ -21,7 +22,7 @@ export async function createAnnouncement(
   body: API.CreateAnnouncementRequest,
   options?: { [key: string]: any }
 ) {
-  return request<API.Response & { data?: any }>("/v1/admin/announcement/", {
+  return request<API.Response & { data?: any }>("/api/v1/admin/announcement/", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -36,7 +37,7 @@ export async function deleteAnnouncement(
   body: API.DeleteAnnouncementRequest,
   options?: { [key: string]: any }
 ) {
-  return request<API.Response & { data?: any }>("/v1/admin/announcement/", {
+  return request<API.Response & { data?: any }>("/api/v1/admin/announcement/", {
     method: "DELETE",
     headers: {
       "Content-Type": "application/json",
@@ -53,7 +54,7 @@ export async function getAnnouncement(
   options?: { [key: string]: any }
 ) {
   return request<API.Response & { data?: API.Announcement }>(
-    "/v1/admin/announcement/detail",
+    "/api/v1/admin/announcement/detail",
     {
       method: "GET",
       params: {
@@ -71,7 +72,7 @@ export async function getAnnouncementList(
   options?: { [key: string]: any }
 ) {
   return request<API.Response & { data?: API.GetAnnouncementListResponse }>(
-    "/v1/admin/announcement/list",
+    "/api/v1/admin/announcement/list",
     {
       method: "GET",
       params: {

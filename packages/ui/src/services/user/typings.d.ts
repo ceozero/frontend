@@ -170,6 +170,11 @@ declare namespace API {
     timestamp: number;
   };
 
+  type CommissionWithdrawRequest = {
+    amount: number;
+    content: string;
+  };
+
   type Coupon = {
     id: number;
     name: string;
@@ -816,6 +821,21 @@ declare namespace API {
     list: UserSubscribeInfo[];
   };
 
+  type QueryWithdrawalLogListRequest = {
+    page: number;
+    size: number;
+  };
+
+  type QueryWithdrawalLogListResponse = {
+    list: WithdrawalLog[];
+    total: number;
+  };
+
+  type QueryWithdrawalLogParams = {
+    page: number;
+    size: number;
+  };
+
   type RechargeOrderRequest = {
     amount: number;
     payment: number;
@@ -1089,6 +1109,10 @@ declare namespace API {
     password: string;
   };
 
+  type UpdateUserRulesRequest = {
+    rules: string[];
+  };
+
   type UpdateUserSubscribeNoteRequest = {
     user_subscribe_id: number;
     note: string;
@@ -1118,6 +1142,7 @@ declare namespace API {
     enable_trade_notify: boolean;
     auth_methods: UserAuthMethod[];
     user_devices: UserDevice[];
+    rules: string[];
     created_at: number;
     updated_at: number;
     deleted_at?: number;
@@ -1254,5 +1279,16 @@ declare namespace API {
     transport_config: TransportConfig;
     security: string;
     security_config: SecurityConfig;
+  };
+
+  type WithdrawalLog = {
+    id: number;
+    user_id: number;
+    amount: number;
+    content: string;
+    status: number;
+    reason?: string;
+    created_at: number;
+    updated_at: number;
   };
 }
