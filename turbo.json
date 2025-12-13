@@ -32,6 +32,17 @@
     },
     "i18n:status": {
       "cache": false
+    },
+    "docs:dev": {
+      "cache": false,
+      "persistent": true
+    },
+    "docs:build": {
+      "outputs": [".vitepress/dist/**"]
+    },
+    "docs:preview": {
+      "cache": false,
+      "persistent": true
     }
   }
 }

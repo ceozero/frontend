@@ -1,4 +1,3 @@
-//
 /* eslint-disable */
 import request from "@workspace/ui/lib/request";
 
@@ -7,14 +6,17 @@ export async function updateSubscribe(
   body: API.UpdateSubscribeRequest,
   options?: { [key: string]: any }
 ) {
-  return request<API.Response & { data?: any }>("/api/v1/admin/subscribe/", {
-    method: "PUT",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    data: body,
-    ...(options || {}),
-  });
+  return request<API.Response & { data?: any }>(
+    `${import.meta.env.VITE_API_PREFIX || ""}/v1/admin/subscribe/`,
+    {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      data: body,
+      ...(options || {}),
+    }
+  );
 }
 
 /** Create subscribe POST /v1/admin/subscribe/ */
@@ -22,14 +24,17 @@ export async function createSubscribe(
   body: API.CreateSubscribeRequest,
   options?: { [key: string]: any }
 ) {
-  return request<API.Response & { data?: any }>("/api/v1/admin/subscribe/", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    data: body,
-    ...(options || {}),
-  });
+  return request<API.Response & { data?: any }>(
+    `${import.meta.env.VITE_API_PREFIX || ""}/v1/admin/subscribe/`,
+    {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      data: body,
+      ...(options || {}),
+    }
+  );
 }
 
 /** Delete subscribe DELETE /v1/admin/subscribe/ */
@@ -37,14 +42,17 @@ export async function deleteSubscribe(
   body: API.DeleteSubscribeRequest,
   options?: { [key: string]: any }
 ) {
-  return request<API.Response & { data?: any }>("/api/v1/admin/subscribe/", {
-    method: "DELETE",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    data: body,
-    ...(options || {}),
-  });
+  return request<API.Response & { data?: any }>(
+    `${import.meta.env.VITE_API_PREFIX || ""}/v1/admin/subscribe/`,
+    {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      data: body,
+      ...(options || {}),
+    }
+  );
 }
 
 /** Batch delete subscribe DELETE /v1/admin/subscribe/batch */
@@ -53,7 +61,7 @@ export async function batchDeleteSubscribe(
   options?: { [key: string]: any }
 ) {
   return request<API.Response & { data?: any }>(
-    "/api/v1/admin/subscribe/batch",
+    `${import.meta.env.VITE_API_PREFIX || ""}/v1/admin/subscribe/batch`,
     {
       method: "DELETE",
       headers: {
@@ -72,7 +80,7 @@ export async function getSubscribeDetails(
   options?: { [key: string]: any }
 ) {
   return request<API.Response & { data?: API.Subscribe }>(
-    "/api/v1/admin/subscribe/details",
+    `${import.meta.env.VITE_API_PREFIX || ""}/v1/admin/subscribe/details`,
     {
       method: "GET",
       params: {
@@ -89,7 +97,7 @@ export async function updateSubscribeGroup(
   options?: { [key: string]: any }
 ) {
   return request<API.Response & { data?: any }>(
-    "/api/v1/admin/subscribe/group",
+    `${import.meta.env.VITE_API_PREFIX || ""}/v1/admin/subscribe/group`,
     {
       method: "PUT",
       headers: {
@@ -107,7 +115,7 @@ export async function createSubscribeGroup(
   options?: { [key: string]: any }
 ) {
   return request<API.Response & { data?: any }>(
-    "/api/v1/admin/subscribe/group",
+    `${import.meta.env.VITE_API_PREFIX || ""}/v1/admin/subscribe/group`,
     {
       method: "POST",
       headers: {
@@ -125,7 +133,7 @@ export async function deleteSubscribeGroup(
   options?: { [key: string]: any }
 ) {
   return request<API.Response & { data?: any }>(
-    "/api/v1/admin/subscribe/group",
+    `${import.meta.env.VITE_API_PREFIX || ""}/v1/admin/subscribe/group`,
     {
       method: "DELETE",
       headers: {
@@ -143,7 +151,7 @@ export async function batchDeleteSubscribeGroup(
   options?: { [key: string]: any }
 ) {
   return request<API.Response & { data?: any }>(
-    "/api/v1/admin/subscribe/group/batch",
+    `${import.meta.env.VITE_API_PREFIX || ""}/v1/admin/subscribe/group/batch`,
     {
       method: "DELETE",
       headers: {
@@ -158,7 +166,7 @@ export async function batchDeleteSubscribeGroup(
 /** Get subscribe group list GET /v1/admin/subscribe/group/list */
 export async function getSubscribeGroupList(options?: { [key: string]: any }) {
   return request<API.Response & { data?: API.GetSubscribeGroupListResponse }>(
-    "/api/v1/admin/subscribe/group/list",
+    `${import.meta.env.VITE_API_PREFIX || ""}/v1/admin/subscribe/group/list`,
     {
       method: "GET",
       ...(options || {}),
@@ -173,7 +181,7 @@ export async function getSubscribeList(
   options?: { [key: string]: any }
 ) {
   return request<API.Response & { data?: API.GetSubscribeListResponse }>(
-    "/api/v1/admin/subscribe/list",
+    `${import.meta.env.VITE_API_PREFIX || ""}/v1/admin/subscribe/list`,
     {
       method: "GET",
       params: {
@@ -187,7 +195,9 @@ export async function getSubscribeList(
 /** Reset all subscribe tokens POST /v1/admin/subscribe/reset_all_token */
 export async function resetAllSubscribeToken(options?: { [key: string]: any }) {
   return request<API.Response & { data?: API.ResetAllSubscribeTokenResponse }>(
-    "/api/v1/admin/subscribe/reset_all_token",
+    `${
+      import.meta.env.VITE_API_PREFIX || ""
+    }/v1/admin/subscribe/reset_all_token`,
     {
       method: "POST",
       ...(options || {}),
@@ -201,7 +211,7 @@ export async function subscribeSort(
   options?: { [key: string]: any }
 ) {
   return request<API.Response & { data?: any }>(
-    "/api/v1/admin/subscribe/sort",
+    `${import.meta.env.VITE_API_PREFIX || ""}/v1/admin/subscribe/sort`,
     {
       method: "POST",
       headers: {

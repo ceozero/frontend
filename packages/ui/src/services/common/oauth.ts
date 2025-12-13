@@ -34,7 +34,7 @@ export async function appleLoginCallback(
   });
 
   return request<API.Response & { data?: any }>(
-    "/api/v1/auth/oauth/callback/apple",
+    `${import.meta.env.VITE_API_PREFIX || ""}/v1/auth/oauth/callback/apple`,
     {
       method: "POST",
       data: formData,
@@ -49,7 +49,7 @@ export async function oAuthLogin(
   options?: { [key: string]: any }
 ) {
   return request<API.Response & { data?: API.OAuthLoginResponse }>(
-    "/api/v1/auth/oauth/login",
+    `${import.meta.env.VITE_API_PREFIX || ""}/v1/auth/oauth/login`,
     {
       method: "POST",
       headers: {
@@ -67,7 +67,7 @@ export async function oAuthLoginGetToken(
   options?: { [key: string]: any }
 ) {
   return request<API.Response & { data?: API.LoginResponse }>(
-    "/api/v1/auth/oauth/login/token",
+    `${import.meta.env.VITE_API_PREFIX || ""}/v1/auth/oauth/login/token`,
     {
       method: "POST",
       headers: {

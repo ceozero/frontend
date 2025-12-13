@@ -1,4 +1,3 @@
-//
 /* eslint-disable */
 import request from "@workspace/ui/lib/request";
 
@@ -7,14 +6,17 @@ export async function updateDocument(
   body: API.UpdateDocumentRequest,
   options?: { [key: string]: any }
 ) {
-  return request<API.Response & { data?: any }>("/api/v1/admin/document/", {
-    method: "PUT",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    data: body,
-    ...(options || {}),
-  });
+  return request<API.Response & { data?: any }>(
+    `${import.meta.env.VITE_API_PREFIX || ""}/v1/admin/document/`,
+    {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      data: body,
+      ...(options || {}),
+    }
+  );
 }
 
 /** Create document POST /v1/admin/document/ */
@@ -22,14 +24,17 @@ export async function createDocument(
   body: API.CreateDocumentRequest,
   options?: { [key: string]: any }
 ) {
-  return request<API.Response & { data?: any }>("/api/v1/admin/document/", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    data: body,
-    ...(options || {}),
-  });
+  return request<API.Response & { data?: any }>(
+    `${import.meta.env.VITE_API_PREFIX || ""}/v1/admin/document/`,
+    {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      data: body,
+      ...(options || {}),
+    }
+  );
 }
 
 /** Delete document DELETE /v1/admin/document/ */
@@ -37,14 +42,17 @@ export async function deleteDocument(
   body: API.DeleteDocumentRequest,
   options?: { [key: string]: any }
 ) {
-  return request<API.Response & { data?: any }>("/api/v1/admin/document/", {
-    method: "DELETE",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    data: body,
-    ...(options || {}),
-  });
+  return request<API.Response & { data?: any }>(
+    `${import.meta.env.VITE_API_PREFIX || ""}/v1/admin/document/`,
+    {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      data: body,
+      ...(options || {}),
+    }
+  );
 }
 
 /** Batch delete document DELETE /v1/admin/document/batch */
@@ -53,7 +61,7 @@ export async function batchDeleteDocument(
   options?: { [key: string]: any }
 ) {
   return request<API.Response & { data?: any }>(
-    "/api/v1/admin/document/batch",
+    `${import.meta.env.VITE_API_PREFIX || ""}/v1/admin/document/batch`,
     {
       method: "DELETE",
       headers: {
@@ -68,7 +76,7 @@ export async function batchDeleteDocument(
 /** Get document detail GET /v1/admin/document/detail */
 export async function getDocumentDetail(options?: { [key: string]: any }) {
   return request<API.Response & { data?: API.Document }>(
-    "/api/v1/admin/document/detail",
+    `${import.meta.env.VITE_API_PREFIX || ""}/v1/admin/document/detail`,
     {
       method: "GET",
       ...(options || {}),
@@ -83,7 +91,7 @@ export async function getDocumentList(
   options?: { [key: string]: any }
 ) {
   return request<API.Response & { data?: API.GetDocumentListResponse }>(
-    "/api/v1/admin/document/list",
+    `${import.meta.env.VITE_API_PREFIX || ""}/v1/admin/document/list`,
     {
       method: "GET",
       params: {

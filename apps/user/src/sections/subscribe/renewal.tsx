@@ -1,6 +1,7 @@
 "use client";
 
 import { useQuery } from "@tanstack/react-query";
+import { useNavigate } from "@tanstack/react-router";
 import { Button } from "@workspace/ui/components/button";
 import { Card, CardContent } from "@workspace/ui/components/card";
 import {
@@ -30,6 +31,7 @@ interface RenewalProps {
 export default function Renewal({ id, subscribe }: Readonly<RenewalProps>) {
   const { t } = useTranslation("subscribe");
   const { getUserInfo } = useGlobalStore();
+  const navigate = useNavigate();
   const [open, setOpen] = useState<boolean>(false);
   const [params, setParams] = useState<Partial<API.RenewalOrderRequest>>({
     quantity: 1,
@@ -90,13 +92,13 @@ export default function Renewal({ id, subscribe }: Readonly<RenewalProps>) {
         const orderNo = response.data.data?.order_no;
         if (orderNo) {
           getUserInfo();
-          window.location.href = `/payment?order_no=${orderNo}`;
+          navigate({ to: "/payment", search: { order_no: String(orderNo) } });
         }
       } catch (_error) {
         /* empty */
       }
     });
-  }, [params, getUserInfo]);
+  }, [params, getUserInfo, navigate]);
 
   return (
     <Dialog onOpenChange={setOpen} open={open}>

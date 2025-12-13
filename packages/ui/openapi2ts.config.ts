@@ -1,7 +1,7 @@
 const baseConfig = {
   requestLibPath: "import request from '@workspace/ui/lib/request';",
   serversPath: "./src/services",
-  apiPrefix: "'/api'",
+  apiPrefix: "import.meta.env.VITE_API_PREFIX || ''",
 };
 
 const config = [

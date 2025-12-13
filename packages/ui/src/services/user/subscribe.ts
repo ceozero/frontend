@@ -1,4 +1,3 @@
-//
 /* eslint-disable */
 import request from "@workspace/ui/lib/request";
 
@@ -9,7 +8,7 @@ export async function querySubscribeList(
   options?: { [key: string]: any }
 ) {
   return request<API.Response & { data?: API.QuerySubscribeListResponse }>(
-    "/api/v1/public/subscribe/list",
+    `${import.meta.env.VITE_API_PREFIX || ""}/v1/public/subscribe/list`,
     {
       method: "GET",
       params: {
@@ -26,7 +25,7 @@ export async function queryUserSubscribeNodeList(options?: {
 }) {
   return request<
     API.Response & { data?: API.QueryUserSubscribeNodeListResponse }
-  >("/api/v1/public/subscribe/node/list", {
+  >(`${import.meta.env.VITE_API_PREFIX || ""}/v1/public/subscribe/node/list`, {
     method: "GET",
     ...(options || {}),
   });

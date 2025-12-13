@@ -1,5 +1,6 @@
 "use client";
 
+import { useNavigate } from "@tanstack/react-router";
 import { Button } from "@workspace/ui/components/button";
 import {
   Dialog,
@@ -27,6 +28,7 @@ export default function ResetTraffic({
 }: Readonly<ResetTrafficProps>) {
   const { t } = useTranslation("subscribe");
   const { getUserInfo } = useGlobalStore();
+  const navigate = useNavigate();
   const [open, setOpen] = useState<boolean>(false);
   const [params, setParams] = useState<API.ResetTrafficOrderRequest>({
     payment: -1,
@@ -88,7 +90,10 @@ export default function ResetTraffic({
                   const orderNo = response.data.data?.order_no;
                   if (orderNo) {
                     getUserInfo();
-                    window.location.href = `/payment?order_no=${orderNo}`;
+                    navigate({
+                      to: "/payment",
+                      search: { order_no: String(orderNo) },
+                    });
                   }
                 } catch (error) {
                   console.log(error);

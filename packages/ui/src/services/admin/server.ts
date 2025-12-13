@@ -1,4 +1,3 @@
-//
 /* eslint-disable */
 import request from "@workspace/ui/lib/request";
 
@@ -7,14 +6,17 @@ export async function createServer(
   body: API.CreateServerRequest,
   options?: { [key: string]: any }
 ) {
-  return request<API.Response & { data?: any }>("/api/v1/admin/server/create", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    data: body,
-    ...(options || {}),
-  });
+  return request<API.Response & { data?: any }>(
+    `${import.meta.env.VITE_API_PREFIX || ""}/v1/admin/server/create`,
+    {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      data: body,
+      ...(options || {}),
+    }
+  );
 }
 
 /** Delete Server POST /v1/admin/server/delete */
@@ -22,14 +24,17 @@ export async function deleteServer(
   body: API.DeleteServerRequest,
   options?: { [key: string]: any }
 ) {
-  return request<API.Response & { data?: any }>("/api/v1/admin/server/delete", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    data: body,
-    ...(options || {}),
-  });
+  return request<API.Response & { data?: any }>(
+    `${import.meta.env.VITE_API_PREFIX || ""}/v1/admin/server/delete`,
+    {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      data: body,
+      ...(options || {}),
+    }
+  );
 }
 
 /** Filter Server List GET /v1/admin/server/list */
@@ -39,7 +44,7 @@ export async function filterServerList(
   options?: { [key: string]: any }
 ) {
   return request<API.Response & { data?: API.FilterServerListResponse }>(
-    "/api/v1/admin/server/list",
+    `${import.meta.env.VITE_API_PREFIX || ""}/v1/admin/server/list`,
     {
       method: "GET",
       params: {
@@ -53,7 +58,7 @@ export async function filterServerList(
 /** Check if there is any server or node to migrate GET /v1/admin/server/migrate/has */
 export async function hasMigrateSeverNode(options?: { [key: string]: any }) {
   return request<API.Response & { data?: API.HasMigrateSeverNodeResponse }>(
-    "/api/v1/admin/server/migrate/has",
+    `${import.meta.env.VITE_API_PREFIX || ""}/v1/admin/server/migrate/has`,
     {
       method: "GET",
       ...(options || {}),
@@ -64,7 +69,7 @@ export async function hasMigrateSeverNode(options?: { [key: string]: any }) {
 /** Migrate server and node data to new database POST /v1/admin/server/migrate/run */
 export async function migrateServerNode(options?: { [key: string]: any }) {
   return request<API.Response & { data?: API.MigrateServerNodeResponse }>(
-    "/api/v1/admin/server/migrate/run",
+    `${import.meta.env.VITE_API_PREFIX || ""}/v1/admin/server/migrate/run`,
     {
       method: "POST",
       ...(options || {}),
@@ -78,7 +83,7 @@ export async function createNode(
   options?: { [key: string]: any }
 ) {
   return request<API.Response & { data?: any }>(
-    "/api/v1/admin/server/node/create",
+    `${import.meta.env.VITE_API_PREFIX || ""}/v1/admin/server/node/create`,
     {
       method: "POST",
       headers: {
@@ -96,7 +101,7 @@ export async function deleteNode(
   options?: { [key: string]: any }
 ) {
   return request<API.Response & { data?: any }>(
-    "/api/v1/admin/server/node/delete",
+    `${import.meta.env.VITE_API_PREFIX || ""}/v1/admin/server/node/delete`,
     {
       method: "POST",
       headers: {
@@ -115,7 +120,7 @@ export async function filterNodeList(
   options?: { [key: string]: any }
 ) {
   return request<API.Response & { data?: API.FilterNodeListResponse }>(
-    "/api/v1/admin/server/node/list",
+    `${import.meta.env.VITE_API_PREFIX || ""}/v1/admin/server/node/list`,
     {
       method: "GET",
       params: {
@@ -132,7 +137,7 @@ export async function resetSortWithNode(
   options?: { [key: string]: any }
 ) {
   return request<API.Response & { data?: any }>(
-    "/api/v1/admin/server/node/sort",
+    `${import.meta.env.VITE_API_PREFIX || ""}/v1/admin/server/node/sort`,
     {
       method: "POST",
       headers: {
@@ -150,7 +155,9 @@ export async function toggleNodeStatus(
   options?: { [key: string]: any }
 ) {
   return request<API.Response & { data?: any }>(
-    "/api/v1/admin/server/node/status/toggle",
+    `${
+      import.meta.env.VITE_API_PREFIX || ""
+    }/v1/admin/server/node/status/toggle`,
     {
       method: "POST",
       headers: {
@@ -165,7 +172,7 @@ export async function toggleNodeStatus(
 /** Query all node tags GET /v1/admin/server/node/tags */
 export async function queryNodeTag(options?: { [key: string]: any }) {
   return request<API.Response & { data?: API.QueryNodeTagResponse }>(
-    "/api/v1/admin/server/node/tags",
+    `${import.meta.env.VITE_API_PREFIX || ""}/v1/admin/server/node/tags`,
     {
       method: "GET",
       ...(options || {}),
@@ -179,7 +186,7 @@ export async function updateNode(
   options?: { [key: string]: any }
 ) {
   return request<API.Response & { data?: any }>(
-    "/api/v1/admin/server/node/update",
+    `${import.meta.env.VITE_API_PREFIX || ""}/v1/admin/server/node/update`,
     {
       method: "POST",
       headers: {
@@ -198,7 +205,7 @@ export async function getServerProtocols(
   options?: { [key: string]: any }
 ) {
   return request<API.Response & { data?: API.GetServerProtocolsResponse }>(
-    "/api/v1/admin/server/protocols",
+    `${import.meta.env.VITE_API_PREFIX || ""}/v1/admin/server/protocols`,
     {
       method: "GET",
       params: {
@@ -215,7 +222,7 @@ export async function resetSortWithServer(
   options?: { [key: string]: any }
 ) {
   return request<API.Response & { data?: any }>(
-    "/api/v1/admin/server/server/sort",
+    `${import.meta.env.VITE_API_PREFIX || ""}/v1/admin/server/server/sort`,
     {
       method: "POST",
       headers: {
@@ -232,12 +239,15 @@ export async function updateServer(
   body: API.UpdateServerRequest,
   options?: { [key: string]: any }
 ) {
-  return request<API.Response & { data?: any }>("/api/v1/admin/server/update", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    data: body,
-    ...(options || {}),
-  });
+  return request<API.Response & { data?: any }>(
+    `${import.meta.env.VITE_API_PREFIX || ""}/v1/admin/server/update`,
+    {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      data: body,
+      ...(options || {}),
+    }
+  );
 }

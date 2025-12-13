@@ -1,4 +1,3 @@
-//
 /* eslint-disable */
 import request from "@workspace/ui/lib/request";
 
@@ -8,7 +7,7 @@ export async function getAvailablePaymentMethods(options?: {
 }) {
   return request<
     API.Response & { data?: API.GetAvailablePaymentMethodsResponse }
-  >("/api/v1/public/payment/methods", {
+  >(`${import.meta.env.VITE_API_PREFIX || ""}/v1/public/payment/methods`, {
     method: "GET",
     ...(options || {}),
   });

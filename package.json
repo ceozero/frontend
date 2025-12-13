@@ -1,6 +1,6 @@
 {
   "name": "frontend",
-  "version": "1.2.0-dev.1",
+  "version": "1.2.1",
   "private": true,
   "homepage": "https://github.com/perfect-panel/frontend",
   "bugs": {
@@ -14,6 +14,8 @@
   "scripts": {
     "build": "turbo build",
     "dev": "turbo dev",
+    "docs:dev": "turbo docs:dev",
+    "docs:build": "turbo docs:build",
     "lint": "turbo lint",
     "check": "turbo check",
     "test": "turbo test",
@@ -38,7 +40,10 @@
     "@semantic-release/github": "^11.0.3",
     "@types/react-copy-to-clipboard": "^5.0.7",
     "@workspace/typescript-config": "workspace:*",
+    "commitlint": "^20.1.0",
+    "commitlint-config-gitmoji": "^2.3.1",
     "conventional-changelog-conventionalcommits": "^9.1.0",
+    "gitmoji-cli": "^9.7.0",
     "husky": "^9.1.7",
     "i18next-cli": "^1.24.20",
     "lefthook": "^2.0.4",
@@ -46,10 +51,7 @@
     "semantic-release": "^24.2.5",
     "turbo": "^2.5.8",
     "typescript": "^5.9.3",
-    "ultracite": "^6.3.4",
-    "commitlint": "^20.1.0",
-    "commitlint-config-gitmoji": "^2.3.1",
-    "gitmoji-cli": "^9.7.0"
+    "ultracite": "^6.3.4"
   },
   "packageManager": "bun@1.3.1",
   "engines": {
@@ -57,7 +59,8 @@
   },
   "workspaces": [
     "apps/*",
-    "packages/*"
+    "packages/*",
+    "docs"
   ],
   "lint-staged": {
     "*.{js,jsx,ts,tsx,json,jsonc,css,scss,md,mdx}": [

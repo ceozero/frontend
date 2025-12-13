@@ -51,10 +51,13 @@ export default function SystemVersionCard() {
   const { data: serverVersionInfo } = useQuery({
     queryKey: ["checkServerVersion", moduleConfig?.secret],
     queryFn: async () => {
-      const { data } = await basicCheckServiceVersion({
-        service_name: moduleConfig!.service_name,
-        secret: moduleConfig!.secret,
-      });
+      const { data } = await basicCheckServiceVersion(
+        {
+          service_name: moduleConfig!.service_name,
+          secret: moduleConfig!.secret,
+        },
+        { skipErrorHandler: true }
+      );
       return data.data;
     },
     enabled: !!moduleConfig?.secret,
@@ -65,10 +68,13 @@ export default function SystemVersionCard() {
   const { data: webVersionInfo } = useQuery({
     queryKey: ["checkWebVersion", moduleConfig?.secret],
     queryFn: async () => {
-      const { data } = await basicCheckServiceVersion({
-        service_name: "admin",
-        secret: moduleConfig!.secret,
-      });
+      const { data } = await basicCheckServiceVersion(
+        {
+          service_name: "admin",
+          secret: moduleConfig!.secret,
+        },
+        { skipErrorHandler: true }
+      );
       return data.data;
     },
     enabled: !!moduleConfig?.secret,

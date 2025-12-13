@@ -1,4 +1,3 @@
-//
 /* eslint-disable */
 import request from "@workspace/ui/lib/request";
 
@@ -7,14 +6,17 @@ export async function closeOrder(
   body: API.CloseOrderRequest,
   options?: { [key: string]: any }
 ) {
-  return request<API.Response & { data?: any }>("/api/v1/public/order/close", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    data: body,
-    ...(options || {}),
-  });
+  return request<API.Response & { data?: any }>(
+    `${import.meta.env.VITE_API_PREFIX || ""}/v1/public/order/close`,
+    {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      data: body,
+      ...(options || {}),
+    }
+  );
 }
 
 /** Get order GET /v1/public/order/detail */
@@ -24,7 +26,7 @@ export async function queryOrderDetail(
   options?: { [key: string]: any }
 ) {
   return request<API.Response & { data?: API.OrderDetail }>(
-    "/api/v1/public/order/detail",
+    `${import.meta.env.VITE_API_PREFIX || ""}/v1/public/order/detail`,
     {
       method: "GET",
       params: {
@@ -42,7 +44,7 @@ export async function queryOrderList(
   options?: { [key: string]: any }
 ) {
   return request<API.Response & { data?: API.QueryOrderListResponse }>(
-    "/api/v1/public/order/list",
+    `${import.meta.env.VITE_API_PREFIX || ""}/v1/public/order/list`,
     {
       method: "GET",
       params: {
@@ -59,7 +61,7 @@ export async function preCreateOrder(
   options?: { [key: string]: any }
 ) {
   return request<API.Response & { data?: API.PreOrderResponse }>(
-    "/api/v1/public/order/pre",
+    `${import.meta.env.VITE_API_PREFIX || ""}/v1/public/order/pre`,
     {
       method: "POST",
       headers: {
@@ -77,7 +79,7 @@ export async function purchase(
   options?: { [key: string]: any }
 ) {
   return request<API.Response & { data?: API.PurchaseOrderResponse }>(
-    "/api/v1/public/order/purchase",
+    `${import.meta.env.VITE_API_PREFIX || ""}/v1/public/order/purchase`,
     {
       method: "POST",
       headers: {
@@ -95,7 +97,7 @@ export async function recharge(
   options?: { [key: string]: any }
 ) {
   return request<API.Response & { data?: API.RechargeOrderResponse }>(
-    "/api/v1/public/order/recharge",
+    `${import.meta.env.VITE_API_PREFIX || ""}/v1/public/order/recharge`,
     {
       method: "POST",
       headers: {
@@ -113,7 +115,7 @@ export async function renewal(
   options?: { [key: string]: any }
 ) {
   return request<API.Response & { data?: API.RenewalOrderResponse }>(
-    "/api/v1/public/order/renewal",
+    `${import.meta.env.VITE_API_PREFIX || ""}/v1/public/order/renewal`,
     {
       method: "POST",
       headers: {
@@ -131,7 +133,7 @@ export async function resetTraffic(
   options?: { [key: string]: any }
 ) {
   return request<API.Response & { data?: API.ResetTrafficOrderResponse }>(
-    "/api/v1/public/order/reset",
+    `${import.meta.env.VITE_API_PREFIX || ""}/v1/public/order/reset`,
     {
       method: "POST",
       headers: {

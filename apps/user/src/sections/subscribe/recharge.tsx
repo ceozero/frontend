@@ -1,5 +1,6 @@
 "use client";
 
+import { useNavigate } from "@tanstack/react-router";
 import { Button } from "@workspace/ui/components/button";
 import {
   Dialog,
@@ -24,6 +25,7 @@ export default function Recharge(
 ) {
   const { t } = useTranslation("subscribe");
   const { common } = useGlobalStore();
+  const navigate = useNavigate();
   const { currency } = common;
 
   const [open, setOpen] = useState<boolean>(false);
@@ -86,7 +88,10 @@ export default function Recharge(
                   const response = await recharge(params);
                   const orderNo = response.data.data?.order_no;
                   if (orderNo) {
-                    window.location.href = `/payment?order_no=${orderNo}`;
+                    navigate({
+                      to: "/payment",
+                      search: { order_no: String(orderNo) },
+                    });
                     setOpen(false);
                   }
                 } catch (_error) {

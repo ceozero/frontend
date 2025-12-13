@@ -1,4 +1,3 @@
-//
 /* eslint-disable */
 import request from "@workspace/ui/lib/request";
 
@@ -7,14 +6,17 @@ export async function updateTicketStatus(
   body: API.UpdateTicketStatusRequest,
   options?: { [key: string]: any }
 ) {
-  return request<API.Response & { data?: any }>("/api/v1/admin/ticket/", {
-    method: "PUT",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    data: body,
-    ...(options || {}),
-  });
+  return request<API.Response & { data?: any }>(
+    `${import.meta.env.VITE_API_PREFIX || ""}/v1/admin/ticket/`,
+    {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      data: body,
+      ...(options || {}),
+    }
+  );
 }
 
 /** Get ticket detail GET /v1/admin/ticket/detail */
@@ -24,7 +26,7 @@ export async function getTicket(
   options?: { [key: string]: any }
 ) {
   return request<API.Response & { data?: API.Ticket }>(
-    "/api/v1/admin/ticket/detail",
+    `${import.meta.env.VITE_API_PREFIX || ""}/v1/admin/ticket/detail`,
     {
       method: "GET",
       params: {
@@ -40,14 +42,17 @@ export async function createTicketFollow(
   body: API.CreateTicketFollowRequest,
   options?: { [key: string]: any }
 ) {
-  return request<API.Response & { data?: any }>("/api/v1/admin/ticket/follow", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    data: body,
-    ...(options || {}),
-  });
+  return request<API.Response & { data?: any }>(
+    `${import.meta.env.VITE_API_PREFIX || ""}/v1/admin/ticket/follow`,
+    {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      data: body,
+      ...(options || {}),
+    }
+  );
 }
 
 /** Get ticket list GET /v1/admin/ticket/list */
@@ -57,7 +62,7 @@ export async function getTicketList(
   options?: { [key: string]: any }
 ) {
   return request<API.Response & { data?: API.GetTicketListResponse }>(
-    "/api/v1/admin/ticket/list",
+    `${import.meta.env.VITE_API_PREFIX || ""}/v1/admin/ticket/list`,
     {
       method: "GET",
       params: {

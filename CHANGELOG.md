@@ -19,6 +19,46 @@ This document records all notable changes to ShadCN Admin.
 ---
 
 
+## [1.2.1](https://github.com/perfect-panel/frontend/compare/v1.2.0...v1.2.1) (2025-12-12)
+
+### 🐛 Bug Fixes / 问题修复
+
+* add error handling skip option for server and web version checks ([cc41deb](https://github.com/perfect-panel/frontend/commit/cc41debb335f6b0fd0b9911786ae05a62b598fbf))
+* replace window.location with navigate for payment redirection in recharge, renewal, and reset-traffic components ([3862007](https://github.com/perfect-panel/frontend/commit/3862007b54f5a9f6982aa4836188966151854131))
+* update API prefix handling to ensure compatibility with undefined VITE_API_PREFIX ([3920c6f](https://github.com/perfect-panel/frontend/commit/3920c6ff59106c2f0368c4d6ceda30622be36ce7))
+
+### 📚 Documentation / 文档更新
+
+* fix teek theme ([5ee56f8](https://github.com/perfect-panel/frontend/commit/5ee56f8217cfb7956c50fac76c4732a0c230463f))
+
+## [1.2.0](https://github.com/perfect-panel/frontend/compare/v1.1.3...v1.2.0) (2025-12-11)
+
+### ✨ Features / 新功能
+
+* update localization files and improve system version management ([3cf6a5c](https://github.com/perfect-panel/frontend/commit/3cf6a5cfb47ea872d6e07be0d89304dc80ed61bb))
+
+### 📚 Documentation / 文档更新
+
+* Add documentation ([99e7f60](https://github.com/perfect-panel/frontend/commit/99e7f6062db81143e7b8e3692d626ebafe6e731f))
+
+### 🔧 Chores / 其他变更
+
+* **release:** Release 1.2.0-dev.1 / 发布版本 1.2.0-dev.1 [skip ci] ([50e695a](https://github.com/perfect-panel/frontend/commit/50e695a1bb156f7176b2af0db26b59f70124ad61))
+
+## [1.2.0](https://github.com/perfect-panel/frontend/compare/v1.1.3...v1.2.0) (2025-12-11)
+
+### ✨ Features / 新功能
+
+* update localization files and improve system version management ([3cf6a5c](https://github.com/perfect-panel/frontend/commit/3cf6a5cfb47ea872d6e07be0d89304dc80ed61bb))
+
+### 📚 Documentation / 文档更新
+
+* Add documentation ([99e7f60](https://github.com/perfect-panel/frontend/commit/99e7f6062db81143e7b8e3692d626ebafe6e731f))
+
+### 🔧 Chores / 其他变更
+
+* **release:** Release 1.2.0-dev.1 / 发布版本 1.2.0-dev.1 [skip ci] ([50e695a](https://github.com/perfect-panel/frontend/commit/50e695a1bb156f7176b2af0db26b59f70124ad61))
+
 ## [1.2.0-dev.1](https://github.com/perfect-panel/frontend/compare/v1.1.3...v1.2.0-dev.1) (2025-12-01)
 
 ### ✨ Features / 新功能

@@ -3,6 +3,8 @@ name: Build and Release
 on:
   push:
     branches: [main, next, beta, develop]
+    paths-ignore:
+      - 'docs/**'
 
 permissions:
   contents: write
