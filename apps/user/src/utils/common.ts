@@ -55,6 +55,6 @@ export function Logout() {
     )
   ) {
     setRedirectUrl(location.pathname);
-    location.href = "/auth";
+    location.href = "/#/auth";
   }
 }
