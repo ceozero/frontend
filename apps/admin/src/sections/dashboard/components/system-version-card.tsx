@@ -42,7 +42,7 @@ export default function SystemVersionCard() {
   const { data: moduleConfig } = useQuery({
     queryKey: ["getModuleConfig"],
     queryFn: async () => {
-      const { data } = await getModuleConfig();
+      const { data } = await getModuleConfig({ skipErrorHandler: true });
       return data.data;
     },
     staleTime: 0,
