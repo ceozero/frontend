@@ -15,11 +15,6 @@ export function NavigationProgress() {
   }, [state.status]);
 
   return (
-    <LoadingBar
-      color="var(--muted-foreground)"
-      height={2}
-      ref={ref}
-      shadow={true}
-    />
+    <LoadingBar color="var(--primary)" height={2} ref={ref} shadow={true} />
   );
 }
