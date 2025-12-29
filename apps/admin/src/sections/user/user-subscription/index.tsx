@@ -338,7 +338,7 @@ function RowMoreActions({
         )}
         onConfirm={async () => {
           await resetUserSubscribeToken({
-            user_subscribe_id: row.subscribe_id,
+            user_subscribe_id: row.id,
           });
           toast.success(
             t("resetTokenSuccess", "Subscription address reset successfully")
@@ -365,7 +365,7 @@ function RowMoreActions({
         }
         onConfirm={async () => {
           await toggleUserSubscribeStatus({
-            user_subscribe_id: row.subscribe_id,
+            user_subscribe_id: row.id,
           });
           toast.success(
             row.status === 5
