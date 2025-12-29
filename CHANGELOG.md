@@ -19,6 +19,15 @@ This document records all notable changes to ShadCN Admin.
 ---
 
 
+## [1.3.4](https://github.com/perfect-panel/frontend/compare/v1.3.3...v1.3.4) (2025-12-29)
+
+### 🐛 Bug Fixes / 问题修复
+
+* Only update internalValue in MonacoEditor if propValue has changed ([fe14002](https://github.com/perfect-panel/frontend/commit/fe1400235967f2ad0c1ffbc05d9e15bab370c664))
+* Set modal prop to false for DropdownMenu in multiple components for improved user experience ([0253b62](https://github.com/perfect-panel/frontend/commit/0253b62b6365476591121b6f18dcb3f3261cb4ff))
+* Update HTMLEditor onChange event and set DropdownMenu modal to false for better user experience ([ba65588](https://github.com/perfect-panel/frontend/commit/ba65588fdfcfba146cd76bfe7d14e053291f5926))
+* Update SendCode parameters to use form.watch for email and telephone fields ([51a98af](https://github.com/perfect-panel/frontend/commit/51a98afcae2c8b83c7176898ad8ac2c8b11ad3d9))
+
 ## [1.3.3](https://github.com/perfect-panel/frontend/compare/v1.3.2...v1.3.3) (2025-12-29)
 
 ### 🐛 Bug Fixes / 问题修复
