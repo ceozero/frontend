@@ -19,6 +19,14 @@ This document records all notable changes to ShadCN Admin.
 ---
 
 
+## [1.3.1](https://github.com/perfect-panel/frontend/compare/v1.3.0...v1.3.1) (2025-12-29)
+
+### 🐛 Bug Fixes / 问题修复
+
+* : Update localization files and improve display logic for inventory handling ([83d821a](https://github.com/perfect-panel/frontend/commit/83d821a2dc24d97838af43ab610b65ff0d0d0d15))
+* Update quantity handling in Purchase and Renewal components based on showOriginalPrice prop ([a274607](https://github.com/perfect-panel/frontend/commit/a2746073a636706b0e214eca84055735417680f3))
+* Update SubscribeTable to display inventory using Display component for better clarity ([cc52e36](https://github.com/perfect-panel/frontend/commit/cc52e3614d9b6723f4ce8ab6385d626f0fcc54d7))
+
 ## [1.3.0](https://github.com/perfect-panel/frontend/compare/v1.2.4...v1.3.0) (2025-12-29)
 
 ### ✨ Features / 新功能
