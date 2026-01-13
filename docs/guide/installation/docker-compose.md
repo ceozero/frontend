@@ -77,17 +77,17 @@ Create a `docker-compose.yml` file with the following content:
 version: '3.8'
 
 services:
-  ppanel:
+  ppanel-service:
     image: ppanel/ppanel:latest
-    container_name: ppanel
+    container_name: ppanel-service
+    restart: always
     ports:
       - "8080:8080"
     volumes:
-      - ./ppanel-config:/app/etc:ro
-      - ppanel-data:/app/data
-    restart: unless-stopped
-    environment:
-      - TZ=UTC
+      - ./config:/app/etc:ro
+      - ./web:/app/static
+    networks:
+      - ppanel-net
     healthcheck:
       test: ["CMD", "wget", "--quiet", "--tries=1", "--spider", "http://localhost:8080/health"]
       interval: 30s
@@ -95,42 +95,93 @@ services:
       retries: 3
       start_period: 40s
 
-volumes:
-  ppanel-data:
-    driver: local
+networks:
+  ppanel-net:
+    driver: bridge
 ```
 
 **Configuration Explanation:**
 
 - **image**: Docker image to use (latest or specific version like `v0.1.2`)
-- **ports**: Map container port 8080 to host port 8080
+- **container_name**: Set a custom container name
+- **ports**: Map container port 8080 to host port 8080 (change host port if needed)
 - **volumes**:
-  - `./ppanel-config:/app/etc:ro` - Configuration directory (read-only)
-  - `ppanel-data:/app/data` - Persistent data storage
-- **restart**: Auto-restart policy
-- **environment**: Set timezone (change to your timezone like `Asia/Shanghai`)
+  - `./config:/app/etc:ro` - Configuration directory (read-only)
+  - `./web:/app/static` - Static files directory (admin and user frontend)
+- **networks**: Create a custom network for service isolation
+- **restart**: Auto-restart policy (always restart on failures)
 - **healthcheck**: Monitor service health
 
 ### Step 3: Prepare Configuration
 
 ```bash
 # Create configuration directory
-mkdir -p ppanel-config
+mkdir -p config
 
 # Create configuration file
-cat > ppanel-config/ppanel.yaml <<EOF
-# PPanel Configuration
-server:
-  host: 0.0.0.0
-  port: 8080
+cat > config/ppanel.yaml <<EOF
+Host: 0.0.0.0
+Port: 8080
+TLS:
+    Enable: false
+    CertFile: ""
+    KeyFile: ""
+Debug: false
 
-database:
-  type: sqlite
-  path: /app/data/ppanel.db
+Static:
+  Admin:
+    Enabled: true
+    Prefix: /admin
+    Path: ./static/admin
+  User:
+    Enabled: true
+    Prefix: /
+    Path: ./static/user
 
-# Add more configuration as needed
+JwtAuth:
+    AccessSecret: your-secret-key-change-this
+    AccessExpire: 604800
+
+Logger:
+    ServiceName: ApiService
+    Mode: console
+    Encoding: plain
+    TimeFormat: "2006-01-02 15:04:05.000"
+    Path: logs
+    Level: info
+    MaxContentLength: 0
+    Compress: false
+    Stat: true
+    KeepDays: 0
+    StackCooldownMillis: 100
+    MaxBackups: 0
+    MaxSize: 0
+    Rotation: daily
+    FileTimeFormat: 2006-01-02T15:04:05.000Z07:00
+
+MySQL:
+    Addr: localhost:3306
+    Username: your-username
+    Password: your-password
+    Dbname: ppanel
+    Config: charset=utf8mb4&parseTime=true&loc=Asia%2FShanghai
+    MaxIdleConns: 10
+    MaxOpenConns: 10
+    SlowThreshold: 1000
+
+Redis:
+    Host: localhost:6379
+    Pass: your-redis-password
+    DB: 0
 EOF
 ```
+
+::: warning Required Configuration
+**MySQL and Redis are required.** Please configure the following before deployment:
+- `JwtAuth.AccessSecret` - Use a strong random secret (required)
+- `MySQL.*` - Configure your MySQL database connection (required)
+- `Redis.*` - Configure your Redis connection (required)
+:::
 
 ::: tip
 For detailed configuration options, please refer to the [Configuration Guide](/guide/configuration).
@@ -169,10 +220,14 @@ docker compose logs -f ppanel
 After successful installation, you can access:
 
 - **User Panel**: `http://your-server-ip:8080`
-- **Admin Panel**: `http://your-server-ip:8080/admin`
+- **Admin Panel**: `http://your-server-ip:8080/admin/`
 
 ::: warning Default Credentials
-Please change the default admin password immediately after first login for security.
+**Default Administrator Account** (if not configured):
+- **Email**: `admin@ppanel.dev`
+- **Password**: `password`
+
+**Security**: Change the default credentials immediately after first login.
 :::
 
 ### Configure Reverse Proxy (Recommended)
@@ -272,43 +327,11 @@ Using `docker compose down -v` will delete all data volumes. Only use this if yo
 
 ## Upgrading
 
-### Backup Before Upgrade
+Upgrade PPanel directly from the **Admin Dashboard**. On the dashboard homepage, you can check for new versions and upgrade with one click.
 
-```bash
-# Backup configuration
-tar czf ppanel-config-backup-$(date +%Y%m%d).tar.gz ppanel-config/
-
-# Backup data volume
-docker run --rm \
-  -v ppanel_ppanel-data:/data \
-  -v $(pwd):/backup \
-  alpine tar czf /backup/ppanel-data-backup-$(date +%Y%m%d).tar.gz /data
-```
-
-### Upgrade Steps
-
-```bash
-# Pull latest image
-docker compose pull
-
-# Recreate containers with new image
-docker compose up -d
-
-# View logs to verify
-docker compose logs -f
-```
-
-### Rollback
-
-If you encounter issues after upgrading:
-
-```bash
-# Edit docker-compose.yml and change image to previous version
-# image: ppanel/ppanel:v0.1.1
-
-# Restart with previous version
-docker compose up -d
-```
+::: tip
+The system will automatically handle the upgrade process, including pulling the new image and restarting the service.
+:::
 
 ## Advanced Configuration
 
@@ -317,8 +340,10 @@ docker compose up -d
 To use a different port, edit `docker-compose.yml`:
 
 ```yaml
-ports:
-  - "3000:8080"  # Host port 3000 -> Container port 8080
+services:
+  ppanel-service:
+    ports:
+      - "3000:8080"  # Host port 3000 -> Container port 8080
 ```
 
 ### Multiple Instances
@@ -403,10 +428,10 @@ sudo lsof -i :8080
 
 ```bash
 # Fix configuration directory permissions
-sudo chown -R $USER:$USER ppanel-config/
+sudo chown -R $USER:$USER config/
 
 # Make sure files are readable
-chmod 644 ppanel-config/ppanel.yaml
+chmod 644 config/ppanel.yaml
 ```
 
 ### Cannot Access from Outside

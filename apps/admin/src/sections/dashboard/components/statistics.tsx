@@ -13,7 +13,6 @@ import {
   ChartTooltip,
   ChartTooltipContent,
 } from "@workspace/ui/components/chart";
-import { Empty } from "@workspace/ui/components/empty";
 import {
   Select,
   SelectContent,
@@ -23,6 +22,7 @@ import {
 } from "@workspace/ui/components/select";
 import { Separator } from "@workspace/ui/components/separator";
 import { Tabs, TabsList, TabsTrigger } from "@workspace/ui/components/tabs";
+import Empty from "@workspace/ui/composed/empty";
 import { Icon } from "@workspace/ui/composed/icon";
 import {
   queryServerTotalData,
@@ -289,7 +289,7 @@ export default function Statistics() {
                     radius={[0, 4, 4, 0]}
                   >
                     <LabelList
-                      className="fill-[var(--foreground)]"
+                      className="fill-foreground"
                       dataKey="name"
                       fontSize={12}
                       offset={8}

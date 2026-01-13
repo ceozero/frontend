@@ -46,7 +46,10 @@ export function setRedirectUrl(value?: string) {
 export function Logout() {
   if (!isBrowser()) return;
   removeCookie("Authorization");
+
   const pathname = location.pathname;
+  const hash = location.hash.slice(1); // 移除 '#'
+
   if (
     !(
       ["", "/", "/auth", "/tos", "/privacy-policy"].includes(pathname) ||
@@ -54,7 +57,20 @@ export function Logout() {
       pathname.startsWith("/oauth/")
     )
   ) {
-    setRedirectUrl(location.pathname);
-    location.href = "/auth";
+    setRedirectUrl(pathname);
+    location.href = "/#/auth";
+    return;
+  }
+
+  if (
+    hash &&
+    !(
+      ["", "/", "/auth", "/tos", "/privacy-policy"].includes(hash) ||
+      hash.startsWith("/purchasing") ||
+      hash.startsWith("/oauth/")
+    )
+  ) {
+    setRedirectUrl(hash);
+    location.href = "/#/auth";
   }
 }

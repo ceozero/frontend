@@ -15,7 +15,6 @@ import {
   ChartTooltip,
   ChartTooltipContent,
 } from "@workspace/ui/components/chart";
-import { Empty } from "@workspace/ui/components/empty";
 import { Separator } from "@workspace/ui/components/separator";
 import {
   Tabs,
@@ -23,6 +22,7 @@ import {
   TabsList,
   TabsTrigger,
 } from "@workspace/ui/components/tabs";
+import Empty from "@workspace/ui/composed/empty";
 import { queryRevenueStatistics } from "@workspace/ui/services/admin/console";
 import { unitConversion } from "@workspace/ui/utils/unit-conversions";
 import { useTranslation } from "react-i18next";

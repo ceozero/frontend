@@ -23,19 +23,29 @@ uname -m
 
 访问 [GitHub Releases](https://github.com/perfect-panel/ppanel/releases) 页面或直接下载：
 
+::: tip 安装目录
+你可以将 PPanel 安装在任意目录，本文档使用 `/opt/ppanel` 作为示例。如果选择其他目录，请相应调整后续命令中的路径。
+:::
+
 ```bash
-# 创建安装目录
+# 创建安装目录（可以自定义路径）
 sudo mkdir -p /opt/ppanel
 cd /opt/ppanel
 
 # 下载 Linux amd64 版本
-wget https://github.com/perfect-panel/ppanel/releases/latest/download/ppanel-linux-amd64.tar.gz
+wget https://github.com/perfect-panel/ppanel/releases/latest/download/gateway-linux-amd64.tar.gz
 
 # 或下载 Linux arm64 版本
-# wget https://github.com/perfect-panel/ppanel/releases/latest/download/ppanel-linux-arm64.tar.gz
+# wget https://github.com/perfect-panel/ppanel/releases/latest/download/gateway-linux-arm64.tar.gz
+
+# 或下载 macOS amd64 版本
+# wget https://github.com/perfect-panel/ppanel/releases/latest/download/gateway-darwin-amd64.tar.gz
+
+# 或下载 macOS arm64 版本 (Apple Silicon)
+# wget https://github.com/perfect-panel/ppanel/releases/latest/download/gateway-darwin-arm64.tar.gz
 
 # 解压
-tar -xzf ppanel-linux-amd64.tar.gz
+tar -xzf gateway-linux-amd64.tar.gz
 
 # 验证解压的文件
 ls -la
@@ -44,8 +54,7 @@ ls -la
 预期的文件结构：
 ```
 /opt/ppanel/
-├── ppanel-server    # 主服务器二进制文件
-├── gateway          # 网关二进制文件
+├── gateway          # 网关可执行文件
 └── etc/             # 配置目录
     └── ppanel.yaml  # 配置文件
 ```
@@ -55,40 +64,78 @@ ls -la
 ### 步骤 1: 准备配置
 
 ```bash
-# 复制示例配置
-sudo cp etc/ppanel.yaml etc/ppanel.yaml.backup
-
 # 编辑配置
-sudo nano etc/ppanel.yaml
+sudo nano /opt/ppanel/etc/ppanel.yaml
 ```
 
-**基础配置示例:**
+**配置示例:**
+
+::: tip 相对路径
+配置中的路径（如 `Path`、`logs` 等）支持相对路径。相对路径是相对于程序工作目录（WorkingDirectory）的，在 systemd 服务中即 `/opt/ppanel`。
+:::
 
 ```yaml
-server:
-  host: 0.0.0.0
-  port: 8080
-  mode: release  # debug, release, 或 test
+Host: 0.0.0.0
+Port: 8080
+TLS:
+    Enable: false
+    CertFile: ""
+    KeyFile: ""
+Debug: false
 
-database:
-  type: sqlite
-  path: /opt/ppanel/data/ppanel.db
-  # MySQL/PostgreSQL 配置:
-  # type: mysql
-  # host: localhost
-  # port: 3306
-  # user: ppanel
-  # password: your_password
-  # database: ppanel
+Static:
+  Admin:
+    Enabled: true
+    Prefix: /admin
+    Path: ./static/admin
+  User:
+    Enabled: true
+    Prefix: /
+    Path: ./static/user
 
-log:
-  level: info  # debug, info, warn, error
-  path: /opt/ppanel/logs
+JwtAuth:
+    AccessSecret: your-secret-key-change-this
+    AccessExpire: 604800
 
-gateway:
-  port: 8080
-  timeout: 30s
+Logger:
+    ServiceName: ApiService
+    Mode: console
+    Encoding: plain
+    TimeFormat: "2006-01-02 15:04:05.000"
+    Path: logs
+    Level: info
+    MaxContentLength: 0
+    Compress: false
+    Stat: true
+    KeepDays: 0
+    StackCooldownMillis: 100
+    MaxBackups: 0
+    MaxSize: 0
+    Rotation: daily
+    FileTimeFormat: 2006-01-02T15:04:05.000Z07:00
+
+MySQL:
+    Addr: localhost:3306
+    Username: your-username
+    Password: your-password
+    Dbname: ppanel
+    Config: charset=utf8mb4&parseTime=true&loc=Asia%2FShanghai
+    MaxIdleConns: 10
+    MaxOpenConns: 10
+    SlowThreshold: 1000
+
+Redis:
+    Host: localhost:6379
+    Pass: your-redis-password
+    DB: 0
 ```
+
+::: warning 必需配置
+**MySQL 和 Redis 是必需的。** 部署前请配置以下项：
+- `JwtAuth.AccessSecret` - 使用强随机密钥（必需）
+- `MySQL.*` - 配置你的 MySQL 数据库连接（必需）
+- `Redis.*` - 配置你的 Redis 连接（必需）
+:::
 
 ### 步骤 2: 创建必要的目录
 
@@ -96,11 +143,13 @@ gateway:
 # 创建数据和日志目录
 sudo mkdir -p /opt/ppanel/data
 sudo mkdir -p /opt/ppanel/logs
+sudo mkdir -p /opt/ppanel/static
 
 # 设置适当的权限
 sudo chmod 755 /opt/ppanel
 sudo chmod 700 /opt/ppanel/data
 sudo chmod 755 /opt/ppanel/logs
+sudo chmod 755 /opt/ppanel/static
 ```
 
 ## 运行服务
@@ -111,15 +160,11 @@ sudo chmod 755 /opt/ppanel/logs
 
 ```bash
 # 使二进制文件可执行
-sudo chmod +x /opt/ppanel/ppanel-server
 sudo chmod +x /opt/ppanel/gateway
 
-# 直接运行服务器
+# 直接运行
 cd /opt/ppanel
-sudo ./ppanel-server
-
-# 在另一个终端运行网关（如果分离）
-# sudo ./gateway
+sudo ./gateway
 ```
 
 按 `Ctrl+C` 停止。
@@ -147,7 +192,7 @@ Wants=network-online.target
 Type=simple
 User=root
 WorkingDirectory=/opt/ppanel
-ExecStart=/opt/ppanel/ppanel-server
+ExecStart=/opt/ppanel/gateway
 Restart=always
 RestartSec=10
 
@@ -262,7 +307,15 @@ ps aux | grep ppanel
 ### 访问应用
 
 - **用户面板**: `http://your-server-ip:8080`
-- **管理后台**: `http://your-server-ip:8080/admin`
+- **管理后台**: `http://your-server-ip:8080/admin/`
+
+::: warning 默认凭据
+**默认管理员账号**:
+- **邮箱**: `admin@ppanel.dev`
+- **密码**: `password`
+
+**安全提醒**: 首次登录后请立即修改默认凭据。
+:::
 
 ### 配置防火墙
 
@@ -312,70 +365,11 @@ sudo systemctl reload nginx
 
 ## 升级
 
-### 升级前备份
+直接从**管理后台**主页升级 PPanel。在仪表盘主页可以检查新版本并一键升级。
 
-```bash
-# 停止服务
-sudo systemctl stop ppanel
-
-# 备份当前版本
-sudo cp -r /opt/ppanel /opt/ppanel-backup-$(date +%Y%m%d)
-
-# 备份数据库
-sudo cp /opt/ppanel/data/ppanel.db /opt/ppanel/data/ppanel.db.backup-$(date +%Y%m%d)
-
-# 备份配置
-sudo cp /opt/ppanel/etc/ppanel.yaml /opt/ppanel/etc/ppanel.yaml.backup-$(date +%Y%m%d)
-```
-
-### 下载并安装新版本
-
-```bash
-# 下载新版本
-cd /tmp
-wget https://github.com/perfect-panel/ppanel/releases/latest/download/ppanel-linux-amd64.tar.gz
-
-# 解压到临时位置
-mkdir ppanel-new
-tar -xzf ppanel-linux-amd64.tar.gz -C ppanel-new
-
-# 备份旧的二进制文件
-sudo mv /opt/ppanel/ppanel-server /opt/ppanel/ppanel-server.old
-sudo mv /opt/ppanel/gateway /opt/ppanel/gateway.old
-
-# 安装新的二进制文件
-sudo cp ppanel-new/ppanel-server /opt/ppanel/
-sudo cp ppanel-new/gateway /opt/ppanel/
-
-# 设置权限
-sudo chmod +x /opt/ppanel/ppanel-server
-sudo chmod +x /opt/ppanel/gateway
-
-# 启动服务
-sudo systemctl start ppanel
-
-# 检查状态
-sudo systemctl status ppanel
-```
-
-### 回滚
-
-如果升级失败：
-
-```bash
-# 停止服务
-sudo systemctl stop ppanel
-
-# 恢复旧的二进制文件
-sudo mv /opt/ppanel/ppanel-server.old /opt/ppanel/ppanel-server
-sudo mv /opt/ppanel/gateway.old /opt/ppanel/gateway
-
-# 恢复数据库（如需要）
-sudo cp /opt/ppanel/data/ppanel.db.backup-YYYYMMDD /opt/ppanel/data/ppanel.db
-
-# 启动服务
-sudo systemctl start ppanel
-```
+::: tip 提示
+系统会自动处理升级过程，包括下载新的二进制文件和重启服务。
+:::
 
 ## 故障排除
 
@@ -413,14 +407,14 @@ sudo systemctl restart ppanel
 ```bash
 # 检查架构兼容性
 uname -m
-file /opt/ppanel/ppanel-server
+file /opt/ppanel/gateway
 
 # 检查是否可执行
-ls -la /opt/ppanel/ppanel-server
-sudo chmod +x /opt/ppanel/ppanel-server
+ls -la /opt/ppanel/gateway
+sudo chmod +x /opt/ppanel/gateway
 
 # 检查缺失的库（静态编译应该没有）
-ldd /opt/ppanel/ppanel-server
+ldd /opt/ppanel/gateway
 ```
 
 ### 内存使用过高
@@ -497,7 +491,7 @@ sudo nano /etc/systemd/system/ppanel.service
 # 更改: User=ppanel
 
 # 如果绑定到端口 < 1024，授予能力
-sudo setcap 'cap_net_bind_service=+ep' /opt/ppanel/ppanel-server
+sudo setcap 'cap_net_bind_service=+ep' /opt/ppanel/gateway
 
 sudo systemctl daemon-reload
 sudo systemctl restart ppanel

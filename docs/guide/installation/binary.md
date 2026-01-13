@@ -23,19 +23,29 @@ uname -m
 
 Visit the [GitHub Releases](https://github.com/perfect-panel/ppanel/releases) page or download directly:
 
+::: tip Installation Directory
+You can install PPanel in any directory. This guide uses `/opt/ppanel` as an example. If you choose a different directory, adjust the paths in subsequent commands accordingly.
+:::
+
 ```bash
-# Create installation directory
+# Create installation directory (customizable)
 sudo mkdir -p /opt/ppanel
 cd /opt/ppanel
 
 # Download for Linux amd64
-wget https://github.com/perfect-panel/ppanel/releases/latest/download/ppanel-linux-amd64.tar.gz
+wget https://github.com/perfect-panel/ppanel/releases/latest/download/gateway-linux-amd64.tar.gz
 
 # Or for Linux arm64
-# wget https://github.com/perfect-panel/ppanel/releases/latest/download/ppanel-linux-arm64.tar.gz
+# wget https://github.com/perfect-panel/ppanel/releases/latest/download/gateway-linux-arm64.tar.gz
+
+# Or for macOS amd64
+# wget https://github.com/perfect-panel/ppanel/releases/latest/download/gateway-darwin-amd64.tar.gz
+
+# Or for macOS arm64 (Apple Silicon)
+# wget https://github.com/perfect-panel/ppanel/releases/latest/download/gateway-darwin-arm64.tar.gz
 
 # Extract
-tar -xzf ppanel-linux-amd64.tar.gz
+tar -xzf gateway-linux-amd64.tar.gz
 
 # Verify extracted files
 ls -la
@@ -44,8 +54,7 @@ ls -la
 Expected files:
 ```
 /opt/ppanel/
-├── ppanel-server    # Main server binary
-├── gateway          # Gateway binary
+├── gateway          # Gateway executable
 └── etc/             # Configuration directory
     └── ppanel.yaml  # Configuration file
 ```
@@ -55,40 +64,78 @@ Expected files:
 ### Step 1: Prepare Configuration
 
 ```bash
-# Copy sample configuration
-sudo cp etc/ppanel.yaml etc/ppanel.yaml.backup
-
 # Edit configuration
-sudo nano etc/ppanel.yaml
+sudo nano /opt/ppanel/etc/ppanel.yaml
 ```
 
-**Basic Configuration Example:**
+**Configuration Example:**
+
+::: tip Relative Paths
+Paths in the configuration (such as `Path`, `logs`, etc.) support relative paths. Relative paths are relative to the program's working directory (WorkingDirectory), which is `/opt/ppanel` in the systemd service.
+:::
 
 ```yaml
-server:
-  host: 0.0.0.0
-  port: 8080
-  mode: release  # debug, release, or test
+Host: 0.0.0.0
+Port: 8080
+TLS:
+    Enable: false
+    CertFile: ""
+    KeyFile: ""
+Debug: false
 
-database:
-  type: sqlite
-  path: /opt/ppanel/data/ppanel.db
-  # For MySQL/PostgreSQL:
-  # type: mysql
-  # host: localhost
-  # port: 3306
-  # user: ppanel
-  # password: your_password
-  # database: ppanel
+Static:
+  Admin:
+    Enabled: true
+    Prefix: /admin
+    Path: ./static/admin
+  User:
+    Enabled: true
+    Prefix: /
+    Path: ./static/user
 
-log:
-  level: info  # debug, info, warn, error
-  path: /opt/ppanel/logs
+JwtAuth:
+    AccessSecret: your-secret-key-change-this
+    AccessExpire: 604800
 
-gateway:
-  port: 8080
-  timeout: 30s
+Logger:
+    ServiceName: ApiService
+    Mode: console
+    Encoding: plain
+    TimeFormat: "2006-01-02 15:04:05.000"
+    Path: logs
+    Level: info
+    MaxContentLength: 0
+    Compress: false
+    Stat: true
+    KeepDays: 0
+    StackCooldownMillis: 100
+    MaxBackups: 0
+    MaxSize: 0
+    Rotation: daily
+    FileTimeFormat: 2006-01-02T15:04:05.000Z07:00
+
+MySQL:
+    Addr: localhost:3306
+    Username: your-username
+    Password: your-password
+    Dbname: ppanel
+    Config: charset=utf8mb4&parseTime=true&loc=Asia%2FShanghai
+    MaxIdleConns: 10
+    MaxOpenConns: 10
+    SlowThreshold: 1000
+
+Redis:
+    Host: localhost:6379
+    Pass: your-redis-password
+    DB: 0
 ```
+
+::: warning Required Configuration
+**MySQL and Redis are required.** Please configure the following before deployment:
+- `JwtAuth.AccessSecret` - Use a strong random secret (required)
+- `MySQL.*` - Configure your MySQL database connection (required)
+- `Redis.*` - Configure your Redis connection (required)
+:::
 
 ### Step 2: Create Required Directories
 
@@ -96,11 +143,13 @@ gateway:
 # Create data and log directories
 sudo mkdir -p /opt/ppanel/data
 sudo mkdir -p /opt/ppanel/logs
+sudo mkdir -p /opt/ppanel/static
 
 # Set proper permissions
 sudo chmod 755 /opt/ppanel
 sudo chmod 700 /opt/ppanel/data
 sudo chmod 755 /opt/ppanel/logs
+sudo chmod 755 /opt/ppanel/static
 ```
 
 ## Running the Service
@@ -110,16 +159,12 @@ sudo chmod 755 /opt/ppanel/logs
 For quick testing:
 
 ```bash
-# Make binaries executable
-sudo chmod +x /opt/ppanel/ppanel-server
+# Make binary executable
 sudo chmod +x /opt/ppanel/gateway
 
-# Run server directly
+# Run directly
 cd /opt/ppanel
-sudo ./ppanel-server
-
-# In another terminal, run gateway (if separate)
-# sudo ./gateway
+sudo ./gateway
 ```
 
 Press `Ctrl+C` to stop.
@@ -147,7 +192,7 @@ Wants=network-online.target
 Type=simple
 User=root
 WorkingDirectory=/opt/ppanel
-ExecStart=/opt/ppanel/ppanel-server
+ExecStart=/opt/ppanel/gateway
 Restart=always
 RestartSec=10
 
@@ -262,7 +307,15 @@ ps aux | grep ppanel
 ### Access the Application
 
 - **User Panel**: `http://your-server-ip:8080`
-- **Admin Panel**: `http://your-server-ip:8080/admin`
+- **Admin Panel**: `http://your-server-ip:8080/admin/`
+
+::: warning Default Credentials
+**Default Administrator Account**:
+- **Email**: `admin@ppanel.dev`
+- **Password**: `password`
+
+**Security**: Change the default credentials immediately after first login.
+:::
 
 ### Configure Firewall
 
@@ -312,70 +365,11 @@ sudo systemctl reload nginx
 
 ## Upgrading
 
-### Backup Before Upgrade
+Upgrade PPanel directly from the **Admin Dashboard**. On the dashboard homepage, you can check for new versions and upgrade with one click.
 
-```bash
-# Stop service
-sudo systemctl stop ppanel
-
-# Backup current version
-sudo cp -r /opt/ppanel /opt/ppanel-backup-$(date +%Y%m%d)
-
-# Backup database
-sudo cp /opt/ppanel/data/ppanel.db /opt/ppanel/data/ppanel.db.backup-$(date +%Y%m%d)
-
-# Backup configuration
-sudo cp /opt/ppanel/etc/ppanel.yaml /opt/ppanel/etc/ppanel.yaml.backup-$(date +%Y%m%d)
-```
-
-### Download and Install New Version
-
-```bash
-# Download new version
-cd /tmp
-wget https://github.com/perfect-panel/ppanel/releases/latest/download/ppanel-linux-amd64.tar.gz
-
-# Extract to temporary location
-mkdir ppanel-new
-tar -xzf ppanel-linux-amd64.tar.gz -C ppanel-new
-
-# Backup old binaries
-sudo mv /opt/ppanel/ppanel-server /opt/ppanel/ppanel-server.old
-sudo mv /opt/ppanel/gateway /opt/ppanel/gateway.old
-
-# Install new binaries
-sudo cp ppanel-new/ppanel-server /opt/ppanel/
-sudo cp ppanel-new/gateway /opt/ppanel/
-
-# Set permissions
-sudo chmod +x /opt/ppanel/ppanel-server
-sudo chmod +x /opt/ppanel/gateway
-
-# Start service
-sudo systemctl start ppanel
-
-# Check status
-sudo systemctl status ppanel
-```
-
-### Rollback
-
-If upgrade fails:
-
-```bash
-# Stop service
-sudo systemctl stop ppanel
-
-# Restore old binaries
-sudo mv /opt/ppanel/ppanel-server.old /opt/ppanel/ppanel-server
-sudo mv /opt/ppanel/gateway.old /opt/ppanel/gateway
-
-# Restore database (if needed)
-sudo cp /opt/ppanel/data/ppanel.db.backup-YYYYMMDD /opt/ppanel/data/ppanel.db
-
-# Start service
-sudo systemctl start ppanel
-```
+::: tip
+The system will automatically handle the upgrade process, including downloading the new binary and restarting the service.
+:::
 
 ## Troubleshooting
 
@@ -413,14 +407,14 @@ sudo systemctl restart ppanel
 ```bash
 # Check architecture compatibility
 uname -m
-file /opt/ppanel/ppanel-server
+file /opt/ppanel/gateway
 
 # Check if executable
-ls -la /opt/ppanel/ppanel-server
-sudo chmod +x /opt/ppanel/ppanel-server
+ls -la /opt/ppanel/gateway
+sudo chmod +x /opt/ppanel/gateway
 
 # Check for missing libraries (should be none for static binary)
-ldd /opt/ppanel/ppanel-server
+ldd /opt/ppanel/gateway
 ```
 
 ### High Memory Usage
@@ -497,7 +491,7 @@ sudo nano /etc/systemd/system/ppanel.service
 # Change: User=ppanel
 
 # If binding to port < 1024, grant capability
-sudo setcap 'cap_net_bind_service=+ep' /opt/ppanel/ppanel-server
+sudo setcap 'cap_net_bind_service=+ep' /opt/ppanel/gateway
 
 sudo systemctl daemon-reload
 sudo systemctl restart ppanel

@@ -123,7 +123,7 @@ docker run -d \
 
 ```bash
 # 拉取后端镜像
-docker pull ghcr.io/perfect-panel/ppanel:latest
+docker pull ppanel/ppanel:latest
 
 # 运行后端容器
 docker run -d \
@@ -132,7 +132,7 @@ docker run -d \
   -v $(pwd)/config.yaml:/app/config.yaml \
   --link ppanel-mysql:mysql \
   --link ppanel-redis:redis \
-  ghcr.io/perfect-panel/ppanel:latest
+  ppanel/ppanel:latest
 ```
 
 #### 6. 初始化数据库
@@ -356,7 +356,7 @@ docker run -d \
   -e REDIS_HOST=redis \
   --link ppanel-mysql:mysql \
   --link ppanel-redis:redis \
-  ghcr.io/perfect-panel/ppanel:latest
+  ppanel/ppanel:latest
 ```
 
 ## 安全建议
@@ -449,7 +449,7 @@ server:
 
 ```bash
 # 拉取最新镜像
-docker pull ghcr.io/perfect-panel/ppanel:latest
+docker pull ppanel/ppanel:latest
 
 # 停止旧容器
 docker stop ppanel-backend
@@ -467,7 +467,7 @@ docker run -d \
   -v $(pwd)/config.yaml:/app/config.yaml \
   --link ppanel-mysql:mysql \
   --link ppanel-redis:redis \
-  ghcr.io/perfect-panel/ppanel:latest
+  ppanel/ppanel:latest
 
 # 执行数据库迁移
 docker exec ppanel-backend ./ppanel migrate

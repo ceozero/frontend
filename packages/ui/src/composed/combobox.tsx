@@ -103,7 +103,11 @@ export function Combobox<T, M extends boolean = false>({
             <BoxIcon className="inline-block text-slate-500" />
           </CommandEmpty>
           <CommandGroup>
-            <CommandList>
+            <CommandList
+              onWheel={(e) => {
+                e.currentTarget.scrollTop += e.deltaY;
+              }}
+            >
               {options.map((option) => (
                 <CommandItem
                   key={String(option.label + option.value)}

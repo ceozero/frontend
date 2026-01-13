@@ -72,7 +72,7 @@ export default function Affiliate() {
                   toast.success(t("copySuccess", "Copy Success"));
                 }
               }}
-              text={`${location?.origin}/auth?invite=${user?.refer_code}`}
+              text={`${location?.origin}/#/auth?invite=${user?.refer_code}`}
             >
               <Button className="gap-2" size="sm" variant="secondary">
                 <Copy className="h-4 w-4" />

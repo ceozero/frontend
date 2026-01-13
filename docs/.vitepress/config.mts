@@ -68,6 +68,10 @@ export default defineConfig({
               items: [
                 { text: "Overview", link: "/guide/installation/" },
                 {
+                  text: "One-Click Deployment",
+                  link: "/guide/installation/one-click",
+                },
+                {
                   text: "Docker Compose",
                   link: "/guide/installation/docker-compose",
                 },
@@ -250,6 +254,10 @@ export default defineConfig({
               text: "安装部署",
               items: [
                 { text: "概览", link: "/zh/guide/installation/" },
+                {
+                  text: "一键部署",
+                  link: "/zh/guide/installation/one-click",
+                },
                 {
                   text: "Docker Compose",
                   link: "/zh/guide/installation/docker-compose",

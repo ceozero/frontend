@@ -69,7 +69,7 @@ export function SidebarRight({
                     toast.success(t("copySuccess", "Copy Success"));
                   }
                 }}
-                text={`${isBrowser() && location?.origin}/auth?invite=${user?.refer_code}`}
+                text={`${isBrowser() && location?.origin}/#/auth?invite=${user?.refer_code}`}
               >
                 <Button className="size-5 p-0" variant="ghost">
                   <Icon

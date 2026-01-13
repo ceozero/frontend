@@ -1,13 +1,13 @@
 "use client";
 
-import { useNavigate } from "@tanstack/react-router";
+import { useNavigate, useSearch } from "@tanstack/react-router";
 import {
   telephoneLogin,
   telephoneResetPassword,
   telephoneUserRegister,
 } from "@workspace/ui/services/common/auth";
 import type { ReactNode } from "react";
-import { useState, useTransition } from "react";
+import { useEffect, useState, useTransition } from "react";
 import { useTranslation } from "react-i18next";
 import { toast } from "sonner";
 import { useGlobalStore } from "@/stores/global";
@@ -20,6 +20,7 @@ export default function PhoneAuthForm() {
   const { t } = useTranslation("auth");
   const navigate = useNavigate();
   const { getUserInfo } = useGlobalStore();
+  const searchParams = useSearch({ strict: false }) as { invite?: string };
   const [type, setType] = useState<"login" | "register" | "reset">("login");
   const [loading, startTransition] = useTransition();
   const [initialValues, setInitialValues] = useState<API.TelephoneLoginRequest>(
@@ -31,6 +32,13 @@ export default function PhoneAuthForm() {
       telephone_code: "",
     }
   );
+
+  useEffect(() => {
+    if (searchParams.invite) {
+      localStorage.setItem("invite", searchParams.invite);
+      setInitialValues((prev) => ({ ...prev, invite: searchParams.invite }));
+    }
+  }, [searchParams.invite]);
 
   const handleFormSubmit = async (params: any) => {
     const onLogin = async (token?: string) => {

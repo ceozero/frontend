@@ -67,53 +67,106 @@ mkdir -p ~/ppanel-config
 
 # 创建配置文件
 cat > ~/ppanel-config/ppanel.yaml <<EOF
-server:
-  host: 0.0.0.0
-  port: 8080
+Host: 0.0.0.0
+Port: 8080
+TLS:
+    Enable: false
+    CertFile: ""
+    KeyFile: ""
+Debug: false
 
-database:
-  type: sqlite
-  path: /app/data/ppanel.db
+Static:
+  Admin:
+    Enabled: true
+    Prefix: /admin
+    Path: ./static/admin
+  User:
+    Enabled: true
+    Prefix: /
+    Path: ./static/user
+
+JwtAuth:
+    AccessSecret: your-secret-key-change-this
+    AccessExpire: 604800
+
+Logger:
+    ServiceName: ApiService
+    Mode: console
+    Encoding: plain
+    TimeFormat: "2006-01-02 15:04:05.000"
+    Path: logs
+    Level: info
+    MaxContentLength: 0
+    Compress: false
+    Stat: true
+    KeepDays: 0
+    StackCooldownMillis: 100
+    MaxBackups: 0
+    MaxSize: 0
+    Rotation: daily
+    FileTimeFormat: 2006-01-02T15:04:05.000Z07:00
+
+MySQL:
+    Addr: localhost:3306
+    Username: your-username
+    Password: your-password
+    Dbname: ppanel
+    Config: charset=utf8mb4&parseTime=true&loc=Asia%2FShanghai
+    MaxIdleConns: 10
+    MaxOpenConns: 10
+    SlowThreshold: 1000
+
+Redis:
+    Host: localhost:6379
+    Pass: your-redis-password
+    DB: 0
 EOF
 ```
+
+::: warning 必需配置
+**MySQL 和 Redis 是必需的。** 部署前请配置以下项：
+- `JwtAuth.AccessSecret` - 使用强随机密钥（必需）
+- `MySQL.*` - 配置你的 MySQL 数据库连接（必需）
+- `Redis.*` - 配置你的 Redis 连接（必需）
+:::
 
 ### 步骤 3: 运行容器
 
 **基础命令:**
 ```bash
 docker run -d \
-  --name ppanel \
+  --name ppanel-service \
   -p 8080:8080 \
   -v ~/ppanel-config:/app/etc:ro \
-  -v ppanel-data:/app/data \
-  --restart unless-stopped \
+  -v ~/ppanel-web:/app/static \
+  --restart always \
   ppanel/ppanel:latest
 ```
 
 **完整参数命令:**
 ```bash
 docker run -d \
-  --name ppanel \
+  --name ppanel-service \
   -p 8080:8080 \
   -v ~/ppanel-config:/app/etc:ro \
-  -v ppanel-data:/app/data \
-  -e TZ=Asia/Shanghai \
-  --restart unless-stopped \
+  -v ~/ppanel-web:/app/static \
+  --restart always \
   --memory="2g" \
   --cpus="2" \
+  --network ppanel-net \
   ppanel/ppanel:latest
 ```
 
 **参数说明:**
 - `-d`: 以守护进程模式运行（后台运行）
-- `--name ppanel`: 设置容器名称
+- `--name ppanel-service`: 设置容器名称
 - `-p 8080:8080`: 端口映射（宿主机:容器）
 - `-v ~/ppanel-config:/app/etc:ro`: 挂载配置（只读）
-- `-v ppanel-data:/app/data`: 创建数据卷
-- `-e TZ=Asia/Shanghai`: 设置时区
-- `--restart unless-stopped`: 自动重启策略
-- `--memory="2g"`: 内存限制
-- `--cpus="2"`: CPU 限制
+- `-v ~/ppanel-web:/app/static`: 挂载静态文件目录
+- `--restart always`: 自动重启策略（总是重启）
+- `--memory="2g"`: 内存限制（可选）
+- `--cpus="2"`: CPU 限制（可选）
+- `--network ppanel-net`: 连接到自定义网络（可选）
 
 ### 步骤 4: 验证运行
 
@@ -179,45 +232,21 @@ docker volume rm ppanel-data
 ```
 :::
 
+::: warning 默认凭据
+**默认管理员账号**:
+- **邮箱**: `admin@ppanel.dev`
+- **密码**: `password`
+
+**安全提醒**: 首次登录后请立即修改默认凭据。
+:::
+
 ## 升级
 
-### 备份数据
+直接从**管理后台**主页升级 PPanel。在仪表盘主页可以检查新版本并一键升级。
 
-```bash
-# 备份配置
-tar czf ppanel-config-backup-$(date +%Y%m%d).tar.gz ~/ppanel-config/
-
-# 备份数据卷
-docker run --rm \
-  -v ppanel-data:/data \
-  -v $(pwd):/backup \
-  alpine tar czf /backup/ppanel-data-backup-$(date +%Y%m%d).tar.gz /data
-```
-
-### 升级流程
-
-```bash
-# 拉取最新镜像
-docker pull ppanel/ppanel:latest
-
-# 停止旧容器
-docker stop ppanel
-
-# 删除旧容器
-docker rm ppanel
-
-# 使用相同配置启动新容器
-docker run -d \
-  --name ppanel \
-  -p 8080:8080 \
-  -v ~/ppanel-config:/app/etc:ro \
-  -v ppanel-data:/app/data \
-  --restart unless-stopped \
-  ppanel/ppanel:latest
-
-# 验证
-docker logs -f ppanel
-```
+::: tip 提示
+系统会自动处理升级过程，包括拉取新镜像和重启服务。
+:::
 
 ## 高级用法
 

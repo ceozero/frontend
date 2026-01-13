@@ -59,9 +59,18 @@ export function setRedirectUrl(value?: string) {
 export function Logout() {
   if (!isBrowser()) return;
   removeCookie("Authorization");
+
   const pathname = location.pathname;
+  const hash = location.hash.slice(1);
+
   if (!["", "/"].includes(pathname)) {
-    setRedirectUrl(location.pathname);
+    setRedirectUrl(pathname);
+    location.href = "/";
+    return;
+  }
+
+  if (hash && !["", "/"].includes(hash)) {
+    setRedirectUrl(hash);
     location.href = "/";
   }
 }

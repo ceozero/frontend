@@ -244,7 +244,7 @@ export default function ConfigForm() {
                 render={({ field }) => (
                   <FormItem>
                     <FormLabel>
-                      {t("config.userAgentLimit", "{userAgent} Restriction", {
+                      {t("config.userAgentLimit", "{{userAgent}} Restriction", {
                         userAgent: "User-Agent",
                       })}
                     </FormLabel>
@@ -258,7 +258,7 @@ export default function ConfigForm() {
                     <FormDescription>
                       {t(
                         "config.userAgentLimitDescription",
-                        "Enable access restrictions based on {userAgent}",
+                        "Enable access restrictions based on {{userAgent}}",
                         {
                           userAgent: "User-Agent",
                         }
@@ -275,7 +275,7 @@ export default function ConfigForm() {
                 render={({ field }) => (
                   <FormItem>
                     <FormLabel>
-                      {t("config.userAgentList", "{userAgent} Whitelist", {
+                      {t("config.userAgentList", "{{userAgent}} Whitelist", {
                         userAgent: "User-Agent",
                       })}
                     </FormLabel>
@@ -284,7 +284,7 @@ export default function ConfigForm() {
                         className="h-32"
                         placeholder={`${t(
                           "config.userAgentListPlaceholder",
-                          "Enter allowed {userAgent}, one per line",
+                          "Enter allowed {{userAgent}}, one per line",
                           { userAgent: "User-Agent" }
                         )}\nClashX\nClashForAndroid\nClash-verge`}
                         {...field}
@@ -293,7 +293,7 @@ export default function ConfigForm() {
                     <FormDescription>
                       {t(
                         "config.userAgentListDescription",
-                        "Allowed {userAgent} for subscription access, one per line. Configured application {userAgent} will be automatically included",
+                        "Allowed {{userAgent}} for subscription access, one per line. Configured application {{userAgent}} will be automatically included",
                         {
                           userAgent: "User-Agent",
                         }

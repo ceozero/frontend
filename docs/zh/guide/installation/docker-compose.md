@@ -77,17 +77,17 @@ cd ~/ppanel
 version: '3.8'
 
 services:
-  ppanel:
+  ppanel-service:
     image: ppanel/ppanel:latest
-    container_name: ppanel
+    container_name: ppanel-service
+    restart: always
     ports:
       - "8080:8080"
     volumes:
-      - ./ppanel-config:/app/etc:ro
-      - ppanel-data:/app/data
-    restart: unless-stopped
-    environment:
-      - TZ=Asia/Shanghai
+      - ./config:/app/etc:ro
+      - ./web:/app/static
+    networks:
+      - ppanel-net
     healthcheck:
       test: ["CMD", "wget", "--quiet", "--tries=1", "--spider", "http://localhost:8080/health"]
       interval: 30s
@@ -95,45 +95,92 @@ services:
       retries: 3
       start_period: 40s
 
-volumes:
-  ppanel-data:
-    driver: local
+networks:
+  ppanel-net:
+    driver: bridge
 ```
 
 **配置说明:**
 
 - **image**: 使用的 Docker 镜像（latest 或指定版本如 `v0.1.2`）
-- **ports**: 将容器的 8080 端口映射到宿主机的 8080 端口
+- **container_name**: 设置自定义容器名称
+- **ports**: 将容器的 8080 端口映射到宿主机的 8080 端口（可根据需要修改宿主机端口）
 - **volumes**:
-  - `./ppanel-config:/app/etc:ro` - 配置目录（只读）
-  - `ppanel-data:/app/data` - 持久化数据存储
-- **restart**: 自动重启策略
-- **environment**: 设置时区（可改为 `Asia/Shanghai` 等）
+  - `./config:/app/etc:ro` - 配置目录（只读）
+  - `./web:/app/static` - 静态文件目录（管理后台和用户前端）
+- **networks**: 创建自定义网络以实现服务隔离
+- **restart**: 自动重启策略（always 表示总是重启）
 - **healthcheck**: 服务健康检查
 
 ### 步骤 3: 准备配置
 
 ```bash
 # 创建配置目录
-mkdir -p ppanel-config
+mkdir -p config
 
 # 创建配置文件
-cat > ppanel-config/ppanel.yaml <<EOF
-# PPanel 配置文件
-server:
-  host: 0.0.0.0
-  port: 8080
+cat > config/ppanel.yaml <<EOF
+Host: 0.0.0.0
+Port: 8080
+TLS:
+    Enable: false
+    CertFile: ""
+    KeyFile: ""
+Debug: false
 
-database:
-  type: sqlite
-  path: /app/data/ppanel.db
+Static:
+  Admin:
+    Enabled: true
+    Prefix: /admin
+    Path: ./static/admin
+  User:
+    Enabled: true
+    Prefix: /
+    Path: ./static/user
 
-# 根据需要添加更多配置
+JwtAuth:
+    AccessSecret: your-secret-key-change-this
+    AccessExpire: 604800
+
+Logger:
+    ServiceName: ApiService
+    Mode: console
+    Encoding: plain
+    TimeFormat: "2006-01-02 15:04:05.000"
+    Path: logs
+    Level: info
+    MaxContentLength: 0
+    Compress: false
+    Stat: true
+    KeepDays: 0
+    StackCooldownMillis: 100
+    MaxBackups: 0
+    MaxSize: 0
+    Rotation: daily
+    FileTimeFormat: 2006-01-02T15:04:05.000Z07:00
+
+MySQL:
+    Addr: localhost:3306
+    Username: your-username
+    Password: your-password
+    Dbname: ppanel
+    Config: charset=utf8mb4&parseTime=true&loc=Asia%2FShanghai
+    MaxIdleConns: 10
+    MaxOpenConns: 10
+    SlowThreshold: 1000
+
+Redis:
+    Host: localhost:6379
+    Pass: your-redis-password
+    DB: 0
 EOF
 ```
 
-::: tip 提示
-详细的配置选项请参考 [配置指南](/zh/guide/configuration)。
+::: warning 必需配置
+**MySQL 和 Redis 是必需的。** 部署前请配置以下项：
+- `JwtAuth.AccessSecret` - 使用强随机密钥（必需）
+- `MySQL.*` - 配置你的 MySQL 数据库连接（必需）
+- `Redis.*` - 配置你的 Redis 连接（必需）
 :::
 
 ### 步骤 4: 启动服务
@@ -169,10 +216,14 @@ docker compose logs -f ppanel
 安装成功后，你可以通过以下地址访问：
 
 - **用户面板**: `http://your-server-ip:8080`
-- **管理后台**: `http://your-server-ip:8080/admin`
+- **管理后台**: `http://your-server-ip:8080/admin/`
 
 ::: warning 默认凭据
-为了安全起见，首次登录后请立即修改默认管理员密码。
+**默认管理员账号**（如果未配置时）:
+- **邮箱**: `admin@ppanel.dev`
+- **密码**: `password`
+
+**安全提醒**: 首次登录后请立即修改默认凭据。
 :::
 
 ### 配置反向代理（推荐）
@@ -272,43 +323,11 @@ docker compose down -v
 
 ## 升级
 
-### 升级前备份
+直接从**管理后台**主页升级 PPanel。在仪表盘主页可以检查新版本并一键升级。
 
-```bash
-# 备份配置
-tar czf ppanel-config-backup-$(date +%Y%m%d).tar.gz ppanel-config/
-
-# 备份数据卷
-docker run --rm \
-  -v ppanel_ppanel-data:/data \
-  -v $(pwd):/backup \
-  alpine tar czf /backup/ppanel-data-backup-$(date +%Y%m%d).tar.gz /data
-```
-
-### 升级步骤
-
-```bash
-# 拉取最新镜像
-docker compose pull
-
-# 使用新镜像重新创建容器
-docker compose up -d
-
-# 查看日志验证
-docker compose logs -f
-```
-
-### 回滚
-
-如果升级后遇到问题：
-
-```bash
-# 编辑 docker-compose.yml，将镜像改为之前的版本
-# image: ppanel/ppanel:v0.1.1
-
-# 使用之前的版本重启
-docker compose up -d
-```
+::: tip 提示
+系统会自动处理升级过程，包括拉取新镜像和重启服务。
+:::
 
 ## 高级配置
 
@@ -317,8 +336,10 @@ docker compose up -d
 要使用不同的端口，编辑 `docker-compose.yml`：
 
 ```yaml
-ports:
-  - "3000:8080"  # 宿主机端口 3000 -> 容器端口 8080
+services:
+  ppanel-service:
+    ports:
+      - "3000:8080"  # 宿主机端口 3000 -> 容器端口 8080
 ```
 
 ### 多实例部署
@@ -403,10 +424,10 @@ sudo lsof -i :8080
 
 ```bash
 # 修复配置目录权限
-sudo chown -R $USER:$USER ppanel-config/
+sudo chown -R $USER:$USER config/
 
 # 确保文件可读
-chmod 644 ppanel-config/ppanel.yaml
+chmod 644 config/ppanel.yaml
 ```
 
 ### 无法从外部访问

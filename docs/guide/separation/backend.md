@@ -123,7 +123,7 @@ docker run -d \
 
 ```bash
 # Pull backend image
-docker pull ghcr.io/perfect-panel/ppanel:latest
+docker pull ppanel/ppanel:latest
 
 # Run backend container
 docker run -d \
@@ -132,7 +132,7 @@ docker run -d \
   -v $(pwd)/config.yaml:/app/config.yaml \
   --link ppanel-mysql:mysql \
   --link ppanel-redis:redis \
-  ghcr.io/perfect-panel/ppanel:latest
+  ppanel/ppanel:latest
 ```
 
 #### 6. Initialize Database
@@ -356,7 +356,7 @@ docker run -d \
   -e REDIS_HOST=redis \
   --link ppanel-mysql:mysql \
   --link ppanel-redis:redis \
-  ghcr.io/perfect-panel/ppanel:latest
+  ppanel/ppanel:latest
 ```
 
 ## Security Recommendations
@@ -449,7 +449,7 @@ server:
 
 ```bash
 # Pull latest image
-docker pull ghcr.io/perfect-panel/ppanel:latest
+docker pull ppanel/ppanel:latest
 
 # Stop old container
 docker stop ppanel-backend
@@ -467,7 +467,7 @@ docker run -d \
   -v $(pwd)/config.yaml:/app/config.yaml \
   --link ppanel-mysql:mysql \
   --link ppanel-redis:redis \
-  ghcr.io/perfect-panel/ppanel:latest
+  ppanel/ppanel:latest
 
 # Execute database migration
 docker exec ppanel-backend ./ppanel migrate

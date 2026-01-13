@@ -67,53 +67,106 @@ mkdir -p ~/ppanel-config
 
 # Create configuration file
 cat > ~/ppanel-config/ppanel.yaml <<EOF
-server:
-  host: 0.0.0.0
-  port: 8080
+Host: 0.0.0.0
+Port: 8080
+TLS:
+    Enable: false
+    CertFile: ""
+    KeyFile: ""
+Debug: false
 
-database:
-  type: sqlite
-  path: /app/data/ppanel.db
+Static:
+  Admin:
+    Enabled: true
+    Prefix: /admin
+    Path: ./static/admin
+  User:
+    Enabled: true
+    Prefix: /
+    Path: ./static/user
+
+JwtAuth:
+    AccessSecret: your-secret-key-change-this
+    AccessExpire: 604800
+
+Logger:
+    ServiceName: ApiService
+    Mode: console
+    Encoding: plain
+    TimeFormat: "2006-01-02 15:04:05.000"
+    Path: logs
+    Level: info
+    MaxContentLength: 0
+    Compress: false
+    Stat: true
+    KeepDays: 0
+    StackCooldownMillis: 100
+    MaxBackups: 0
+    MaxSize: 0
+    Rotation: daily
+    FileTimeFormat: 2006-01-02T15:04:05.000Z07:00
+
+MySQL:
+    Addr: localhost:3306
+    Username: your-username
+    Password: your-password
+    Dbname: ppanel
+    Config: charset=utf8mb4&parseTime=true&loc=Asia%2FShanghai
+    MaxIdleConns: 10
+    MaxOpenConns: 10
+    SlowThreshold: 1000
+
+Redis:
+    Host: localhost:6379
+    Pass: your-redis-password
+    DB: 0
 EOF
 ```
+
+::: warning Required Configuration
+**MySQL and Redis are required.** Please configure the following before deployment:
+- `JwtAuth.AccessSecret` - Use a strong random secret (required)
+- `MySQL.*` - Configure your MySQL database connection (required)
+- `Redis.*` - Configure your Redis connection (required)
+:::
 
 ### Step 3: Run Container
 
 **Basic Command:**
 ```bash
 docker run -d \
-  --name ppanel \
+  --name ppanel-service \
   -p 8080:8080 \
   -v ~/ppanel-config:/app/etc:ro \
-  -v ppanel-data:/app/data \
-  --restart unless-stopped \
+  -v ~/ppanel-web:/app/static \
+  --restart always \
   ppanel/ppanel:latest
 ```
 
 **With All Options:**
 ```bash
 docker run -d \
-  --name ppanel \
+  --name ppanel-service \
   -p 8080:8080 \
   -v ~/ppanel-config:/app/etc:ro \
-  -v ppanel-data:/app/data \
-  -e TZ=UTC \
-  --restart unless-stopped \
+  -v ~/ppanel-web:/app/static \
+  --restart always \
   --memory="2g" \
   --cpus="2" \
+  --network ppanel-net \
   ppanel/ppanel:latest
 ```
 
 **Parameter Explanation:**
 - `-d`: Run in detached mode (background)
-- `--name ppanel`: Set container name
+- `--name ppanel-service`: Set container name
 - `-p 8080:8080`: Map port (host:container)
 - `-v ~/ppanel-config:/app/etc:ro`: Mount configuration (read-only)
-- `-v ppanel-data:/app/data`: Create data volume
-- `-e TZ=UTC`: Set timezone
-- `--restart unless-stopped`: Auto-restart policy
-- `--memory="2g"`: Memory limit
-- `--cpus="2"`: CPU limit
+- `-v ~/ppanel-web:/app/static`: Mount static files directory
+- `--restart always`: Auto-restart policy (always restart)
+- `--memory="2g"`: Memory limit (optional)
+- `--cpus="2"`: CPU limit (optional)
+- `--network ppanel-net`: Connect to custom network (optional)
 
 ### Step 4: Verify Running
 
@@ -179,45 +232,21 @@ docker volume rm ppanel-data
 ```
 :::
 
+::: warning Default Credentials
+**Default Administrator Account**:
+- **Email**: `admin@ppanel.dev`
+- **Password**: `password`
+
+**Security**: Change the default credentials immediately after first login.
+:::
+
 ## Upgrading
 
-### Backup Data
+Upgrade PPanel directly from the **Admin Dashboard**. On the dashboard homepage, you can check for new versions and upgrade with one click.
 
-```bash
-# Backup configuration
-tar czf ppanel-config-backup-$(date +%Y%m%d).tar.gz ~/ppanel-config/
-
-# Backup data volume
-docker run --rm \
-  -v ppanel-data:/data \
-  -v $(pwd):/backup \
-  alpine tar czf /backup/ppanel-data-backup-$(date +%Y%m%d).tar.gz /data
-```
-
-### Upgrade Process
-
-```bash
-# Pull latest image
-docker pull ppanel/ppanel:latest
-
-# Stop old container
-docker stop ppanel
-
-# Remove old container
-docker rm ppanel
-
-# Start new container with same configuration
-docker run -d \
-  --name ppanel \
-  -p 8080:8080 \
-  -v ~/ppanel-config:/app/etc:ro \
-  -v ppanel-data:/app/data \
-  --restart unless-stopped \
-  ppanel/ppanel:latest
-
-# Verify
-docker logs -f ppanel
-```
+::: tip
+The system will automatically handle the upgrade process, including pulling the new image and restarting the service.
+:::
 
 ## Advanced Usage
 
