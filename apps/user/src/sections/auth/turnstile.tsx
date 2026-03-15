@@ -1,7 +1,7 @@
 "use client";
 
 import { useTheme } from "next-themes";
-import { forwardRef, useEffect, useImperativeHandle } from "react";
+import { type RefObject, useEffect, useImperativeHandle } from "react";
 import { useTranslation } from "react-i18next";
 import Turnstile, { useTurnstile } from "react-turnstile";
 import { useGlobalStore } from "@/stores/global";
@@ -10,14 +10,17 @@ export type TurnstileRef = {
   reset: () => void;
 };
 
-const CloudFlareTurnstile = forwardRef<
-  TurnstileRef,
-  {
-    id?: string;
-    value?: null | string;
-    onChange: (value?: string) => void;
-  }
->(function CloudFlareTurnstile({ id, value, onChange }, ref) {
+const CloudFlareTurnstile = function CloudFlareTurnstile({
+  id,
+  value,
+  onChange,
+  ref,
+}: {
+  id?: string;
+  value?: null | string;
+  onChange: (value?: string) => void;
+  ref?: RefObject<TurnstileRef | null>;
+}) {
   const { common } = useGlobalStore();
   const { verify } = common;
   const { resolvedTheme } = useTheme();
@@ -63,6 +66,6 @@ const CloudFlareTurnstile = forwardRef<
       />
     )
   );
-});
+};
 
 export default CloudFlareTurnstile;

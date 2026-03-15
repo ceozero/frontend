@@ -19,6 +19,30 @@ This document records all notable changes to ShadCN Admin.
 ---
 
 
+## [1.4.0](https://github.com/perfect-panel/frontend/compare/v1.3.15...v1.4.0) (2026-03-13)
+
+### ✨ Features / 新功能
+
+* **servers:** add Reality support for anytls; fix vless flow ([be24ba0](https://github.com/perfect-panel/frontend/commit/be24ba03f564181d2bd6bc611917004d24e21aee))
+
+## [1.3.15](https://github.com/perfect-panel/frontend/compare/v1.3.14...v1.3.15) (2026-03-12)
+
+### 🐛 Bug Fixes / 问题修复
+
+* **ci:** remove deprecated forwardRef usage in turnstile components ([89ece6e](https://github.com/perfect-panel/frontend/commit/89ece6e959892808c3a67ffb43612c9b90f1e38a))
+
+## [1.3.14](https://github.com/perfect-panel/frontend/compare/v1.3.13...v1.3.14) (2026-03-11)
+
+### 🐛 Bug Fixes / 问题修复
+
+* improve renewal button readability on subscription card ([#25](https://github.com/perfect-panel/frontend/issues/25)) ([ced5c1d](https://github.com/perfect-panel/frontend/commit/ced5c1d24e5af26ff8fdf700fd2b9b864706694a))
+
+## [1.3.13](https://github.com/perfect-panel/frontend/compare/v1.3.12...v1.3.13) (2026-03-07)
+
+### 🐛 Bug Fixes / 问题修复
+
+* **user:** show expire time & improve renewal dialog on mobile ([#22](https://github.com/perfect-panel/frontend/issues/22)) ([889dbf9](https://github.com/perfect-panel/frontend/commit/889dbf97736252d54d3e1d7ed0622e91ee4e8a1e))
+
 ## [1.3.12](https://github.com/perfect-panel/frontend/compare/v1.3.11...v1.3.12) (2026-02-26)
 
 ### 🐛 Bug Fixes / 问题修复
