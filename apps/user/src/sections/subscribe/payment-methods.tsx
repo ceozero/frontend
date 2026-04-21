@@ -66,8 +66,8 @@ const PaymentMethods: React.FC<PaymentMethodsProps> = ({
             />
             <Label
               className={cn(
-                "flex flex-col items-center justify-between rounded-md border-2 border-muted bg-popover py-2 hover:bg-accent hover:text-accent-foreground",
-                String(value) === String(item.id) ? "border-primary" : ""
+                "flex flex-col items-center justify-between rounded-md border-2 border-muted bg-popover py-2 text-popover-foreground hover:bg-accent hover:text-accent-foreground",
+                String(value) === String(item.id) ? "border-primary bg-primary/10 text-foreground" : ""
               )}
               htmlFor={String(item.id)}
             >

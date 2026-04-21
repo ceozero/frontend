@@ -164,7 +164,7 @@ export default function Renewal({ id, subscribe }: Readonly<RenewalProps>) {
               />
             </div>
             <Button
-              className="sticky bottom-0 left-0 w-full bg-background md:relative md:mt-6"
+              className="sticky bottom-0 left-0 w-full md:relative md:mt-6"
               disabled={loading}
               onClick={handleSubmit}
             >
