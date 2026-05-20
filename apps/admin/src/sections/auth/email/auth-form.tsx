@@ -59,8 +59,8 @@ export default function EmailAuthForm() {
             setType("login");
             break;
         }
-      } catch (_error) {
-        /* empty */
+      } catch (error: any) {
+        toast.error(error?.response?.data?.message || error?.message || "An error occurred");
       }
     });
   };
