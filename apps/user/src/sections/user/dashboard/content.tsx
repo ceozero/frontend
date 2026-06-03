@@ -325,7 +325,7 @@ export default function Content() {
                         id={item.id}
                         replacement={item.subscribe.replacement}
                       />
-                      {item.expire_time !== 0 && (
+                      {item.expire_time !== 0 && item.subscribe.sell && (
                         <Renewal id={item.id} subscribe={item.subscribe} />
                       )}
                       <Unsubscribe

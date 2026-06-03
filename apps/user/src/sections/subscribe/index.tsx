@@ -13,6 +13,7 @@ import Empty from "@workspace/ui/composed/empty";
 import { Icon } from "@workspace/ui/composed/icon";
 import { cn } from "@workspace/ui/lib/utils";
 import { querySubscribeList } from "@workspace/ui/services/user/subscribe";
+import { queryUserSubscribe } from "@workspace/ui/services/user/user";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { Display } from "@/components/display";
@@ -32,7 +33,7 @@ export default function Subscribe() {
   const locale = i18n.language;
   const [subscribe, setSubscribe] = useState<API.Subscribe>();
 
-  const { data } = useQuery({
+  const { data: subscribeList } = useQuery({
     queryKey: ["querySubscribeList", locale],
     queryFn: async () => {
       console.log("Fetching subscription list...");
@@ -41,7 +42,23 @@ export default function Subscribe() {
     },
   });
 
-  const filteredData = data?.filter((item) => item.show);
+  const { data: userSubscriptions } = useQuery({
+    queryKey: ["queryUserSubscribe"],
+    queryFn: async () => {
+      const { data } = await queryUserSubscribe();
+      return data.data?.list || [];
+    },
+  });
+
+  // Get IDs of plans the user has already purchased
+  const purchasedPlanIds = new Set(
+    userSubscriptions?.map((sub) => sub.subscribe_id) || []
+  );
+
+  // Show plan if: (1) show is true, or (2) user has purchased it
+  const filteredData = subscribeList?.filter(
+    (item) => item.show || purchasedPlanIds.has(item.id)
+  );
 
   return (
     <>
