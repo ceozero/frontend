@@ -6,6 +6,7 @@
   "scripts": {
     "lint": "biome lint",
     "check": "biome check",
+    "test": "vitest run",
     "openapi": "openapi2ts"
   },
   "dependencies": {
@@ -92,7 +93,8 @@
     "@umijs/openapi": "^1.14.1",
     "@workspace/typescript-config": "workspace:*",
     "tailwindcss": "^4.1.11",
-    "typescript": "^5.9.2"
+    "typescript": "^5.9.2",
+    "vitest": "^3.0.5"
   },
   "exports": {
     "./globals.css": "./src/styles/globals.css",

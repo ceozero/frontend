@@ -19,6 +19,253 @@ This document records all notable changes to ShadCN Admin.
 ---
 
 
+## [1.14.0-dev.2](https://github.com/perfect-panel/frontend/compare/v1.14.0-dev.1...v1.14.0-dev.2) (2026-08-02)
+
+### 🐛 Bug Fixes / 问题修复
+
+* stop rewriting the transport of a stored reality node ([883fc84](https://github.com/perfect-panel/frontend/commit/883fc84e5e9e2b468f219f7baefdbb94228e5e22))
+
+## [1.14.0-dev.1](https://github.com/perfect-panel/frontend/compare/v1.13.1...v1.14.0-dev.1) (2026-08-02)
+
+### ✨ Features / 新功能
+
+* align server protocol, telegram and oauth with the panel ([e7d9250](https://github.com/perfect-panel/frontend/commit/e7d92509285e6ca29284e14eaf432f7268ed8381))
+
+## [1.13.1](https://github.com/perfect-panel/frontend/compare/v1.13.0...v1.13.1) (2026-08-02)
+
+### 🐛 Bug Fixes / 问题修复
+
+* **ui:** reset table pagination on filter change ([#134](https://github.com/perfect-panel/frontend/issues/134)) ([832d5b0](https://github.com/perfect-panel/frontend/commit/832d5b0fca28fada7c7628bcce5f336ac86db7f7))
+* **user:** handle subscription availability and expiry ([dff413a](https://github.com/perfect-panel/frontend/commit/dff413a60f42ec5b93e5cfeaa5022b6318ffa44f)), closes [#131](https://github.com/perfect-panel/frontend/issues/131) [#135](https://github.com/perfect-panel/frontend/issues/135)
+* **user:** use Telegram deep link binding ([af50f83](https://github.com/perfect-panel/frontend/commit/af50f835aa3a06f0daf70c8d29cc9c09a4ba4225))
+
+### 📚 Documentation / 文档更新
+
+* update repository badges and links ([31b1f23](https://github.com/perfect-panel/frontend/commit/31b1f2398fb5037c3d2e148a2ec04e66d2a35009))
+
+### 🔧 Chores / 其他变更
+
+* **release:** Release 1.13.1-dev.1 / 发布版本 1.13.1-dev.1 [skip ci] ([45808a4](https://github.com/perfect-panel/frontend/commit/45808a4221468e32e1a29232f47e60a7cdfb8d79))
+* **release:** Release 1.13.1-dev.2 / 发布版本 1.13.1-dev.2 [skip ci] ([170430b](https://github.com/perfect-panel/frontend/commit/170430b0b2ed01b2769f23209ce8a52041211d88))
+
+## [1.13.1-dev.2](https://github.com/perfect-panel/frontend/compare/v1.13.1-dev.1...v1.13.1-dev.2) (2026-08-02)
+
+### 🐛 Bug Fixes / 问题修复
+
+* **ui:** reset table pagination on filter change ([#134](https://github.com/perfect-panel/frontend/issues/134)) ([832d5b0](https://github.com/perfect-panel/frontend/commit/832d5b0fca28fada7c7628bcce5f336ac86db7f7))
+
+## [1.13.1-dev.1](https://github.com/perfect-panel/frontend/compare/v1.13.0...v1.13.1-dev.1) (2026-08-02)
+
+### 🐛 Bug Fixes / 问题修复
+
+* **user:** handle subscription availability and expiry ([dff413a](https://github.com/perfect-panel/frontend/commit/dff413a60f42ec5b93e5cfeaa5022b6318ffa44f)), closes [#131](https://github.com/perfect-panel/frontend/issues/131) [#135](https://github.com/perfect-panel/frontend/issues/135)
+* **user:** use Telegram deep link binding ([af50f83](https://github.com/perfect-panel/frontend/commit/af50f835aa3a06f0daf70c8d29cc9c09a4ba4225))
+
+## [1.13.0](https://github.com/perfect-panel/frontend/compare/v1.12.1...v1.13.0) (2026-07-20)
+
+### ✨ Features / 新功能
+
+* **admin:** add subscription profile header settings ([caaa08c](https://github.com/perfect-panel/frontend/commit/caaa08caac5884e1f0cb62c24b8c15c296b7ea42))
+
+## [1.12.1](https://github.com/perfect-panel/frontend/compare/v1.12.0...v1.12.1) (2026-07-20)
+
+### 🐛 Bug Fixes / 问题修复
+
+* **admin:** preserve hidden protocol secrets ([10fd689](https://github.com/perfect-panel/frontend/commit/10fd689a0a310db2b23d9369c5621ab28e8605d8))
+
+## [1.12.0](https://github.com/perfect-panel/frontend/compare/v1.11.0...v1.12.0) (2026-07-20)
+
+### ✨ Features / 新功能
+
+* **server:** 扩展节点协议配置表单 ([d428dfd](https://github.com/perfect-panel/frontend/commit/d428dfd062cdc77f208d76611cb7cf89e0942631))
+
+### 🐛 Bug Fixes / 问题修复
+
+* add commission withdrawal entry ([8f47f56](https://github.com/perfect-panel/frontend/commit/8f47f56cadf0c3cecc53ad2f8903fe26b2a7ae57))
+* **admin:** add ticket status filter options ([26bd632](https://github.com/perfect-panel/frontend/commit/26bd63204336b97483aaa0c5b4e3030e9c7cc45b))
+* **admin:** align server protocol config ([aa3eebf](https://github.com/perfect-panel/frontend/commit/aa3eebf03b140fdb296ddbbeb79a9f6e270edf88))
+* **admin:** apply order user filter from URL ([de18e06](https://github.com/perfect-panel/frontend/commit/de18e062193dae4d62e9d7f230553cacb63e1768))
+* **admin:** copy server node config ([c812c90](https://github.com/perfect-panel/frontend/commit/c812c90a7658e28756ca287d7493064448834de5))
+* keep email broadcast interval in seconds ([3338d35](https://github.com/perfect-panel/frontend/commit/3338d353f400cd693e6d5699a96fa604b832f2ee))
+* **ui:** remove unsupported 200 page size ([936c120](https://github.com/perfect-panel/frontend/commit/936c12000d5ea05be7b42d94b5608a795e6df3e6))
+
+### 🔧 Chores / 其他变更
+
+* **release:** Release 1.11.0-dev.2 / 发布版本 1.11.0-dev.2 [skip ci] ([a609fb4](https://github.com/perfect-panel/frontend/commit/a609fb4a2f00b87c01baa96f4bae3ef4c6b7ff5b))
+* **release:** Release 1.11.0-dev.3 / 发布版本 1.11.0-dev.3 [skip ci] ([813eb83](https://github.com/perfect-panel/frontend/commit/813eb839c26116ce0d71b4f804d48df7cc2d2bbf))
+* **release:** Release 1.11.0-dev.4 / 发布版本 1.11.0-dev.4 [skip ci] ([58250f6](https://github.com/perfect-panel/frontend/commit/58250f657e4f774690bda0ab18234da4a0030982))
+* **release:** Release 1.11.0-dev.5 / 发布版本 1.11.0-dev.5 [skip ci] ([d61b92c](https://github.com/perfect-panel/frontend/commit/d61b92c54c88571b5f631008d8b6d3bd845d8f6c))
+* **release:** Release 1.11.0-dev.6 / 发布版本 1.11.0-dev.6 [skip ci] ([0e00fa8](https://github.com/perfect-panel/frontend/commit/0e00fa8ae8b43aa5aff73712542280b14c6a1bbc))
+* sync version with main ([995b45e](https://github.com/perfect-panel/frontend/commit/995b45e7936978fc2112ada0faac38f1628d2487))
+
+## [1.11.0](https://github.com/perfect-panel/frontend/compare/v1.10.4...v1.11.0) (2026-07-14)
+
+### ✨ Features / 新功能
+
+* support subscription token user search ([1884b36](https://github.com/perfect-panel/frontend/commit/1884b3609dcd746110f09c30889a7c6a5a959e5d))
+
+### 🐛 Bug Fixes / 问题修复
+
+* copy subscription URL on app import ([79334ba](https://github.com/perfect-panel/frontend/commit/79334bafb41a581cd413856e16533c0fb18d0380))
+* load admin store lookup data by pages ([b5091b3](https://github.com/perfect-panel/frontend/commit/b5091b3dc163d7309410877b0fb4270a483e4876))
+
+### 👷 Continuous Integration / CI/CD
+
+* trigger release workflow on published releases ([700fc05](https://github.com/perfect-panel/frontend/commit/700fc05ebc1fc71cbffd2227ae4a3cc5ba0bb5dc))
+
+### 🔧 Chores / 其他变更
+
+* **release:** Release 1.11.0-dev.1 / 发布版本 1.11.0-dev.1 [skip ci] ([6ee8d96](https://github.com/perfect-panel/frontend/commit/6ee8d9679de0534e0715b238db0a5bee7fa373f2))
+
+## [1.11.0-dev.1](https://github.com/perfect-panel/frontend/compare/v1.10.2...v1.11.0-dev.1) (2026-07-14)
+
+### ✨ Features / 新功能
+
+* support subscription token user search ([1884b36](https://github.com/perfect-panel/frontend/commit/1884b3609dcd746110f09c30889a7c6a5a959e5d))
+
+### 🐛 Bug Fixes / 问题修复
+
+* remove invalid favicon mime type ([313beb2](https://github.com/perfect-panel/frontend/commit/313beb2bfd8c9d1999e3aea799f05d906105b444))
+* unblock frontend release workflow ([e9ed6ea](https://github.com/perfect-panel/frontend/commit/e9ed6eac8f780277b291dfcfddab43babf81a8b6))
+
+### 🔧 Chores / 其他变更
+
+* **release:** Release 1.10.1-dev.1 / 发布版本 1.10.1-dev.1 [skip ci] ([8649a93](https://github.com/perfect-panel/frontend/commit/8649a9338cc712f136186b6c4bfc9961875a4a9e))
+* **release:** Release 1.10.1-dev.2 / 发布版本 1.10.1-dev.2 [skip ci] ([9fa0781](https://github.com/perfect-panel/frontend/commit/9fa07813faadbb1d5bb35416fe161edd3bc88ab6))
+
+## [1.10.2](https://github.com/perfect-panel/frontend/compare/v1.10.1...v1.10.2) (2026-07-10)
+
+### 🐛 Bug Fixes / 问题修复
+
+* **auth:** align Telegram admin form fields with backend config ([69bc1ad](https://github.com/perfect-panel/frontend/commit/69bc1ade0f18a43e563aa01568ef10d514adbac1))
+* trigger frontend release ([b0184f8](https://github.com/perfect-panel/frontend/commit/b0184f85bb4586969fe4a561d285f7271b546f1f))
+* unblock frontend release workflow ([2a41d35](https://github.com/perfect-panel/frontend/commit/2a41d355ba323141ea392e2058a49c9dc998a9f6))
+
+## [1.10.1-dev.1](https://github.com/perfect-panel/frontend/compare/v1.10.0...v1.10.1-dev.1) (2026-07-07)
+
+### 🐛 Bug Fixes / 问题修复
+
+* correctly detect iOS devices requesting desktop site ([2d1798d](https://github.com/perfect-panel/frontend/commit/2d1798df66c33005db6cf80ee63b152bbb25970b)), closes [#96](https://github.com/perfect-panel/frontend/issues/96)
+* prioritize mobile device detection in getPlatform() ([388630c](https://github.com/perfect-panel/frontend/commit/388630cb5dcc4334c07d29413ce8c8582ae5d3db)), closes [#96](https://github.com/perfect-panel/frontend/issues/96)
+* remove invalid favicon mime type ([313beb2](https://github.com/perfect-panel/frontend/commit/313beb2bfd8c9d1999e3aea799f05d906105b444))
+
+### 🔧 Chores / 其他变更
+
+* **release:** Release 1.9.2-dev.1 / 发布版本 1.9.2-dev.1 [skip ci] ([ef4c32e](https://github.com/perfect-panel/frontend/commit/ef4c32e9973cba7a29511ccc47f86065816ce741))
+* **release:** Release 1.9.2-dev.2 / 发布版本 1.9.2-dev.2 [skip ci] ([12f7cde](https://github.com/perfect-panel/frontend/commit/12f7cdedebac08331531daa41e68074803e32ef9))
+
+## [1.10.0](https://github.com/perfect-panel/frontend/compare/v1.9.1...v1.10.0) (2026-06-28)
+
+### ✨ Features / 新功能
+
+* add plugin management page ([6a6f9e3](https://github.com/perfect-panel/frontend/commit/6a6f9e3f145909efa6fdd13b4559e978f59f5fab))
+* add plugin upload controls ([c91a87b](https://github.com/perfect-panel/frontend/commit/c91a87b0c4eb5b20154d31626a497567caa5fced))
+
+## [1.9.1](https://github.com/perfect-panel/frontend/compare/v1.9.0...v1.9.1) (2026-06-21)
+
+### 🐛 Bug Fixes / 问题修复
+
+* remove duplicate show_original_price field and deduplicate duration options ([9582a9e](https://github.com/perfect-panel/frontend/commit/9582a9e8b3f58037b70be0d8826659d72d2ba0ca)), closes [#93](https://github.com/perfect-panel/frontend/issues/93)
+
+## [1.9.0](https://github.com/perfect-panel/frontend/compare/v1.8.0...v1.9.0) (2026-06-20)
+
+### ✨ Features / 新功能
+
+* **admin:** add UDP over TCP (UoT) config for Shadowsocks ([06df3de](https://github.com/perfect-panel/frontend/commit/06df3dee3d7578ec6d01d72a8d79fa90ff3b847a)), closes [#91](https://github.com/perfect-panel/frontend/issues/91)
+* **admin:** add UDP over TCP (UoT) config for Shadowsocks ([6942999](https://github.com/perfect-panel/frontend/commit/6942999c624b7934c45f4f3408fa629f623ad3bd)), closes [#91](https://github.com/perfect-panel/frontend/issues/91)
+
+### 🐛 Bug Fixes / 问题修复
+
+* **servers:** correct uot_version type and remove duplicate uot fields ([36eee9c](https://github.com/perfect-panel/frontend/commit/36eee9c4d2adb36b8be0bccba582d62821eda001))
+
+### 🔧 Chores / 其他变更
+
+* **release:** Release 1.8.0-dev.1 / 发布版本 1.8.0-dev.1 [skip ci] ([c43f7b3](https://github.com/perfect-panel/frontend/commit/c43f7b3e0e09ec57c172819f833d6a35bb87c7bb))
+
+## [1.8.0-dev.1](https://github.com/perfect-panel/frontend/compare/v1.7.4...v1.8.0-dev.1) (2026-06-20)
+
+### ✨ Features / 新功能
+
+* **document:** inject the user's subscription link into document content ([e80e1ad](https://github.com/perfect-panel/frontend/commit/e80e1ade5710f6eda55887b42c948dc6f5ed1e60))
+* **document:** show available template variables in the admin document editor ([0d9c792](https://github.com/perfect-panel/frontend/commit/0d9c79258b53b00e7f2796fe2eb138bb0fb6dc54))
+* **email:** add Reply-To field to SMTP settings ([3042310](https://github.com/perfect-panel/frontend/commit/3042310fb76001b80aed591e382b753ecdb433ab)), closes [perfect-panel/server#159](https://github.com/perfect-panel/server/issues/159)
+
+### 🐛 Bug Fixes / 问题修复
+
+* **dashboard): correctly detect http(s:** // links and disable deep link trigger ([29440ac](https://github.com/perfect-panel/frontend/commit/29440acbe61e3cfc6d68d469bd8d2bbf81ce751d)), closes [#82](https://github.com/perfect-panel/frontend/issues/82) [#83](https://github.com/perfect-panel/frontend/issues/83)
+* **dashboard:** redirect online users stat to servers page ([0818e7f](https://github.com/perfect-panel/frontend/commit/0818e7f557391df42f2249c11a423593a27159bf)), closes [#86](https://github.com/perfect-panel/frontend/issues/86)
+* **user:** detect HTTP scheme and prevent redirect for plain web links ([6687706](https://github.com/perfect-panel/frontend/commit/6687706bb535dbc49eece34091be9b67d39fc2ee)), closes [#82](https://github.com/perfect-panel/frontend/issues/82)
+* **user:** prevent 404 when avatar is empty in user-nav dropdown trigger ([7e310fd](https://github.com/perfect-panel/frontend/commit/7e310fd159070aa055bb962b6cbb820b42bebb3b)), closes [#76](https://github.com/perfect-panel/frontend/issues/76)
+
+### 📚 Documentation / 文档更新
+
+* **document:** mention subscription conditional blocks in the editor hint ([9734f57](https://github.com/perfect-panel/frontend/commit/9734f576a0db9c4fa0c614eb70a8fbab6f436fc7)), closes [perfect-panel/server#161](https://github.com/perfect-panel/server/issues/161)
+
+### 🔧 Chores / 其他变更
+
+* **release:** Release 1.6.6-dev.1 / 发布版本 1.6.6-dev.1 [skip ci] ([8d9a30f](https://github.com/perfect-panel/frontend/commit/8d9a30fd504b58cfa1c822916081801e3361b2e4))
+
+## [1.7.4](https://github.com/perfect-panel/frontend/compare/v1.7.3...v1.7.4) (2026-06-11)
+
+### 🐛 Bug Fixes / 问题修复
+
+* **user:** prevent redirect when import button generates plain HTTP URLs ([7a7658a](https://github.com/perfect-panel/frontend/commit/7a7658a1fac3016690555a059a19da8c58f1aef9)), closes [#82](https://github.com/perfect-panel/frontend/issues/82)
+
+## [1.7.3](https://github.com/perfect-panel/frontend/compare/v1.7.2...v1.7.3) (2026-06-10)
+
+### 🐛 Bug Fixes / 问题修复
+
+* **user:** disable recharge when no payment methods available ([7961408](https://github.com/perfect-panel/frontend/commit/796140809d01e7b5f4e28cb66cd5d03368f47f85)), closes [#79](https://github.com/perfect-panel/frontend/issues/79)
+
+## [1.7.2](https://github.com/perfect-panel/frontend/compare/v1.7.1...v1.7.2) (2026-06-09)
+
+### 🐛 Bug Fixes / 问题修复
+
+* **user:** use avatar field instead of email for avatar image src ([5e9127e](https://github.com/perfect-panel/frontend/commit/5e9127ed0b674591097751f2f4789a8c9122d0c9))
+
+## [1.7.1](https://github.com/perfect-panel/frontend/compare/v1.7.0...v1.7.1) (2026-06-09)
+
+### 🐛 Bug Fixes / 问题修复
+
+* **user:** remove non-existent menu namespace from sidebar i18n ([f920d9f](https://github.com/perfect-panel/frontend/commit/f920d9f220fc000c4ca59bfc9fe4e091d7195d91)), closes [#78](https://github.com/perfect-panel/frontend/issues/78)
+
+## [1.7.0](https://github.com/perfect-panel/frontend/compare/v1.6.5...v1.7.0) (2026-06-08)
+
+### ✨ Features / 新功能
+
+* **subscribe:** admin toggle to show/hide the user tutorial section ([#75](https://github.com/perfect-panel/frontend/issues/75)) ([b1ad250](https://github.com/perfect-panel/frontend/commit/b1ad25075de08126dbbe5c5b99401cd9e1d097ae)), closes [perfect-panel/server#151](https://github.com/perfect-panel/server/issues/151)
+
+### 🐛 Bug Fixes / 问题修复
+
+* **user:** add clearUserLoading to GlobalStore interface ([dcdd984](https://github.com/perfect-panel/frontend/commit/dcdd984073c9c489d8a6704dc105984335abfbee))
+* **user:** properly handle user loading state for navigation ([d826e4a](https://github.com/perfect-panel/frontend/commit/d826e4af638238301e90ccf44617825933319264)), closes [#74](https://github.com/perfect-panel/frontend/issues/74)
+
+### 🔧 Chores / 其他变更
+
+* **release:** Release 1.6.4-dev.1 / 发布版本 1.6.4-dev.1 [skip ci] ([a087bae](https://github.com/perfect-panel/frontend/commit/a087bae953449df3dfd3326881590e5a989120f6))
+
+## [1.6.5](https://github.com/perfect-panel/frontend/compare/v1.6.4...v1.6.5) (2026-06-08)
+
+### 🐛 Bug Fixes / 问题修复
+
+* **user:** wait for user info to load before redirecting ([58266bf](https://github.com/perfect-panel/frontend/commit/58266bf0828ec4c07e06ac667e89196f20d64781)), closes [#74](https://github.com/perfect-panel/frontend/issues/74)
+
+## [1.6.4](https://github.com/perfect-panel/frontend/compare/v1.6.3...v1.6.4) (2026-06-04)
+
+### 🐛 Bug Fixes / 问题修复
+
+* use relative path for locale files to support non-root base paths ([593d038](https://github.com/perfect-panel/frontend/commit/593d038becde535fec20b27e53bfdd2af6b6ba49)), closes [#72](https://github.com/perfect-panel/frontend/issues/72)
+
+### 👷 Continuous Integration / CI/CD
+
+* add weekly auto-merge develop into main workflow ([b689e8b](https://github.com/perfect-panel/frontend/commit/b689e8bd64f819122b42684697dcd86b7baac277))
+* resolve conflicts with develop strategy on weekly merge ([cbd4847](https://github.com/perfect-panel/frontend/commit/cbd484746a3e7bb7a0806f6c2d9e8d42d3487852))
+* sync main into develop before weekly merge ([d99a6bc](https://github.com/perfect-panel/frontend/commit/d99a6bcaf45ade9790118cea273c20bc419d217f))
+
+### 🔧 Chores / 其他变更
+
+* trigger release ([a66dfcb](https://github.com/perfect-panel/frontend/commit/a66dfcb13be389287fefbc034e8c3c48ae17cc32))
+
 ## [1.6.2](https://github.com/perfect-panel/frontend/compare/v1.6.1...v1.6.2) (2026-05-21)
 
 ### 🐛 Bug Fixes / 问题修复
