@@ -19,6 +19,21 @@ This document records all notable changes to ShadCN Admin.
 ---
 
 
+## [1.15.1-dev.1](https://github.com/perfect-panel/frontend/compare/v1.15.0...v1.15.1-dev.1) (2026-08-14)
+
+### 🐛 Bug Fixes / 问题修复
+
+* **admin:** prevent transaction number overflow ([0e91712](https://github.com/perfect-panel/frontend/commit/0e91712a32217455e5ec15c80e464ce6025fdb5a))
+* **admin:** prevent transaction number overflow ([#167](https://github.com/perfect-panel/frontend/issues/167)) ([737b038](https://github.com/perfect-panel/frontend/commit/737b038e86f4d355fd2ea8e4daf23dd44c93a9e7))
+* **admin:** wrap long order transaction numbers ([53cb860](https://github.com/perfect-panel/frontend/commit/53cb8605577df0947d3b4b09f5c412481a649140))
+* **admin:** wrap long order transaction numbers ([#168](https://github.com/perfect-panel/frontend/issues/168)) ([db504ca](https://github.com/perfect-panel/frontend/commit/db504ca524513a92297a9c6cae79119c380f81f4))
+* **automation:** make webhook dry runs side-effect free ([6aa091c](https://github.com/perfect-panel/frontend/commit/6aa091ca92747e089626bf54ca7699ef8bfa9667))
+* **dashboard:** say whether the day count is remaining or overdue ([52bd6f8](https://github.com/perfect-panel/frontend/commit/52bd6f8e28c4b276ff1997626d13bcd4ddd09186))
+
+### 🔧 Chores / 其他变更
+
+* **automation:** add webhook delivery dry runs ([2d9e644](https://github.com/perfect-panel/frontend/commit/2d9e644e0d8c5c47b9b0f30f88b66dd4ddfb05f5))
+
 ## [1.15.0](https://github.com/perfect-panel/frontend/compare/v1.14.0...v1.15.0) (2026-08-09)
 
 ### ✨ Features / 新功能
