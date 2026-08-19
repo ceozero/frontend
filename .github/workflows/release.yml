@@ -5,6 +5,10 @@ on:
     branches: [main, next, beta, develop]
     paths-ignore:
       - 'docs/**'
+      - '.github/**'
+      - 'scripts/**'
+      - 'packages/ui/openapi2ts.config.ts'
+      - 'packages/ui/openapi-templates/**'
   release:
     types: [published]
 
@@ -24,7 +28,7 @@ jobs:
           bun-version: 'latest'
 
       - name: Cache Bun dependencies
-        uses: actions/cache@v3
+        uses: actions/cache@v4
         with:
           path: |
             ~/.bun

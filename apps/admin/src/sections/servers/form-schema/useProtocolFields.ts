@@ -102,6 +102,14 @@ export function useProtocolFields() {
         condition,
       },
       {
+        name: "allow_insecure",
+        type: "switch",
+        label: t("security_allow_insecure", "Allow Insecure"),
+        defaultValue: false,
+        group: "security",
+        condition,
+      },
+      {
         name: "cert_mode",
         type: "select",
         label: t("cert_mode", "Certificate Mode"),
@@ -505,6 +513,21 @@ export function useProtocolFields() {
           label: t("down_mbps", "Download Bandwidth"),
           min: 0,
           suffix: "Mbps",
+          group: "basic",
+        },
+        {
+          name: "hop_ports",
+          type: "input",
+          label: t("hop_ports", "Hop Ports"),
+          placeholder: t("hop_ports_placeholder", "e.g. 1-65535"),
+          group: "basic",
+        },
+        {
+          name: "hop_interval",
+          type: "number",
+          label: t("hop_interval", "Hop Interval"),
+          min: 1,
+          suffix: "S",
           group: "basic",
         },
         {

@@ -5,13 +5,12 @@ import { Toaster } from "@workspace/ui/components/sonner";
 import { NavigationProgress } from "@workspace/ui/composed/navigation-progress";
 import { TanStackQueryDevtools } from "@workspace/ui/integrations/tanstack-query-devtools";
 import { getCookie } from "@workspace/ui/lib/cookies";
-import { getGlobalConfig } from "@workspace/ui/services/common/common";
 import { isBrowser } from "@workspace/ui/utils/index";
 import { useEffect } from "react";
 import { Helmet, HelmetProvider } from "react-helmet-async";
 import { toast } from "sonner";
 import { useGlobalStore } from "@/stores/global";
-import { loadRequiredData } from "@/utils/global-config";
+import { fetchInitialConfig } from "@/utils/bootstrap";
 
 export const Route = createRootRouteWithContext()({
   component: () => {
@@ -20,10 +19,7 @@ export const Route = createRootRouteWithContext()({
     useEffect(() => {
       const initializeApp = async () => {
         try {
-          const config = await loadRequiredData(getGlobalConfig, {
-            attempts: 3,
-            delayMs: 1000,
-          });
+          const config = await fetchInitialConfig();
           setCommon(config);
         } catch (error) {
           console.error("Failed to initialize app:", error);

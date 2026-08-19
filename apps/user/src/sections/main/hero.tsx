@@ -1,7 +1,7 @@
-import { DotLottieReact } from "@lottiefiles/dotlottie-react";
 import { Link } from "@tanstack/react-router";
 import { HoverBorderGradient } from "@workspace/ui/components/hover-border-gradient";
 import { TextGenerateEffect } from "@workspace/ui/components/text-generate-effect";
+import { DotLottieReact } from "@workspace/ui/composed/lottie";
 import { motion } from "framer-motion";
 import { useTranslation } from "react-i18next";
 import { useGlobalStore } from "@/stores/global";

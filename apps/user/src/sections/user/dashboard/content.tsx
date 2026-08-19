@@ -399,7 +399,9 @@ export default function Content() {
                     </li>
                     <li>
                       <span className="text-muted-foreground">
-                        {t("expirationDays", "Expiration Days")}
+                        {isActuallyExpired
+                          ? t("expiredDays", "Days Expired")
+                          : t("remainingDays", "Remaining Days")}
                       </span>
                       <span className="font-semibold text-2xl">
                         {item.expire_time

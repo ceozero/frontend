@@ -9,6 +9,7 @@ const base = {
 
 const certificate = {
   sni: null,
+  allow_insecure: false,
   cert_mode: "none",
   cert_dns_provider: null,
   cert_dns_env: null,
@@ -100,6 +101,8 @@ export function getProtocolDefaultConfig(proto: ProtocolType) {
         ...ech,
         type: "hysteria2",
         security: "tls",
+        hop_ports: null,
+        hop_interval: null,
         obfs: "none",
         obfs_password: null,
         up_mbps: null,

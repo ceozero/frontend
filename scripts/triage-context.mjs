@@ -5,6 +5,8 @@ const token = process.env.TRIAGE_TOKEN;
 const eventName = process.env.GITHUB_EVENT_NAME || "unknown";
 const eventPath = process.env.GITHUB_EVENT_PATH;
 const repo = process.env.GITHUB_REPOSITORY || "perfect-panel/frontend";
+const githubApiBaseUrl =
+  process.env.GITHUB_API_BASE_URL || "https://api.github.com";
 
 if (!token) {
   console.error("TRIAGE_TOKEN is required");
@@ -17,7 +19,7 @@ const event =
     : {};
 
 async function github(path) {
-  const response = await fetch(`https://api.github.com${path}`, {
+  const response = await fetch(`${githubApiBaseUrl}${path}`, {
     headers: {
       Authorization: `Bearer ${token}`,
       Accept: "application/vnd.github+json",
@@ -34,7 +36,29 @@ async function github(path) {
   return response.json();
 }
 
+function labelsFor(item) {
+  return (item.labels || []).map((label) => label.name);
+}
+
+function pullRequestSummary(pullRequest) {
+  return {
+    number: pullRequest.number,
+    title: pullRequest.title,
+    body: pullRequest.body,
+    url: pullRequest.html_url,
+    draft: pullRequest.draft,
+    baseRef: pullRequest.base?.ref,
+    headRef: pullRequest.head?.ref,
+    labels: labelsFor(pullRequest),
+    user: pullRequest.user?.login,
+  };
+}
+
 const issues = await github(`/repos/${repo}/issues?state=open&per_page=50`);
+const isPullRequestEvent = eventName === "pull_request_target";
+const openPullRequests = isPullRequestEvent
+  ? await github(`/repos/${repo}/pulls?state=open&per_page=50`)
+  : [];
 
 const report = {
   generatedAt: new Date().toISOString(),
@@ -47,10 +71,16 @@ const report = {
           title: event.issue.title,
           body: event.issue.body,
           url: event.issue.html_url,
-          labels: (event.issue.labels || []).map((l) => l.name),
+          labels: labelsFor(event.issue),
           user: event.issue.user?.login,
+          isPullRequest: Boolean(event.issue.pull_request),
         }
       : null,
+    ...(isPullRequestEvent && {
+      pullRequest: event.pull_request
+        ? pullRequestSummary(event.pull_request)
+        : null,
+    }),
     comment: event.comment
       ? {
           id: event.comment.id,
@@ -67,9 +97,12 @@ const report = {
       number: issue.number,
       title: issue.title,
       url: issue.html_url,
-      labels: (issue.labels || []).map((l) => l.name),
+      labels: labelsFor(issue),
       createdAt: issue.created_at,
     })),
+  ...(isPullRequestEvent && {
+    openPullRequests: openPullRequests.map(pullRequestSummary),
+  }),
 };
 
 mkdirSync(".automation", { recursive: true });

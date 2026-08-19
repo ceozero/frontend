@@ -8,25 +8,25 @@ const config = [
   {
     ...baseConfig,
     schemaPath:
-      "https://raw.githubusercontent.com/perfect-panel/ppanel-docs/refs/heads/main/public/swagger/common.json",
+      "https://raw.githubusercontent.com/perfect-panel/frontend/refs/heads/main/docs/public/swagger/common.json",
     projectName: "common",
   },
   {
     ...baseConfig,
     schemaPath:
-      "https://raw.githubusercontent.com/perfect-panel/ppanel-docs/refs/heads/main/public/swagger/user.json",
+      "https://raw.githubusercontent.com/perfect-panel/frontend/refs/heads/main/docs/public/swagger/user.json",
     projectName: "user",
   },
   {
     ...baseConfig,
     schemaPath:
-      "https://raw.githubusercontent.com/perfect-panel/ppanel-docs/refs/heads/main/public/swagger/admin.json",
+      "https://raw.githubusercontent.com/perfect-panel/frontend/refs/heads/main/docs/public/swagger/admin.json",
     projectName: "admin",
   },
   {
     ...baseConfig,
     schemaPath:
-      "https://raw.githubusercontent.com/perfect-panel/ppanel-docs/refs/heads/main/public/swagger/gateway.json",
+      "https://raw.githubusercontent.com/perfect-panel/frontend/refs/heads/main/docs/public/swagger/gateway.json",
     apiPrefix: "",
     projectName: "gateway",
   },

@@ -19,6 +19,137 @@ This document records all notable changes to ShadCN Admin.
 ---
 
 
+## [1.15.1-dev.1](https://github.com/perfect-panel/frontend/compare/v1.15.0...v1.15.1-dev.1) (2026-08-14)
+
+### 🐛 Bug Fixes / 问题修复
+
+* **admin:** prevent transaction number overflow ([0e91712](https://github.com/perfect-panel/frontend/commit/0e91712a32217455e5ec15c80e464ce6025fdb5a))
+* **admin:** prevent transaction number overflow ([#167](https://github.com/perfect-panel/frontend/issues/167)) ([737b038](https://github.com/perfect-panel/frontend/commit/737b038e86f4d355fd2ea8e4daf23dd44c93a9e7))
+* **admin:** wrap long order transaction numbers ([53cb860](https://github.com/perfect-panel/frontend/commit/53cb8605577df0947d3b4b09f5c412481a649140))
+* **admin:** wrap long order transaction numbers ([#168](https://github.com/perfect-panel/frontend/issues/168)) ([db504ca](https://github.com/perfect-panel/frontend/commit/db504ca524513a92297a9c6cae79119c380f81f4))
+* **automation:** make webhook dry runs side-effect free ([6aa091c](https://github.com/perfect-panel/frontend/commit/6aa091ca92747e089626bf54ca7699ef8bfa9667))
+* **dashboard:** say whether the day count is remaining or overdue ([52bd6f8](https://github.com/perfect-panel/frontend/commit/52bd6f8e28c4b276ff1997626d13bcd4ddd09186))
+
+### 🔧 Chores / 其他变更
+
+* **automation:** add webhook delivery dry runs ([2d9e644](https://github.com/perfect-panel/frontend/commit/2d9e644e0d8c5c47b9b0f30f88b66dd4ddfb05f5))
+
+## [1.15.0](https://github.com/perfect-panel/frontend/compare/v1.14.0...v1.15.0) (2026-08-09)
+
+### ✨ Features / 新功能
+
+* **subscribe:** lead the store with a renewal banner ([8aa14a4](https://github.com/perfect-panel/frontend/commit/8aa14a48d38bf61036054e3b4eb49435ad429748))
+
+### 🐛 Bug Fixes / 问题修复
+
+* **request:** surface the server's reason and stop the duplicate error toast ([877c144](https://github.com/perfect-panel/frontend/commit/877c144bb6afc3e60d0563b939fdd64812cae65f)), closes [#145](https://github.com/perfect-panel/frontend/issues/145)
+
+### 🔧 Chores / 其他变更
+
+* **automation:** migrate Swagger and webhook workflows ([40d0c14](https://github.com/perfect-panel/frontend/commit/40d0c1486ffa074bc658a4842e0e0639ca096bd4))
+* **release:** Release 1.14.0-dev.1 / 发布版本 1.14.0-dev.1 [skip ci] ([537a8a3](https://github.com/perfect-panel/frontend/commit/537a8a34fb1ed6a8120f2af0a36a7fbab74a6ee4))
+* **release:** Release 1.15.0-dev.1 / 发布版本 1.15.0-dev.1 [skip ci] ([a755e2a](https://github.com/perfect-panel/frontend/commit/a755e2a6b11d50d55ca5197e913dc9ad9adc8c2a))
+* sync main into develop ([892459f](https://github.com/perfect-panel/frontend/commit/892459fae23c08c9feea98441e75c1c238b2f96b))
+
+## [1.15.0-dev.1](https://github.com/perfect-panel/frontend/compare/v1.14.0...v1.15.0-dev.1) (2026-08-09)
+
+### ✨ Features / 新功能
+
+* **subscribe:** lead the store with a renewal banner ([8aa14a4](https://github.com/perfect-panel/frontend/commit/8aa14a48d38bf61036054e3b4eb49435ad429748))
+
+### 🐛 Bug Fixes / 问题修复
+
+* **request:** surface the server's reason and stop the duplicate error toast ([877c144](https://github.com/perfect-panel/frontend/commit/877c144bb6afc3e60d0563b939fdd64812cae65f)), closes [#145](https://github.com/perfect-panel/frontend/issues/145)
+
+### 🔧 Chores / 其他变更
+
+* **automation:** migrate Swagger and webhook workflows ([40d0c14](https://github.com/perfect-panel/frontend/commit/40d0c1486ffa074bc658a4842e0e0639ca096bd4))
+* **release:** Release 1.14.0-dev.1 / 发布版本 1.14.0-dev.1 [skip ci] ([537a8a3](https://github.com/perfect-panel/frontend/commit/537a8a34fb1ed6a8120f2af0a36a7fbab74a6ee4))
+* sync main into develop ([892459f](https://github.com/perfect-panel/frontend/commit/892459fae23c08c9feea98441e75c1c238b2f96b))
+
+## [1.14.0](https://github.com/perfect-panel/frontend/compare/v1.13.1...v1.14.0) (2026-08-09)
+
+### ✨ Features / 新功能
+
+* **admin:** expose Hysteria2 client options ([9b03439](https://github.com/perfect-panel/frontend/commit/9b0343906d891159129652b4252adf529205e299))
+* align server protocol, telegram and oauth with the panel ([4cb53a8](https://github.com/perfect-panel/frontend/commit/4cb53a87255555e1349431fe6ffa91232f05c6b9))
+* **subscribe:** lead the store with a renewal banner ([8aa14a4](https://github.com/perfect-panel/frontend/commit/8aa14a48d38bf61036054e3b4eb49435ad429748))
+
+### 🐛 Bug Fixes / 问题修复
+
+* **admin:** preserve email subjects and config fields ([#142](https://github.com/perfect-panel/frontend/issues/142)) ([e0faa24](https://github.com/perfect-panel/frontend/commit/e0faa24b5560c62437cee418792dcf54dfe097b8))
+* **ci:** clean up issue automation [skip ci] ([21e7708](https://github.com/perfect-panel/frontend/commit/21e770834c5939a45e555c20418793b723cf0f37))
+* **ci:** skip triage for closed issues [skip ci] ([7f2a9ec](https://github.com/perfect-panel/frontend/commit/7f2a9ecd15376917bd8d214c39537c90afddc9e2))
+* **request:** surface the server's reason and stop the duplicate error toast ([877c144](https://github.com/perfect-panel/frontend/commit/877c144bb6afc3e60d0563b939fdd64812cae65f)), closes [#145](https://github.com/perfect-panel/frontend/issues/145)
+* stop browser page translation from crashing the app ([3a1953e](https://github.com/perfect-panel/frontend/commit/3a1953ea831e9a40a0469546870202721c7fb390)), closes [#139](https://github.com/perfect-panel/frontend/issues/139) [#app](https://github.com/perfect-panel/frontend/issues/app)
+* stop rewriting the transport of a stored reality node ([9acfc9d](https://github.com/perfect-panel/frontend/commit/9acfc9d307f0965f81e35340bd735498d2ec47d2))
+
+### 📚 Documentation / 文档更新
+
+* **api:** migrate Swagger reference to frontend ([889dc3d](https://github.com/perfect-panel/frontend/commit/889dc3d5a3fead0139867bb68e711ebbbf60a0a1))
+* **api:** sync Swagger from backend ([265e1c5](https://github.com/perfect-panel/frontend/commit/265e1c5fa7b1ff523c5ec3e020dfd4180365e84c))
+* **api:** sync Swagger from backend ([8223f11](https://github.com/perfect-panel/frontend/commit/8223f11674acfc5c8e9cc40ac595bc656ea9e063))
+* switch install guides to postgresql and ppanel-server ([402196e](https://github.com/perfect-panel/frontend/commit/402196e8c085cbb1decba7f9cb867fbd1b6094ba))
+
+### ⚡️ Performance Improvements / 性能优化
+
+* fix blank first screen and shrink critical-path bundles ([e82c5f0](https://github.com/perfect-panel/frontend/commit/e82c5f0007e5c50a671ca8353990c087df2b058e))
+
+### 🔧 Chores / 其他变更
+
+* **release:** Release 1.14.0-dev.1 / 发布版本 1.14.0-dev.1 [skip ci] ([c3b9c4d](https://github.com/perfect-panel/frontend/commit/c3b9c4de533cb58d6f4b9c3ced5e7751d276e484))
+* **release:** Release 1.14.0-dev.1 / 发布版本 1.14.0-dev.1 [skip ci] ([1513b35](https://github.com/perfect-panel/frontend/commit/1513b3574403fc7cd59ebb1fa738f5e457d16d2b))
+* **release:** Release 1.14.0-dev.1 / 发布版本 1.14.0-dev.1 [skip ci] ([f87a841](https://github.com/perfect-panel/frontend/commit/f87a841f976099806cb545483437fd76d3a3429d))
+* **release:** Release 1.14.0-dev.2 / 发布版本 1.14.0-dev.2 [skip ci] ([58be721](https://github.com/perfect-panel/frontend/commit/58be7217e24989ed70a4447f51a5b0201d6bdc1a))
+
+## [1.14.0-dev.1](https://github.com/perfect-panel/frontend/compare/v1.13.1...v1.14.0-dev.1) (2026-08-03)
+
+### ✨ Features / 新功能
+
+* align server protocol, telegram and oauth with the panel ([4cb53a8](https://github.com/perfect-panel/frontend/commit/4cb53a87255555e1349431fe6ffa91232f05c6b9))
+
+### 🐛 Bug Fixes / 问题修复
+
+* stop browser page translation from crashing the app ([3a1953e](https://github.com/perfect-panel/frontend/commit/3a1953ea831e9a40a0469546870202721c7fb390)), closes [#139](https://github.com/perfect-panel/frontend/issues/139) [#app](https://github.com/perfect-panel/frontend/issues/app)
+* stop rewriting the transport of a stored reality node ([9acfc9d](https://github.com/perfect-panel/frontend/commit/9acfc9d307f0965f81e35340bd735498d2ec47d2))
+
+### 📚 Documentation / 文档更新
+
+* switch install guides to postgresql and ppanel-server ([402196e](https://github.com/perfect-panel/frontend/commit/402196e8c085cbb1decba7f9cb867fbd1b6094ba))
+
+### ⚡️ Performance Improvements / 性能优化
+
+* fix blank first screen and shrink critical-path bundles ([e82c5f0](https://github.com/perfect-panel/frontend/commit/e82c5f0007e5c50a671ca8353990c087df2b058e))
+
+### 🔧 Chores / 其他变更
+
+* **release:** Release 1.14.0-dev.1 / 发布版本 1.14.0-dev.1 [skip ci] ([1513b35](https://github.com/perfect-panel/frontend/commit/1513b3574403fc7cd59ebb1fa738f5e457d16d2b))
+* **release:** Release 1.14.0-dev.1 / 发布版本 1.14.0-dev.1 [skip ci] ([f87a841](https://github.com/perfect-panel/frontend/commit/f87a841f976099806cb545483437fd76d3a3429d))
+* **release:** Release 1.14.0-dev.2 / 发布版本 1.14.0-dev.2 [skip ci] ([58be721](https://github.com/perfect-panel/frontend/commit/58be7217e24989ed70a4447f51a5b0201d6bdc1a))
+
+## [1.14.0-dev.1](https://github.com/perfect-panel/frontend/compare/v1.13.1...v1.14.0-dev.1) (2026-08-03)
+
+### ✨ Features / 新功能
+
+* align server protocol, telegram and oauth with the panel ([4cb53a8](https://github.com/perfect-panel/frontend/commit/4cb53a87255555e1349431fe6ffa91232f05c6b9))
+
+### 🐛 Bug Fixes / 问题修复
+
+* stop rewriting the transport of a stored reality node ([9acfc9d](https://github.com/perfect-panel/frontend/commit/9acfc9d307f0965f81e35340bd735498d2ec47d2))
+
+### 📚 Documentation / 文档更新
+
+* switch install guides to postgresql and ppanel-server ([402196e](https://github.com/perfect-panel/frontend/commit/402196e8c085cbb1decba7f9cb867fbd1b6094ba))
+
+### ⚡️ Performance Improvements / 性能优化
+
+* fix blank first screen and shrink critical-path bundles ([e82c5f0](https://github.com/perfect-panel/frontend/commit/e82c5f0007e5c50a671ca8353990c087df2b058e))
+
+### 🔧 Chores / 其他变更
+
+* **release:** Release 1.14.0-dev.1 / 发布版本 1.14.0-dev.1 [skip ci] ([f87a841](https://github.com/perfect-panel/frontend/commit/f87a841f976099806cb545483437fd76d3a3429d))
+* **release:** Release 1.14.0-dev.2 / 发布版本 1.14.0-dev.2 [skip ci] ([58be721](https://github.com/perfect-panel/frontend/commit/58be7217e24989ed70a4447f51a5b0201d6bdc1a))
+
 ## [1.14.0-dev.2](https://github.com/perfect-panel/frontend/compare/v1.14.0-dev.1...v1.14.0-dev.2) (2026-08-02)
 
 ### 🐛 Bug Fixes / 问题修复

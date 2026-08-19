@@ -1,6 +1,5 @@
 "use client";
 
-import { DotLottieReact } from "@lottiefiles/dotlottie-react";
 import { Link } from "@tanstack/react-router";
 import {
   Tabs,
@@ -9,6 +8,7 @@ import {
   TabsTrigger,
 } from "@workspace/ui/components/tabs";
 import { LanguageSwitch } from "@workspace/ui/composed/language-switch";
+import { DotLottieReact } from "@workspace/ui/composed/lottie";
 import { ThemeSwitch } from "@workspace/ui/composed/theme-switch";
 import { useTranslation } from "react-i18next";
 import { useGlobalStore } from "@/stores/global";

@@ -111,14 +111,14 @@ export default function Order() {
                     <Display type="currency" value={order.amount} />
                   </Button>
                 </HoverCardTrigger>
-                <HoverCardContent>
+                <HoverCardContent className="w-auto max-w-[80vw]">
                   <div className="grid gap-3">
                     {order.trade_no && (
                       <>
                         <div className="font-semibold">
                           {t("tradeNo", "Transaction Number")}
                         </div>
-                        <span className="text-muted-foreground">
+                        <span className="break-all text-muted-foreground">
                           {order.trade_no}
                         </span>
                         <Separator className="my-2" />

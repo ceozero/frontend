@@ -1,4 +1,4 @@
-import { DotLottieReact } from "@lottiefiles/dotlottie-react";
+import { DotLottieReact } from "@workspace/ui/composed/lottie";
 import { motion } from "framer-motion";
 import { useTranslation } from "react-i18next";
 

@@ -1,8 +1,8 @@
 "use client";
 
-import { DotLottieReact } from "@lottiefiles/dotlottie-react";
 import { Link, useNavigate } from "@tanstack/react-router";
 import { LanguageSwitch } from "@workspace/ui/composed/language-switch";
+import { DotLottieReact } from "@workspace/ui/composed/lottie";
 import { ThemeSwitch } from "@workspace/ui/composed/theme-switch";
 import { useEffect } from "react";
 import { useGlobalStore } from "@/stores/global";
