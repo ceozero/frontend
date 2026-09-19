@@ -1696,6 +1696,11 @@
                         "in": "query"
                     },
                     {
+                        "type": "string",
+                        "name": "end_date",
+                        "in": "query"
+                    },
+                    {
                         "type": "integer",
                         "name": "page",
                         "in": "query",
@@ -1712,6 +1717,11 @@
                         "name": "size",
                         "in": "query",
                         "required": true
+                    },
+                    {
+                        "type": "string",
+                        "name": "start_date",
+                        "in": "query"
                     },
                     {
                         "type": "integer",
@@ -1765,6 +1775,11 @@
                         "in": "query"
                     },
                     {
+                        "type": "string",
+                        "name": "end_date",
+                        "in": "query"
+                    },
+                    {
                         "type": "integer",
                         "name": "page",
                         "in": "query",
@@ -1781,6 +1796,11 @@
                         "name": "size",
                         "in": "query",
                         "required": true
+                    },
+                    {
+                        "type": "string",
+                        "name": "start_date",
+                        "in": "query"
                     },
                     {
                         "type": "integer",
@@ -1834,6 +1854,11 @@
                         "in": "query"
                     },
                     {
+                        "type": "string",
+                        "name": "end_date",
+                        "in": "query"
+                    },
+                    {
                         "type": "integer",
                         "name": "page",
                         "in": "query",
@@ -1850,6 +1875,11 @@
                         "name": "size",
                         "in": "query",
                         "required": true
+                    },
+                    {
+                        "type": "string",
+                        "name": "start_date",
+                        "in": "query"
                     }
                 ],
                 "responses": {
@@ -1898,6 +1928,11 @@
                         "in": "query"
                     },
                     {
+                        "type": "string",
+                        "name": "end_date",
+                        "in": "query"
+                    },
+                    {
                         "type": "integer",
                         "name": "page",
                         "in": "query",
@@ -1914,6 +1949,11 @@
                         "name": "size",
                         "in": "query",
                         "required": true
+                    },
+                    {
+                        "type": "string",
+                        "name": "start_date",
+                        "in": "query"
                     },
                     {
                         "type": "integer",
@@ -1967,6 +2007,11 @@
                         "in": "query"
                     },
                     {
+                        "type": "string",
+                        "name": "end_date",
+                        "in": "query"
+                    },
+                    {
                         "type": "integer",
                         "name": "page",
                         "in": "query",
@@ -1983,6 +2028,11 @@
                         "name": "size",
                         "in": "query",
                         "required": true
+                    },
+                    {
+                        "type": "string",
+                        "name": "start_date",
+                        "in": "query"
                     },
                     {
                         "type": "integer",
@@ -2049,9 +2099,14 @@
                         "required": true
                     },
                     {
+                        "enum": [
+                            10,
+                            11
+                        ],
                         "type": "integer",
                         "name": "type",
-                        "in": "query"
+                        "in": "query",
+                        "required": true
                     }
                 ],
                 "responses": {
@@ -2100,6 +2155,11 @@
                         "in": "query"
                     },
                     {
+                        "type": "string",
+                        "name": "end_date",
+                        "in": "query"
+                    },
+                    {
                         "type": "integer",
                         "name": "page",
                         "in": "query",
@@ -2116,6 +2176,11 @@
                         "name": "size",
                         "in": "query",
                         "required": true
+                    },
+                    {
+                        "type": "string",
+                        "name": "start_date",
+                        "in": "query"
                     }
                 ],
                 "responses": {
@@ -2131,6 +2196,85 @@
                                     "properties": {
                                         "data": {
                                             "$ref": "#/definitions/dto.FilterMobileLogResponse"
+                                        }
+                                    }
+                                }
+                            ]
+                        }
+                    }
+                }
+            }
+        },
+        "/v1/admin/log/order/list": {
+            "get": {
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "admin"
+                ],
+                "summary": "Filter order creation logs",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "name": "date",
+                        "in": "query"
+                    },
+                    {
+                        "type": "string",
+                        "name": "end_date",
+                        "in": "query"
+                    },
+                    {
+                        "type": "integer",
+                        "name": "page",
+                        "in": "query",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "name": "search",
+                        "in": "query"
+                    },
+                    {
+                        "maximum": 100,
+                        "type": "integer",
+                        "name": "size",
+                        "in": "query",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "name": "start_date",
+                        "in": "query"
+                    },
+                    {
+                        "type": "integer",
+                        "name": "user_id",
+                        "in": "query"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "allOf": [
+                                {
+                                    "$ref": "#/definitions/result.ResponseSuccessBean"
+                                },
+                                {
+                                    "type": "object",
+                                    "properties": {
+                                        "data": {
+                                            "$ref": "#/definitions/dto.FilterOrderLogResponse"
                                         }
                                     }
                                 }
@@ -2164,6 +2308,11 @@
                         "in": "query"
                     },
                     {
+                        "type": "string",
+                        "name": "end_date",
+                        "in": "query"
+                    },
+                    {
                         "type": "integer",
                         "name": "page",
                         "in": "query",
@@ -2180,6 +2329,11 @@
                         "name": "size",
                         "in": "query",
                         "required": true
+                    },
+                    {
+                        "type": "string",
+                        "name": "start_date",
+                        "in": "query"
                     },
                     {
                         "type": "integer",
@@ -2233,6 +2387,11 @@
                         "in": "query"
                     },
                     {
+                        "type": "string",
+                        "name": "end_date",
+                        "in": "query"
+                    },
+                    {
                         "type": "integer",
                         "name": "page",
                         "in": "query",
@@ -2254,6 +2413,11 @@
                         "name": "size",
                         "in": "query",
                         "required": true
+                    },
+                    {
+                        "type": "string",
+                        "name": "start_date",
+                        "in": "query"
                     }
                 ],
                 "responses": {
@@ -2374,6 +2538,11 @@
                         "in": "query"
                     },
                     {
+                        "type": "string",
+                        "name": "end_date",
+                        "in": "query"
+                    },
+                    {
                         "type": "integer",
                         "name": "page",
                         "in": "query",
@@ -2390,6 +2559,11 @@
                         "name": "size",
                         "in": "query",
                         "required": true
+                    },
+                    {
+                        "type": "string",
+                        "name": "start_date",
+                        "in": "query"
                     },
                     {
                         "type": "integer",
@@ -2448,6 +2622,11 @@
                         "in": "query"
                     },
                     {
+                        "type": "string",
+                        "name": "end_date",
+                        "in": "query"
+                    },
+                    {
                         "type": "integer",
                         "name": "page",
                         "in": "query",
@@ -2464,6 +2643,11 @@
                         "name": "size",
                         "in": "query",
                         "required": true
+                    },
+                    {
+                        "type": "string",
+                        "name": "start_date",
+                        "in": "query"
                     },
                     {
                         "type": "integer",
@@ -2517,6 +2701,11 @@
                         "in": "query"
                     },
                     {
+                        "type": "string",
+                        "name": "end_date",
+                        "in": "query"
+                    },
+                    {
                         "type": "integer",
                         "name": "page",
                         "in": "query",
@@ -2533,6 +2722,11 @@
                         "name": "size",
                         "in": "query",
                         "required": true
+                    },
+                    {
+                        "type": "string",
+                        "name": "start_date",
+                        "in": "query"
                     },
                     {
                         "type": "integer",
@@ -2591,6 +2785,11 @@
                         "in": "query"
                     },
                     {
+                        "type": "string",
+                        "name": "end_date",
+                        "in": "query"
+                    },
+                    {
                         "type": "integer",
                         "name": "page",
                         "in": "query",
@@ -2612,6 +2811,11 @@
                         "name": "size",
                         "in": "query",
                         "required": true
+                    },
+                    {
+                        "type": "string",
+                        "name": "start_date",
+                        "in": "query"
                     },
                     {
                         "type": "integer",
@@ -2667,10 +2871,16 @@
                     {
                         "type": "integer",
                         "name": "page",
-                        "in": "query",
-                        "required": true
+                        "in": "query"
                     },
                     {
+                        "enum": [
+                            1,
+                            2,
+                            3,
+                            4,
+                            5
+                        ],
                         "type": "integer",
                         "name": "scope",
                         "in": "query"
@@ -2679,10 +2889,17 @@
                         "maximum": 100,
                         "type": "integer",
                         "name": "size",
-                        "in": "query",
-                        "required": true
+                        "in": "query"
                     },
                     {
+                        "enum": [
+                            0,
+                            1,
+                            2,
+                            3,
+                            4,
+                            5
+                        ],
                         "type": "integer",
                         "name": "status",
                         "in": "query"
@@ -2945,17 +3162,23 @@
                     {
                         "type": "integer",
                         "name": "page",
-                        "in": "query",
-                        "required": true
+                        "in": "query"
                     },
                     {
                         "maximum": 100,
                         "type": "integer",
                         "name": "size",
-                        "in": "query",
-                        "required": true
+                        "in": "query"
                     },
                     {
+                        "enum": [
+                            0,
+                            1,
+                            2,
+                            3,
+                            4,
+                            5
+                        ],
                         "type": "integer",
                         "name": "status",
                         "in": "query"
@@ -4741,42 +4964,6 @@
                         "description": "OK",
                         "schema": {
                             "$ref": "#/definitions/result.ResponseSuccessBean"
-                        }
-                    }
-                }
-            }
-        },
-        "/v1/admin/system/module": {
-            "get": {
-                "security": [
-                    {
-                        "BearerAuth": []
-                    }
-                ],
-                "produces": [
-                    "application/json"
-                ],
-                "tags": [
-                    "admin"
-                ],
-                "summary": "Get Module Config",
-                "responses": {
-                    "200": {
-                        "description": "OK",
-                        "schema": {
-                            "allOf": [
-                                {
-                                    "$ref": "#/definitions/result.ResponseSuccessBean"
-                                },
-                                {
-                                    "type": "object",
-                                    "properties": {
-                                        "data": {
-                                            "$ref": "#/definitions/dto.ModuleConfig"
-                                        }
-                                    }
-                                }
-                            ]
                         }
                     }
                 }
@@ -7060,6 +7247,113 @@
                 }
             }
         },
+        "/v1/admin/withdrawal/list": {
+            "get": {
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "admin"
+                ],
+                "summary": "Get withdrawal list",
+                "parameters": [
+                    {
+                        "type": "integer",
+                        "name": "page",
+                        "in": "query",
+                        "required": true
+                    },
+                    {
+                        "maximum": 100,
+                        "type": "integer",
+                        "name": "size",
+                        "in": "query",
+                        "required": true
+                    },
+                    {
+                        "enum": [
+                            0,
+                            1,
+                            2
+                        ],
+                        "type": "integer",
+                        "name": "status",
+                        "in": "query"
+                    },
+                    {
+                        "type": "integer",
+                        "name": "user_id",
+                        "in": "query"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "allOf": [
+                                {
+                                    "$ref": "#/definitions/result.ResponseSuccessBean"
+                                },
+                                {
+                                    "type": "object",
+                                    "properties": {
+                                        "data": {
+                                            "$ref": "#/definitions/dto.GetWithdrawalListResponse"
+                                        }
+                                    }
+                                }
+                            ]
+                        }
+                    }
+                }
+            }
+        },
+        "/v1/admin/withdrawal/status": {
+            "put": {
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "admin"
+                ],
+                "summary": "Review withdrawal",
+                "parameters": [
+                    {
+                        "description": "Request parameters",
+                        "name": "request",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/dto.ReviewWithdrawalRequest"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/result.ResponseSuccessBean"
+                        }
+                    }
+                }
+            }
+        },
         "/v1/auth/check": {
             "get": {
                 "consumes": [
@@ -7197,6 +7491,7 @@
         },
         "/v1/auth/login/device": {
             "post": {
+                "description": "When device security is enabled, requests and response data use a signed data/time/sign envelope. Each request needs a fresh nonce; see docs/design/device-authentication.md. The User-Agent is read from the HTTP header.",
                 "consumes": [
                     "application/json"
                 ],
@@ -11275,11 +11570,35 @@
         "dto.BalanceLog": {
             "type": "object",
             "properties": {
+                "actor_id": {
+                    "type": "integer"
+                },
                 "amount": {
                     "type": "integer"
                 },
                 "balance": {
                     "type": "integer"
+                },
+                "client_ip": {
+                    "type": "string"
+                },
+                "ip_as_organization": {
+                    "type": "string"
+                },
+                "ip_asn": {
+                    "type": "integer"
+                },
+                "ip_city": {
+                    "type": "string"
+                },
+                "ip_country": {
+                    "type": "string"
+                },
+                "ip_country_code": {
+                    "type": "string"
+                },
+                "ip_region": {
+                    "type": "string"
                 },
                 "order_no": {
                     "type": "string"
@@ -11289,6 +11608,9 @@
                 },
                 "type": {
                     "type": "integer"
+                },
+                "user_agent": {
+                    "type": "string"
                 },
                 "user_id": {
                     "type": "integer"
@@ -11577,8 +11899,32 @@
         "dto.CommissionLog": {
             "type": "object",
             "properties": {
+                "actor_id": {
+                    "type": "integer"
+                },
                 "amount": {
                     "type": "integer"
+                },
+                "client_ip": {
+                    "type": "string"
+                },
+                "ip_as_organization": {
+                    "type": "string"
+                },
+                "ip_asn": {
+                    "type": "integer"
+                },
+                "ip_city": {
+                    "type": "string"
+                },
+                "ip_country": {
+                    "type": "string"
+                },
+                "ip_country_code": {
+                    "type": "string"
+                },
+                "ip_region": {
+                    "type": "string"
                 },
                 "order_no": {
                     "type": "string"
@@ -11589,6 +11935,9 @@
                 "type": {
                     "type": "integer"
                 },
+                "user_agent": {
+                    "type": "string"
+                },
                 "user_id": {
                     "type": "integer"
                 }
@@ -11597,7 +11946,8 @@
         "dto.CommissionWithdrawRequest": {
             "type": "object",
             "required": [
-                "amount"
+                "amount",
+                "content"
             ],
             "properties": {
                 "amount": {
@@ -11605,7 +11955,8 @@
                     "maximum": 2000000000
                 },
                 "content": {
-                    "type": "string"
+                    "type": "string",
+                    "maxLength": 4000
                 }
             }
         },
@@ -11705,6 +12056,11 @@
         },
         "dto.CreateBatchSendEmailTaskRequest": {
             "type": "object",
+            "required": [
+                "content",
+                "scope",
+                "subject"
+            ],
             "properties": {
                 "additional": {
                     "type": "string"
@@ -11719,16 +12075,26 @@
                     "type": "integer"
                 },
                 "register_end_time": {
-                    "type": "integer"
+                    "type": "integer",
+                    "minimum": 0
                 },
                 "register_start_time": {
-                    "type": "integer"
+                    "type": "integer",
+                    "minimum": 0
                 },
                 "scheduled": {
-                    "type": "integer"
+                    "type": "integer",
+                    "minimum": 0
                 },
                 "scope": {
-                    "type": "integer"
+                    "type": "integer",
+                    "enum": [
+                        1,
+                        2,
+                        3,
+                        4,
+                        5
+                    ]
                 },
                 "subject": {
                     "type": "string"
@@ -11953,10 +12319,16 @@
                     "type": "integer"
                 },
                 "end_time": {
-                    "type": "integer"
+                    "type": "integer",
+                    "minimum": 0
                 },
                 "gift_type": {
-                    "type": "integer"
+                    "type": "integer",
+                    "enum": [
+                        0,
+                        1,
+                        2
+                    ]
                 },
                 "gift_value": {
                     "type": "integer"
@@ -11968,7 +12340,8 @@
                     "type": "boolean"
                 },
                 "start_time": {
-                    "type": "integer"
+                    "type": "integer",
+                    "minimum": 0
                 },
                 "subscribers": {
                     "type": "array",
@@ -12423,6 +12796,7 @@
                     "type": "boolean"
                 },
                 "only_real_device": {
+                    "description": "Requires authenticated device transport, not hardware attestation.",
                     "type": "boolean"
                 },
                 "show_ads": {
@@ -12433,20 +12807,17 @@
         "dto.DeviceLoginRequest": {
             "type": "object",
             "required": [
-                "identifier",
-                "user_agent"
+                "identifier"
             ],
             "properties": {
                 "cf_token": {
                     "type": "string"
                 },
                 "identifier": {
-                    "type": "string"
+                    "type": "string",
+                    "maxLength": 255
                 },
                 "invite": {
-                    "type": "string"
-                },
-                "user_agent": {
                     "type": "string"
                 }
             }
@@ -12763,6 +13134,20 @@
                 }
             }
         },
+        "dto.FilterOrderLogResponse": {
+            "type": "object",
+            "properties": {
+                "list": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/dto.OrderLog"
+                    }
+                },
+                "total": {
+                    "type": "integer"
+                }
+            }
+        },
         "dto.FilterRegisterLogResponse": {
             "type": "object",
             "properties": {
@@ -12961,6 +13346,9 @@
         },
         "dto.GetBatchSendEmailTaskStatusRequest": {
             "type": "object",
+            "required": [
+                "id"
+            ],
             "properties": {
                 "id": {
                     "type": "integer"
@@ -13152,7 +13540,13 @@
         },
         "dto.GetPreSendEmailCountRequest": {
             "type": "object",
+            "required": [
+                "scope"
+            ],
             "properties": {
+                "additional": {
+                    "type": "string"
+                },
                 "register_end_time": {
                     "type": "integer"
                 },
@@ -13160,7 +13554,14 @@
                     "type": "integer"
                 },
                 "scope": {
-                    "type": "integer"
+                    "type": "integer",
+                    "enum": [
+                        1,
+                        2,
+                        3,
+                        4,
+                        5
+                    ]
                 }
             }
         },
@@ -13466,14 +13867,52 @@
                 }
             }
         },
+        "dto.GetWithdrawalListResponse": {
+            "type": "object",
+            "properties": {
+                "list": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/dto.WithdrawalLog"
+                    }
+                },
+                "total": {
+                    "type": "integer"
+                }
+            }
+        },
         "dto.GiftLog": {
             "type": "object",
             "properties": {
+                "actor_id": {
+                    "type": "integer"
+                },
                 "amount": {
                     "type": "integer"
                 },
                 "balance": {
                     "type": "integer"
+                },
+                "client_ip": {
+                    "type": "string"
+                },
+                "ip_as_organization": {
+                    "type": "string"
+                },
+                "ip_asn": {
+                    "type": "integer"
+                },
+                "ip_city": {
+                    "type": "string"
+                },
+                "ip_country": {
+                    "type": "string"
+                },
+                "ip_country_code": {
+                    "type": "string"
+                },
+                "ip_region": {
+                    "type": "string"
                 },
                 "order_no": {
                     "type": "string"
@@ -13489,6 +13928,9 @@
                 },
                 "type": {
                     "type": "integer"
+                },
+                "user_agent": {
+                    "type": "string"
                 },
                 "user_id": {
                     "type": "integer"
@@ -13520,6 +13962,9 @@
                 },
                 "referral_percentage": {
                     "type": "integer"
+                },
+                "withdrawal_method": {
+                    "type": "string"
                 }
             }
         },
@@ -13539,18 +13984,45 @@
         },
         "dto.LogSetting": {
             "type": "object",
+            "required": [
+                "auto_clear",
+                "clear_days"
+            ],
             "properties": {
                 "auto_clear": {
                     "type": "boolean"
                 },
                 "clear_days": {
-                    "type": "integer"
+                    "type": "integer",
+                    "maximum": 3650,
+                    "minimum": 1
                 }
             }
         },
         "dto.LoginLog": {
             "type": "object",
             "properties": {
+                "actor_id": {
+                    "type": "integer"
+                },
+                "ip_as_organization": {
+                    "type": "string"
+                },
+                "ip_asn": {
+                    "type": "integer"
+                },
+                "ip_city": {
+                    "type": "string"
+                },
+                "ip_country": {
+                    "type": "string"
+                },
+                "ip_country_code": {
+                    "type": "string"
+                },
+                "ip_region": {
+                    "type": "string"
+                },
                 "login_ip": {
                     "type": "string"
                 },
@@ -13582,12 +14054,36 @@
         "dto.MessageLog": {
             "type": "object",
             "properties": {
+                "actor_id": {
+                    "type": "integer"
+                },
+                "client_ip": {
+                    "type": "string"
+                },
                 "content": {},
                 "created_at": {
                     "type": "integer"
                 },
                 "id": {
                     "type": "integer"
+                },
+                "ip_as_organization": {
+                    "type": "string"
+                },
+                "ip_asn": {
+                    "type": "integer"
+                },
+                "ip_city": {
+                    "type": "string"
+                },
+                "ip_country": {
+                    "type": "string"
+                },
+                "ip_country_code": {
+                    "type": "string"
+                },
+                "ip_region": {
+                    "type": "string"
                 },
                 "platform": {
                     "type": "string"
@@ -13603,6 +14099,9 @@
                 },
                 "type": {
                     "type": "integer"
+                },
+                "user_agent": {
+                    "type": "string"
                 }
             }
         },
@@ -13620,23 +14119,6 @@
                     "items": {
                         "type": "string"
                     }
-                }
-            }
-        },
-        "dto.ModuleConfig": {
-            "type": "object",
-            "properties": {
-                "secret": {
-                    "description": "通讯密钥",
-                    "type": "string"
-                },
-                "service_name": {
-                    "description": "服务名称",
-                    "type": "string"
-                },
-                "service_version": {
-                    "description": "服务版本",
-                    "type": "string"
                 }
             }
         },
@@ -13897,6 +14379,9 @@
                 "cf_token": {
                     "type": "string"
                 },
+                "invite": {
+                    "type": "string"
+                },
                 "method": {
                     "description": "google, facebook, apple, telegram, github etc.",
                     "type": "string"
@@ -14066,6 +14551,86 @@
                 },
                 "updated_at": {
                     "type": "integer"
+                },
+                "user_id": {
+                    "type": "integer"
+                }
+            }
+        },
+        "dto.OrderLog": {
+            "type": "object",
+            "properties": {
+                "actor_id": {
+                    "type": "integer"
+                },
+                "amount": {
+                    "type": "integer"
+                },
+                "client_ip": {
+                    "type": "string"
+                },
+                "coupon_discount": {
+                    "type": "integer"
+                },
+                "discount": {
+                    "type": "integer"
+                },
+                "fee_amount": {
+                    "type": "integer"
+                },
+                "gift_amount": {
+                    "type": "integer"
+                },
+                "id": {
+                    "type": "integer"
+                },
+                "ip_as_organization": {
+                    "type": "string"
+                },
+                "ip_asn": {
+                    "type": "integer"
+                },
+                "ip_city": {
+                    "type": "string"
+                },
+                "ip_country": {
+                    "type": "string"
+                },
+                "ip_country_code": {
+                    "type": "string"
+                },
+                "ip_region": {
+                    "type": "string"
+                },
+                "method": {
+                    "type": "string"
+                },
+                "order_no": {
+                    "type": "string"
+                },
+                "order_type": {
+                    "type": "integer"
+                },
+                "payment_id": {
+                    "type": "integer"
+                },
+                "price": {
+                    "type": "integer"
+                },
+                "quantity": {
+                    "type": "integer"
+                },
+                "source": {
+                    "type": "string"
+                },
+                "subscribe_id": {
+                    "type": "integer"
+                },
+                "timestamp": {
+                    "type": "integer"
+                },
+                "user_agent": {
+                    "type": "string"
                 },
                 "user_id": {
                     "type": "integer"
@@ -14424,7 +14989,7 @@
                     "type": "boolean"
                 },
                 "alpn": {
-                    "description": "TLS/HTTP/QUIC 协议通用字段：TLS ALPN 列表，当前主要用于 VLESS、VMess、Trojan、TUIC。",
+                    "description": "TLS/HTTP/QUIC 协议通用字段：TLS ALPN 列表；Nowhere 必须且只能设置一个值，默认 now/1。",
                     "type": "array",
                     "items": {
                         "type": "string"
@@ -14459,11 +15024,11 @@
                     "type": "integer"
                 },
                 "ech_enable": {
-                    "description": "TLS ECH 兼容字段：是否启用 Encrypted ClientHello；当前节点入站尚未实现。",
+                    "description": "订阅客户端字段：是否启用 Encrypted ClientHello；节点配置下发时会过滤。",
                     "type": "boolean"
                 },
                 "ech_server_name": {
-                    "description": "TLS ECH 兼容字段：ECH 外层 ServerName；当前节点入站尚未实现。",
+                    "description": "订阅客户端字段：ECH 外层 ServerName；节点配置下发时会过滤。",
                     "type": "string"
                 },
                 "enable": {
@@ -14535,7 +15100,7 @@
                     "type": "string"
                 },
                 "network": {
-                    "description": "监听网络通用字段：选择 tcp、udp 或 both；Naive、Mieru、SSR、TUIC、Snell 等协议会按各自能力校验。",
+                    "description": "监听网络通用字段：选择 tcp、udp 或 both；Nowhere 规范化为 mix、tcp 或 udp，其他协议按各自能力校验。",
                     "type": "string"
                 },
                 "obfs": {
@@ -14642,7 +15207,7 @@
                     "type": "string"
                 },
                 "type": {
-                    "description": "通用字段：协议类型标识，例如 shadowsocks、vless、vmess、hysteria2、tuic。",
+                    "description": "通用字段：协议类型标识，例如 shadowsocks、vless、vmess、hysteria2、tuic、nowhere。",
                     "type": "string"
                 },
                 "udp_relay_mode": {
@@ -14666,7 +15231,7 @@
                     "type": "boolean"
                 },
                 "version": {
-                    "description": "Snell/TUIC 共用字段：Snell 使用协议版本；TUIC 仅接受 5（0 表示默认）。",
+                    "description": "版本字段：Snell 接受 5/6，TUIC 接受 5，Nowhere 接受 1；0 表示使用协议默认值。",
                     "type": "integer"
                 },
                 "xhttp_extra": {
@@ -14865,13 +15430,15 @@
             "type": "object",
             "properties": {
                 "end_time": {
-                    "type": "integer"
+                    "type": "integer",
+                    "minimum": 0
                 },
                 "is_active": {
                     "type": "boolean"
                 },
                 "start_time": {
-                    "type": "integer"
+                    "type": "integer",
+                    "minimum": 0
                 },
                 "subscribers": {
                     "type": "array",
@@ -15154,10 +15721,31 @@
         "dto.RegisterLog": {
             "type": "object",
             "properties": {
+                "actor_id": {
+                    "type": "integer"
+                },
                 "auth_method": {
                     "type": "string"
                 },
                 "identifier": {
+                    "type": "string"
+                },
+                "ip_as_organization": {
+                    "type": "string"
+                },
+                "ip_asn": {
+                    "type": "integer"
+                },
+                "ip_city": {
+                    "type": "string"
+                },
+                "ip_country": {
+                    "type": "string"
+                },
+                "ip_country_code": {
+                    "type": "string"
+                },
+                "ip_region": {
                     "type": "string"
                 },
                 "register_ip": {
@@ -15248,6 +15836,30 @@
         "dto.ResetSubscribeLog": {
             "type": "object",
             "properties": {
+                "actor_id": {
+                    "type": "integer"
+                },
+                "client_ip": {
+                    "type": "string"
+                },
+                "ip_as_organization": {
+                    "type": "string"
+                },
+                "ip_asn": {
+                    "type": "integer"
+                },
+                "ip_city": {
+                    "type": "string"
+                },
+                "ip_country": {
+                    "type": "string"
+                },
+                "ip_country_code": {
+                    "type": "string"
+                },
+                "ip_region": {
+                    "type": "string"
+                },
                 "order_no": {
                     "type": "string"
                 },
@@ -15256,6 +15868,9 @@
                 },
                 "type": {
                     "type": "integer"
+                },
+                "user_agent": {
+                    "type": "string"
                 },
                 "user_id": {
                     "type": "integer"
@@ -15268,8 +15883,32 @@
         "dto.ResetSubscribeTrafficLog": {
             "type": "object",
             "properties": {
+                "actor_id": {
+                    "type": "integer"
+                },
+                "client_ip": {
+                    "type": "string"
+                },
                 "id": {
                     "type": "integer"
+                },
+                "ip_as_organization": {
+                    "type": "string"
+                },
+                "ip_asn": {
+                    "type": "integer"
+                },
+                "ip_city": {
+                    "type": "string"
+                },
+                "ip_country": {
+                    "type": "string"
+                },
+                "ip_country_code": {
+                    "type": "string"
+                },
+                "ip_region": {
+                    "type": "string"
                 },
                 "order_no": {
                     "type": "string"
@@ -15279,6 +15918,9 @@
                 },
                 "type": {
                     "type": "integer"
+                },
+                "user_agent": {
+                    "type": "string"
                 },
                 "user_subscribe_id": {
                     "type": "integer"
@@ -15331,6 +15973,28 @@
                 },
                 "today": {
                     "$ref": "#/definitions/dto.OrdersStatistics"
+                }
+            }
+        },
+        "dto.ReviewWithdrawalRequest": {
+            "type": "object",
+            "required": [
+                "id"
+            ],
+            "properties": {
+                "id": {
+                    "type": "integer"
+                },
+                "reason": {
+                    "type": "string",
+                    "maxLength": 500
+                },
+                "status": {
+                    "type": "integer",
+                    "enum": [
+                        1,
+                        2
+                    ]
                 }
             }
         },
@@ -15782,6 +16446,9 @@
         },
         "dto.StopBatchSendEmailTaskRequest": {
             "type": "object",
+            "required": [
+                "id"
+            ],
             "properties": {
                 "id": {
                     "type": "integer"
@@ -16119,7 +16786,28 @@
         "dto.SubscribeLog": {
             "type": "object",
             "properties": {
+                "actor_id": {
+                    "type": "integer"
+                },
                 "client_ip": {
+                    "type": "string"
+                },
+                "ip_as_organization": {
+                    "type": "string"
+                },
+                "ip_asn": {
+                    "type": "integer"
+                },
+                "ip_city": {
+                    "type": "string"
+                },
+                "ip_country": {
+                    "type": "string"
+                },
+                "ip_country_code": {
+                    "type": "string"
+                },
+                "ip_region": {
                     "type": "string"
                 },
                 "timestamp": {
@@ -17271,8 +17959,29 @@
         "dto.UserLoginLog": {
             "type": "object",
             "properties": {
+                "actor_id": {
+                    "type": "integer"
+                },
                 "id": {
                     "type": "integer"
+                },
+                "ip_as_organization": {
+                    "type": "string"
+                },
+                "ip_asn": {
+                    "type": "integer"
+                },
+                "ip_city": {
+                    "type": "string"
+                },
+                "ip_country": {
+                    "type": "string"
+                },
+                "ip_country_code": {
+                    "type": "string"
+                },
+                "ip_region": {
+                    "type": "string"
                 },
                 "login_ip": {
                     "type": "string"
@@ -17387,6 +18096,9 @@
                 "download": {
                     "type": "integer"
                 },
+                "entitlement_source": {
+                    "type": "string"
+                },
                 "expire_time": {
                     "type": "integer"
                 },
@@ -17443,6 +18155,9 @@
                 "download": {
                     "type": "integer"
                 },
+                "entitlement_source": {
+                    "type": "string"
+                },
                 "expire_time": {
                     "type": "integer"
                 },
@@ -17495,6 +18210,9 @@
                 },
                 "download": {
                     "type": "integer"
+                },
+                "entitlement_source": {
+                    "type": "string"
                 },
                 "expire_time": {
                     "type": "integer"
@@ -17549,10 +18267,31 @@
         "dto.UserSubscribeLog": {
             "type": "object",
             "properties": {
+                "actor_id": {
+                    "type": "integer"
+                },
                 "id": {
                     "type": "integer"
                 },
                 "ip": {
+                    "type": "string"
+                },
+                "ip_as_organization": {
+                    "type": "string"
+                },
+                "ip_asn": {
+                    "type": "integer"
+                },
+                "ip_city": {
+                    "type": "string"
+                },
+                "ip_country": {
+                    "type": "string"
+                },
+                "ip_country_code": {
+                    "type": "string"
+                },
+                "ip_region": {
                     "type": "string"
                 },
                 "timestamp": {
